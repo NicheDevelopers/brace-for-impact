@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1kcy0xwnxjbd"]
+
+[ext_resource type="Script" uid="uid://cy1kx0veofwqk" path="res://interact_ray.gd" id="1_y27si"]
+
+[node name="InteractRay" type="RayCast3D"]
+target_position = Vector3(0, 0, -2)
+collide_with_areas = true
+script = ExtResource("1_y27si")
+
+[node name="Prompt" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
