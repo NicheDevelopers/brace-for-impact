@@ -52,17 +52,23 @@ prompt_message = "Interactable Box"
 
 [node name="InteractableBox2" parent="." instance=ExtResource("2_er83y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.564864, 0.5, -5)
-prompt_message = "Interactable Box 2"
+prompt_message = "Interactable Box Continuous"
+interaction_mode = "Continuous"
 
 [node name="DisabledBox" parent="." instance=ExtResource("2_er83y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 0.5, -5)
 prompt_message = "Disabled Box"
 is_enabled = false
 
-[node name="EnabledLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950889, 1.35738, -4.94288)
+[node name="OnceLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67957, 1.35738, -4.94288)
 billboard = 1
-text = "Enabled"
+text = "Once"
+
+[node name="ContinuousLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.604104, 1.35738, -4.94288)
+billboard = 1
+text = "Continuous"
 
 [node name="DisabledLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25161, 1.35738, -4.94288)

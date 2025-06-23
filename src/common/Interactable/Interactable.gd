@@ -7,6 +7,7 @@ signal interacted(body)
 @export var prompt_message: String = "Interact"
 @export var is_enabled: bool = true
 @export var interact_action_name: String = "interact"
+@export_enum("Once", "Continuous") var interaction_mode: String = "Once"
 
 func interact(body):
 	interacted.emit(body)

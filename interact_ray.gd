@@ -12,5 +12,15 @@ func _physics_process(delta: float) -> void:
 			if collider.is_enabled:
 				prompt.text = collider.get_prompt()
 				
-				if Input.is_action_just_pressed(collider.interact_action_name):
-					collider.interact(self.owner) # Passes the parent Player node
+				var is_pressed := false
+				var mode: String = collider.interaction_mode
+				
+				if mode == "Once":
+					is_pressed = Input.is_action_just_pressed(collider.interact_action_name)
+				elif mode == "Continuous":
+					is_pressed = Input.is_action_pressed(collider.interact_action_name)
+				else:
+					printerr("Invalid interaction mode " + mode)
+					
+				if is_pressed:
+					collider.interact(self.owner)
