@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1kcy0xwnxjbd"]
+
+[ext_resource type="Script" uid="uid://cy1kx0veofwqk" path="res://interact_ray.gd" id="1_y27si"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qwuq6"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InteractRay" type="RayCast3D"]
+target_position = Vector3(0, 0, -2)
+collide_with_areas = true
+script = ExtResource("1_y27si")
+
+[node name="Prompt" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -24.5
+offset_right = 30.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Interact
+[E]"
+label_settings = SubResource("LabelSettings_qwuq6")
+horizontal_alignment = 1
