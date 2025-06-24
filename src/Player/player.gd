@@ -30,20 +30,7 @@ var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
 
 func map_direction(input):
-	var result_direction = Vector2.ZERO
-	if input[0] > 0.0:
-		result_direction[0] = 1.0
-	elif input[0] < 0.0:
-		result_direction[0] = -1.0
-	else:
-		result_direction[0] = 0.0
-	if input[1] > 0.0:
-		result_direction[1] = 1.0
-	elif input[1] < 0.0:
-		result_direction[1] = -1.0
-	else:
-		result_direction[1] = 0.0
-	return result_direction
+	return Vector2(sign(input.x), sign(input.y))
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
