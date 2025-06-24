@@ -14,6 +14,9 @@ signal interacted(body)
 ## You can use this to change the key that needs to be pressed. The prompt will update accordingly to display the exact key.
 @export var interact_action_name: String = "interact"
 
+## Restricts the frequency of possible interactions
+@export var interaction_timeout: float = 0.0
+
 ## Once - pressing and holding the interaction key is effective only once - holding has no effect
 ##
 ## Continuous - press and hold to interact repeatedly
@@ -22,23 +25,40 @@ signal interacted(body)
 @onready var label: Label3D = $Label3D
 
 var _key_name: String
+var _timeout_left: float = 0.0
 
 func _ready() -> void:
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	_key_name = _get_key()
-	
+	self.label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
+	self._key_name = _get_key()
+	self.label.text = get_prompt()
+	hide_label()
+
 func interact(body):
+	if _timeout_left > 0.0:
+		return
+		
 	interacted.emit(body)
+	_timeout_left = interaction_timeout
+
+## Handles counting down the potential interaction timeout
+func _physics_process(delta: float) -> void:	
+	if _timeout_left > 0:
+		_timeout_left -= delta
 	
 func get_prompt() -> String:
 	return prompt_message + "\n[" + _key_name + "]"
 
 func hide_label():
-	label.text = ""
+	label.hide()
 	
 func show_label():
-	label.text = get_prompt()
+	label.show()
+	
+func set_prompt(new_prompt: String):
+	prompt_message = new_prompt
+	self.label.text = get_prompt()
 
+## Called once to get the key assigned for interacting with this object
 func _get_key() -> String:
 	var key_name := ""
 	for action in InputMap.action_get_events(self.interact_action_name):

@@ -35,6 +35,9 @@ environment = SubResource("Environment_ryhks")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Player" parent="." instance=ExtResource("1_i33xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_hbmfo")
 
@@ -42,9 +45,6 @@ mesh = SubResource("PlaneMesh_hbmfo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ryhks")
-
-[node name="Player" parent="." instance=ExtResource("1_i33xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="InteractableBox" parent="." instance=ExtResource("2_er83y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0.5, -5)
@@ -57,7 +57,8 @@ interaction_mode = "Continuous"
 
 [node name="InteractableBox3" parent="." instance=ExtResource("2_er83y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.367028, 0.5, -5.85972)
-prompt_message = "Second Continuous"
+prompt_message = "Interactable Box Continuous With Timeout"
+interaction_timeout = 1.0
 interaction_mode = "Continuous"
 
 [node name="DisabledBox" parent="." instance=ExtResource("2_er83y")]
