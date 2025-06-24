@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://v1af140jq2of"]
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
-[ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/common/Interactable/InteractRay.tscn" id="2_rwoh2"]
+[ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s10d5"]
 
