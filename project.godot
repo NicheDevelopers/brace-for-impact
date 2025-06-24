@@ -15,11 +15,6 @@ run/main_scene="uid://c2gb4uegaq7bf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
-
 [input]
 
 move_forward={
