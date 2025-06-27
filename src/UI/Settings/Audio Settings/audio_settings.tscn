@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0kjn5v6wmmwh"]
+
+[ext_resource type="Script" uid="uid://p18hqqgb7ut4" path="res://src/UI/Settings/Audio Settings/audio_settings.gd" id="1_5ea5t"]
+[ext_resource type="Texture2D" uid="uid://cr8qabrask0fy" path="res://src/UI/Settings/Audio Settings/audio_settings.jpg" id="2_7rkov"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1sxj"]
+modulate_color = Color(0.556953, 0.556953, 0.556953, 1)
+
+[node name="AudioSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ea5t")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_n1sxj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.446
+anchor_right = 0.5
+anchor_bottom = 0.446
+offset_left = -93.0
+offset_top = -68.008
+offset_right = 99.0
+offset_bottom = 67.992
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_7rkov")
+
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

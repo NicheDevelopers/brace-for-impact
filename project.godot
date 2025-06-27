@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Brace For Impact"
-run/main_scene="uid://c2gb4uegaq7bf"
+run/main_scene="uid://bo544m607q30b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneTracker="*res://src/common/GameState/SceneTracker/SceneTracker.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
