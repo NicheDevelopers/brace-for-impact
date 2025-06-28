@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk2qhe1x86ycp"]
+
+[ext_resource type="PackedScene" uid="uid://b1n4yph8on5lw" path="res://src/MapGenerator/parts/corridors/raw/CorridorTurn/CorridorTurn.tscn" id="1_dy8ux"]
+[ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="2_befva"]
+
+[node name="CorridorTurn" type="Node3D"]
+
+[node name="corridor-turn" parent="." instance=ExtResource("1_dy8ux")]
+
+[node name="corridor-floor-large" parent="." instance=ExtResource("2_befva")]
