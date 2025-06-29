@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://bifspdjim33iv"]
+
+[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_qaj51"]
+[ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/Corridor.tscn" id="2_1raf0"]
+[ext_resource type="PackedScene" uid="uid://dapxqm2ta4rm7" path="res://src/MapGenerator/parts/corridors/CorridorJunctionX.tscn" id="3_ao3t5"]
+[ext_resource type="PackedScene" uid="uid://bk2qhe1x86ycp" path="res://src/MapGenerator/parts/corridors/CorridorTurn.tscn" id="4_tkipn"]
+[ext_resource type="PackedScene" uid="uid://cd8kruvgkshrn" path="res://src/MapGenerator/parts/corridors/CorridorJunctionT.tscn" id="5_l06nq"]
+
+[node name="CorridorsDemo" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qaj51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="CorridorJunctionX" parent="Map" instance=ExtResource("3_ao3t5")]
+
+[node name="Corridor" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Corridor2" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Corridor3" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="CorridorJunctionX2" parent="Map" instance=ExtResource("3_ao3t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="CorridorJunctionT" parent="Map" instance=ExtResource("5_l06nq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, -16)
+
+[node name="CorridorJunctionT2" parent="Map" instance=ExtResource("5_l06nq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 0, -12)
+
+[node name="CorridorJunctionT3" parent="Map" instance=ExtResource("5_l06nq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -16)
+
+[node name="CorridorTurn" parent="Map" instance=ExtResource("4_tkipn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0, -16)
+
+[node name="Corridor4" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="Corridor5" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="CorridorTurn2" parent="Map" instance=ExtResource("4_tkipn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="CorridorJunctionX3" parent="Map" instance=ExtResource("3_ao3t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="CorridorTurn3" parent="Map" instance=ExtResource("4_tkipn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="Corridor6" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 0)
+
+[node name="CorridorTurn4" parent="Map" instance=ExtResource("4_tkipn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -4)
+
+[node name="Corridor7" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="CorridorJunctionT4" parent="Map" instance=ExtResource("5_l06nq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="Corridor8" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)

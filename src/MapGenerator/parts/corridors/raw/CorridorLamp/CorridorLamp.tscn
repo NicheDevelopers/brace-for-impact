@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgvvemx4qwiy6"]
+
+[ext_resource type="PackedScene" uid="uid://cqrqvlh6v6i2u" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/model/corridor-lamp.glb" id="1_j1mcj"]
+[ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/parts/corridors/corridor_wall_material.tres" id="2_yswvo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh37p"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.31
+
+[node name="CorridorLamp" instance=ExtResource("1_j1mcj")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="Lamp" parent="." index="0"]
+material_override = ExtResource("2_yswvo")
+
+[node name="Light" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vh37p")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180427, -1.57734e-08)
+light_color = Color(0.854902, 1, 0.847059, 1)
+light_energy = 0.3
