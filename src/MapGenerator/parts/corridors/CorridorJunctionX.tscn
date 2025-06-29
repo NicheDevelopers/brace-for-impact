@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dapxqm2ta4rm7"]
+[gd_scene load_steps=4 format=3 uid="uid://dapxqm2ta4rm7"]
 
 [ext_resource type="PackedScene" uid="uid://dfqjpsv1ymgq7" path="res://src/MapGenerator/parts/corridors/raw/CorridorJunctionX/CorridorJunctionX.tscn" id="1_bltsr"]
 [ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="2_tjvva"]
+[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="3_tjvva"]
 
 [node name="CorridorJunctionX" type="Node3D"]
 
 [node name="CorridorJunctionX" parent="." instance=ExtResource("1_bltsr")]
 
 [node name="corridor-floor-large" parent="." instance=ExtResource("2_tjvva")]
+
+[node name="CorridorLamp" parent="." instance=ExtResource("3_tjvva")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)

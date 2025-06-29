@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb8tg12r4rl3x"]
+[gd_scene load_steps=6 format=3 uid="uid://cb8tg12r4rl3x"]
 
 [ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="1_fgx8y"]
 [ext_resource type="PackedScene" uid="uid://bmt61higtx053" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/CorridorFloorSmall.tscn" id="2_8c08p"]
 [ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="3_ymrpd"]
 [ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="4_lbf74"]
+[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
 
 [node name="Corridor" type="Node3D"]
 
@@ -25,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
 
 [node name="corridor-pipe3" parent="." instance=ExtResource("4_lbf74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
+
+[node name="CorridorLamp" parent="." instance=ExtResource("5_8c08p")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
