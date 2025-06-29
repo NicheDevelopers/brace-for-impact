@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://v1af140jq2of"]
+[gd_scene load_steps=6 format=3 uid="uid://v1af140jq2of"]
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
-[ext_resource type="PackedScene" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
+[ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
+[ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/HUD/HUD.tscn" id="3_vy1tf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s10d5"]
 
@@ -25,3 +26,5 @@ shape = SubResource("ConvexPolygonShape3D_jouo0")
 current = true
 
 [node name="InteractRay" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("2_rwoh2")]
+
+[node name="HUD" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("3_vy1tf")]
