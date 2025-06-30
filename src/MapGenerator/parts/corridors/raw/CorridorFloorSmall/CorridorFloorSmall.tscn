@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmt61higtx053"]
+
+[ext_resource type="PackedScene" uid="uid://bxt5vyx1ls301" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/model/corridor-floor-small.glb" id="1_xbc6y"]
+[ext_resource type="Material" uid="uid://d4ctyogl08s7s" path="res://src/MapGenerator/parts/corridors/floor_material.tres" id="2_81wwl"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xbc6y"]
+points = PackedVector3Array(-0.722241, -1, 1.08091, 0.7221, -1, 1.08091, -0.722241, -1, 1.13091, -0.722241, 1, 1.08091, 0.7221, -1, 1.13091, 0.7221, 1, 1.08091, -0.722241, 1, 1.13091, 0.7221, 1, 1.13091)
+
+[node name="corridor-floor-small" instance=ExtResource("1_xbc6y")]
+
+[node name="Floor" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_81wwl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_xbc6y")

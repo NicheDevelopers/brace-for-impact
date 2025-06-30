@@ -22,3 +22,6 @@ mono_crash.*.json
 Thumbs.db
 # Linux specific ignores
 *~
+
+# Blender specific ignores
+.blend1

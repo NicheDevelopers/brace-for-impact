@@ -3,7 +3,7 @@ extends RayCast3D
 # Stores the last encountered collider to toggle its Label3D
 var last_collider: Interactable
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(_delta: float) -> void:	
 	if last_collider:
 		last_collider.hide_label()
 		

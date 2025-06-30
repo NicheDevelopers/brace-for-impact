@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb8tg12r4rl3x"]
+
+[ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="1_fgx8y"]
+[ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="3_ymrpd"]
+[ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="4_lbf74"]
+[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
+[ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="6_ymrpd"]
+
+[node name="Corridor" type="Node3D"]
+
+[node name="Section1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Walls" parent="Section1" instance=ExtResource("1_fgx8y")]
+
+[node name="corridor-cables" parent="Section1" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08123, 0.555982, 0)
+
+[node name="corridor-cables2" parent="Section1" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(-0.304449, -0.952529, 0, 0.952529, -0.304449, 0, 0, 0, 1, -0.909919, 0.338436, 0)
+
+[node name="corridor-pipe" parent="Section1" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00819, 0.453771, 0)
+
+[node name="corridor-pipe2" parent="Section1" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
+
+[node name="corridor-pipe3" parent="Section1" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
+
+[node name="CorridorLamp" parent="Section1" instance=ExtResource("5_8c08p")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
+
+[node name="Section2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Walls" parent="Section2" instance=ExtResource("1_fgx8y")]
+
+[node name="corridor-cables" parent="Section2" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08123, 0.555982, 0)
+
+[node name="corridor-cables2" parent="Section2" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(-0.304449, -0.952529, 0, 0.952529, -0.304449, 0, 0, 0, 1, -0.909919, 0.338436, 0)
+
+[node name="corridor-pipe" parent="Section2" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00819, 0.453771, 0)
+
+[node name="corridor-pipe2" parent="Section2" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
+
+[node name="corridor-pipe3" parent="Section2" instance=ExtResource("4_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
+
+[node name="CorridorLamp" parent="Section2" instance=ExtResource("5_8c08p")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
+
+[node name="corridor-floor-large" parent="." instance=ExtResource("6_ymrpd")]
