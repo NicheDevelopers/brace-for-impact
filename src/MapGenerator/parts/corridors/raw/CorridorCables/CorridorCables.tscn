@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://b6ap4p00nbeww"]
+
+[ext_resource type="PackedScene" uid="uid://by6m4aqqdqt25" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/model/corridor-cables.glb" id="1_765o5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_765o5"]
+albedo_color = Color(0.340407, 0.616874, 0.444652, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cn34"]
+albedo_color = Color(0.846681, 0.368887, 0.485682, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3hft"]
+albedo_color = Color(0.388137, 0.469859, 0.798733, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lj3e4"]
+albedo_color = Color(0.849393, 0.555881, 0.341797, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkvxw"]
+albedo_color = Color(0.606853, 0.347981, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3f7r"]
+albedo_color = Color(3.36915e-07, 0.711464, 0.507884, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7557"]
+albedo_color = Color(1, 0.374235, 0.418481, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug65r"]
+albedo_color = Color(0.761268, 0.599179, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4lht"]
+albedo_color = Color(0.242763, 0.506212, 0.824984, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylc51"]
+albedo_color = Color(1, 0.192065, 0.330295, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i2ku"]
+albedo_color = Color(0.896035, 0.555526, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbn0g"]
+albedo_color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="corridor-cables" instance=ExtResource("1_765o5")]
+
+[node name="Cable" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_765o5")
+
+[node name="Cable_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0cn34")
+
+[node name="Cable_002" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r3hft")
+
+[node name="Cable_003" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lj3e4")
+
+[node name="Cable_004" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jkvxw")
+
+[node name="Cable_005" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n3f7r")
+
+[node name="Cable_006" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w7557")
+
+[node name="Cable_007" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ug65r")
+
+[node name="Cable_008" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o4lht")
+
+[node name="Cable_009" parent="." index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ylc51")
+
+[node name="Cable_010" parent="." index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2i2ku")
+
+[node name="CableTies" parent="." index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jbn0g")
