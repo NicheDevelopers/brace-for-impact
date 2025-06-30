@@ -56,13 +56,13 @@ func _process(delta: float) -> void:
 	direction = direction.normalized()
 	if Input.get_action_strength("crouch"):
 		crouch_value = crouch_speed_multiplier
-		camera.position.y = crouching_height
+		twist_pivot.position.y = crouching_height
 	elif Input.get_action_strength("sprint") and input[1] < 0.0:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
-		camera.position.y = standing_height
+		twist_pivot.position.y = standing_height
 	else:
-		camera.position.y = standing_height
+		twist_pivot.position.y = standing_height
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
 	var mapped_input = map_direction(input)
 	var velocity_2d = Vector2.ZERO
