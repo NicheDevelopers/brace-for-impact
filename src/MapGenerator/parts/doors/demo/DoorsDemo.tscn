@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://chx8l2refhj03"]
+
+[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_q3n3o"]
+[ext_resource type="PackedScene" uid="uid://cxhjsevs56uf" path="res://src/MapGenerator/parts/doors/DoorSingle/DoorSingle.tscn" id="2_x52ap"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q3n3o"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_x52ap"]
+sky_material = SubResource("ProceduralSkyMaterial_q3n3o")
+
+[sub_resource type="Environment" id="Environment_kxp3i"]
+background_mode = 2
+sky = SubResource("Sky_x52ap")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ju4bx"]
+size = Vector2(20, 20)
+
+[node name="DoorsDemo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kxp3i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ju4bx")
+
+[node name="Player" parent="." instance=ExtResource("1_q3n3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+
+[node name="DoorSingle" parent="." instance=ExtResource("2_x52ap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
