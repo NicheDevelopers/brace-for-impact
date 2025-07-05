@@ -19,6 +19,7 @@ mesh = SubResource("CapsuleMesh_s10d5")
 shape = SubResource("ConvexPolygonShape3D_jouo0")
 
 [node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.211028, 0)
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 

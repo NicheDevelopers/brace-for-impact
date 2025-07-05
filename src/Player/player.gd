@@ -8,10 +8,10 @@ extends CharacterBody3D
 
 @export_group("player_properties")
 @export var speed = 4.0
-@export var acceleration = 8.0
+@export var acceleration = 80.0
 @export var sprint_speed_multiplier = 2.0
 @export var crouch_speed_multiplier = 0.5
-@export var acceleration_loss = 4.0
+@export var acceleration_loss = 50.0
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
 @export var standing_height = 0.7
@@ -68,9 +68,9 @@ func _process(delta: float) -> void:
 	var velocity_2d = Vector2.ZERO
 	velocity_2d.x = velocity.x
 	velocity_2d.y = velocity.z
-	print("Velocity 2D:", velocity_2d)
-	print("Mapped input:", mapped_input)
-	print("Direction:", direction.x, " ", direction.z)
+	#print("Velocity 2D:", velocity_2d)
+	#print("Mapped input:", mapped_input)
+	#print("Direction:", direction.x, " ", direction.z)
 	current_direction = map_direction(velocity_2d)
 	# works only for no tilt	
 	#if current_direction[0] != mapped_input[0]:

@@ -24,4 +24,4 @@ Thumbs.db
 *~
 
 # Blender specific ignores
-.blend1
+*.blend1
