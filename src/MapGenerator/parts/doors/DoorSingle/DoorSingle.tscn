@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxhjsevs56uf"]
+[gd_scene load_steps=10 format=3 uid="uid://cxhjsevs56uf"]
 
 [ext_resource type="PackedScene" uid="uid://boxtwod7j2pa5" path="res://src/MapGenerator/parts/doors/DoorSingle/model/door-single.glb" id="1_0isvo"]
 [ext_resource type="Script" uid="uid://dlyw1vjva6sba" path="res://src/MapGenerator/parts/doors/DoorSingle/door_single.gd" id="2_ksdk8"]
@@ -24,21 +24,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dydsw"]
-resource_name = "close"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(0, 2, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ksdk8"]
 resource_name = "open"
 tracks/0/type = "value"
@@ -57,7 +42,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igyde"]
 _data = {
 &"RESET": SubResource("Animation_m2m2s"),
-&"close": SubResource("Animation_dydsw"),
 &"open": SubResource("Animation_ksdk8")
 }
 
