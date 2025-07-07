@@ -106,5 +106,11 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			mouse_twist = -event.relative.x * mouse_sensitivity
-			mouse_pitch = -event.relative.y * mouse_sensitivity
+			# Normalize mouse sensitivity based on viewport size to ensure consistent camera movement
+			# across different window sizes. Uses 1920x1080 as reference resolution.
+			var viewport_size = get_viewport().get_visible_rect().size
+			var reference_resolution = Vector2(1920, 1080)
+			var sensitivity_scale = reference_resolution.length() / viewport_size.length()
+			
+			mouse_twist = -event.relative.x * mouse_sensitivity * sensitivity_scale
+			mouse_pitch = -event.relative.y * mouse_sensitivity * sensitivity_scale
