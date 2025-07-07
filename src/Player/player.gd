@@ -32,6 +32,14 @@ var current_direction: Vector2 = Vector2.ZERO
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
 
+func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			get_viewport().set_input_as_handled()
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
