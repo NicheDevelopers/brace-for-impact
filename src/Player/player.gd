@@ -25,6 +25,7 @@ extends CharacterBody3D
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var hand_point: Node3D = $TwistPivot/PitchPivot/SpringArm3D/HandPoint
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
@@ -41,6 +42,8 @@ func _input(event: InputEvent):
 			get_viewport().set_input_as_handled()
 
 func _ready() -> void:
+	SignalDispatcher.item_picked_up.connect(_on_item_picked_up)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -116,3 +119,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
+
+func _on_item_picked_up(item: Item):
+	print("Player picks up item")
+	hand_point.add_child(item)
