@@ -30,7 +30,6 @@ func _on_interacted(body: Variant) -> void:
 	SignalBus.item_picked_up.emit(self)
 
 func use(body):
-	var is_pressed := false
 	var mode: String = self.usage_mode
 	
 	if not self.is_usage_enabled:
