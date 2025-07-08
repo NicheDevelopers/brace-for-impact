@@ -9,10 +9,12 @@
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jouo0"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vy1tf"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vy1tf"]
+radius = 0.1
+height = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_vy1tf"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -34,23 +36,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.211028, 0)
 current = true
 
 [node name="InteractRay" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("2_rwoh2")]
+collision_mask = 4
 
 [node name="HUD" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("3_vy1tf")]
 
-[node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.256, 0)
-spring_length = 0.5
+[node name="Arm" type="Node3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.154471, -0.615269)
 
-[node name="Arm" type="StaticBody3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
-transform = Transform3D(-0.2, -1.74846e-08, 7.64274e-16, 0, -8.74228e-09, -0.2, 1.74846e-08, -0.2, 8.74228e-09, 0, 0, 0)
-collision_layer = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TwistPivot/PitchPivot/SpringArm3D/Arm"]
-shape = SubResource("ConvexPolygonShape3D_vy1tf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TwistPivot/PitchPivot/SpringArm3D/Arm"]
-transform = Transform3D(1, 0, -8.47033e-22, -1.42109e-14, 1, 0, 0, 3.55271e-15, 1, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TwistPivot/PitchPivot/Arm"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_vy1tf")
 skeleton = NodePath("")
 
-[node name="HandPoint" type="Node3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
+[node name="HandPoint" type="Node3D" parent="TwistPivot/PitchPivot/Arm"]
+transform = Transform3D(1, 0, -6.77626e-22, 0, 1, 0, 6.77626e-22, 0, 1, 0, 0, -0.375)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TwistPivot/PitchPivot/Arm/HandPoint"]
+mesh = SubResource("BoxMesh_vy1tf")
+skeleton = NodePath("../../../../..")

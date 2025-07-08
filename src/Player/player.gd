@@ -25,10 +25,13 @@ extends CharacterBody3D
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
-@onready var hand_point: Node3D = $TwistPivot/PitchPivot/SpringArm3D/HandPoint
+@onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
+
+# TODO: move this functionality to equipment
+var held_item: Item
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
@@ -42,7 +45,7 @@ func _input(event: InputEvent):
 			get_viewport().set_input_as_handled()
 
 func _ready() -> void:
-	SignalDispatcher.item_picked_up.connect(_on_item_picked_up)
+	SignalBus.item_picked_up.connect(_on_item_picked_up)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
@@ -112,6 +115,10 @@ func _process(delta: float) -> void:
 	mouse_twist = 0.0
 	mouse_pitch = 0.0
 	
+	if Input.is_action_pressed("use_item"):
+		if held_item != null:
+			held_item.use(self)
+	
 	previous_input = input
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -122,4 +129,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_item_picked_up(item: Item):
 	print("Player picks up item")
+	held_item = item
 	hand_point.add_child(item)
+
+func _item_drop():
+	pass#hand_point.remo

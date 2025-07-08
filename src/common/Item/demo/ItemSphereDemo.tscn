@@ -12,6 +12,7 @@ is_hemisphere = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_w04ue"]
 
 [node name="ItemSphereDemo" type="RigidBody3D"]
+collision_layer = 4
 script = ExtResource("1_gudih")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -22,8 +23,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_w04ue")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17735, 0)
 billboard = 2
 outline_size = 6
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]
+[connection signal="used" from="." to="." method="_on_used"]

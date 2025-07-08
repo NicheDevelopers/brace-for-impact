@@ -7,18 +7,18 @@ func _physics_process(_delta: float) -> void:
 	if last_collider:
 		last_collider.hide_label()
 		
-	if !is_colliding():
+	if not is_colliding():
 		return
 		
 	var collider := get_collider()
 		
 	if collider is not Interactable:
 		return
-		
+	
 	last_collider = collider
-	if !collider.is_enabled:
+	if not collider.is_interaction_enabled:
 		return
-		
+	
 	collider.show_label()
 	
 	var is_pressed := false
