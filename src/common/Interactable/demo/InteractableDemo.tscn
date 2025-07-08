@@ -46,9 +46,9 @@ mesh = SubResource("PlaneMesh_hbmfo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ryhks")
 
-[node name="InteractableBoxContinous" parent="Floor" instance=ExtResource("2_i33xi")]
+[node name="InteractableBoxContinuous" parent="Floor" instance=ExtResource("2_i33xi")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, -4)
-prompt_message = "Interact Continous"
+prompt_message = "Interact Continuous"
 interaction_mode = "Continuous"
 
 [node name="InteractableBoxOnce" parent="Floor" instance=ExtResource("2_i33xi")]
