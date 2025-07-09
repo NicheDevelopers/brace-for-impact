@@ -19,8 +19,8 @@ func _ready():
 	else: success_label.visible = false
 
 func _assert(cond: bool, error_text: String):
-	push_error(cond, error_text)
 	if not cond:
+		push_error(error_text)
 		if not errors.has(error_text):
 			errors[error_text] = 0
 		errors[error_text] += 1
