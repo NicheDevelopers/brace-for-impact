@@ -12,6 +12,6 @@ static func float(min_val: float, max_val: float) -> float:
 # Returns a random index of the provided function
 static func index(array: Array) -> int:
 	if array.is_empty():
-		push_error("rand_index() called on empty array")
+		push_error("index() called on empty array")
 		return -1
 	return randi() % array.size()
