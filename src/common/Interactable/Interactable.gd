@@ -4,11 +4,13 @@ class_name Interactable
 
 signal interacted(body)
 
+@export var displays_prompt: bool = true
+
 ## Message that will appear floating near the object when it's a candidate for interaction
-@export var prompt_message: String = "Interact"
+@export var prompt_message: String = ""
 
 ## Enable or disable interacting with this object. Will also hide its label.
-@export var is_enabled: bool = true
+@export var is_interaction_enabled: bool = true
 
 ## Action name to use for interacting with this object.
 ## You can use this to change the key that needs to be pressed. The prompt will update accordingly to display the exact key.
@@ -28,6 +30,7 @@ var _key_name: String
 var _timeout_left: float = 0.0
 
 func _ready() -> void:
+	self.collision_layer = Bits.from([Layer.Interactables])
 	self.label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
 	self._key_name = _get_key()
 	self.label.text = get_prompt()
@@ -41,11 +44,13 @@ func interact(body):
 	_timeout_left = interaction_timeout
 
 ## Handles counting down the potential interaction timeout
-func _physics_process(delta: float) -> void:	
+func _process(delta: float) -> void:	
 	if _timeout_left > 0:
 		_timeout_left -= delta
 	
 func get_prompt() -> String:
+	if not displays_prompt:
+		return ""
 	return prompt_message + "\n[" + _key_name + "]"
 
 func hide_label():

@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2orrpmjgpvbo"]
+[gd_scene load_steps=9 format=3 uid="uid://dw5p2ohihc8aw"]
 
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_i33xi"]
-[ext_resource type="PackedScene" uid="uid://croybsp4l24c6" path="res://src/common/Interactable/demo/InteractableBoxDemo.tscn" id="2_er83y"]
+[ext_resource type="PackedScene" uid="uid://b4cr3usght1b2" path="res://src/common/Interactable/demo/InteractableBoxDemo.tscn" id="2_i33xi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -46,27 +46,37 @@ mesh = SubResource("PlaneMesh_hbmfo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ryhks")
 
-[node name="InteractableBox" parent="." instance=ExtResource("2_er83y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0.5, -5)
-prompt_message = "Interactable Box"
-
-[node name="InteractableBox2" parent="." instance=ExtResource("2_er83y")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.564864, 0.5, -5)
-prompt_message = "Interactable Box Continuous"
+[node name="InteractableBoxContinuous" parent="Floor" instance=ExtResource("2_i33xi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, -4)
+prompt_message = "Interact Continuous"
 interaction_mode = "Continuous"
 
-[node name="InteractableBox3" parent="." instance=ExtResource("2_er83y")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.367028, 0.5, -5.85972)
-prompt_message = "Interactable Box Continuous With Timeout"
-interaction_timeout = 1.0
+[node name="InteractableBoxOnce" parent="Floor" instance=ExtResource("2_i33xi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0.25, -4)
+prompt_message = "Interact Once"
+
+[node name="InteractableBoxTimeout" parent="Floor" instance=ExtResource("2_i33xi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2, 0.25, -4)
+prompt_message = "Interact (Timeout)"
+interaction_timeout = 0.5
 interaction_mode = "Continuous"
 
-[node name="DisabledBox" parent="." instance=ExtResource("2_er83y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 0.5, -5)
-prompt_message = "Disabled Box"
-is_enabled = false
+[node name="InteractableBoxDisabled" parent="Floor" instance=ExtResource("2_i33xi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, 0.25, -4)
+prompt_message = "Disabled"
+is_interaction_enabled = false
+
+[node name="InteractableBoxNoLabel" parent="Floor" instance=ExtResource("2_i33xi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4, 0.25, -4)
+displays_prompt = false
+prompt_message = "Disabled"
+
+[node name="DisabledLabel2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, -4)
+billboard = 1
+text = "No Label"
 
 [node name="DisabledLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25161, 1.15599, -4.9791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, -4)
 billboard = 1
 text = "Disabled interaction"
