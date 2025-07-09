@@ -4,7 +4,7 @@ extends Node
 @onready var error_log = $ScrollContainer/ErrorLog
 
 # A mapping between an error text and how many times it occured
-var errors: Dictionary[String, int]
+var errors: Dictionary[String, int] = {}
 
 func _ready():
 	test_rand_bool()
