@@ -30,12 +30,10 @@ func _on_interacted(body: Variant) -> void:
 	SignalBus.item_picked_up.emit(self)
 
 func use(body):
-	var mode: String = self.usage_mode
-	
 	if not self.is_usage_enabled:
 		return
 	
-	if mode == "Once":
+	if self.usage_mode == "Once":
 		if not Input.is_action_just_pressed("use_item"):
 			return
 	
