@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bifspdjim33iv"]
+[gd_scene load_steps=9 format=3 uid="uid://bifspdjim33iv"]
 
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_qaj51"]
 [ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/Corridor.tscn" id="2_1raf0"]
@@ -6,7 +6,33 @@
 [ext_resource type="PackedScene" uid="uid://bk2qhe1x86ycp" path="res://src/MapGenerator/parts/corridors/CorridorTurn.tscn" id="4_tkipn"]
 [ext_resource type="PackedScene" uid="uid://cd8kruvgkshrn" path="res://src/MapGenerator/parts/corridors/CorridorJunctionT.tscn" id="5_l06nq"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qaj51"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_1raf0"]
+sky_material = SubResource("ProceduralSkyMaterial_qaj51")
+
+[sub_resource type="Environment" id="Environment_ao3t5"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_1raf0")
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+glow_enabled = true
+glow_bloom = 0.18
+volumetric_fog_density = 0.04
+volumetric_fog_temporal_reprojection_enabled = false
+
 [node name="CorridorsDemo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ao3t5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_qaj51")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2174, 0)
