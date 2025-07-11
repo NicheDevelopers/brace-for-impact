@@ -30,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
 
 [node name="CorridorLamp" parent="Section1" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.38218, 0)
 
 [node name="Section2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
 
 [node name="CorridorLamp" parent="Section2" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.38218, 0)
 
 [node name="corridor-floor-large" parent="." instance=ExtResource("6_ymrpd")]
 

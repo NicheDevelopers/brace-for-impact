@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1v4nho7low4e"]
+[gd_scene load_steps=2 format=3 uid="uid://bns3wrfpohqrd"]
 
-[ext_resource type="Script" uid="uid://cdhpd25a85r07" path="res://src/common/Interactable/demo/box.gd" id="1_s0opi"]
+[ext_resource type="Script" path="res://src/common/Interactable/demo/box.gd" id="1_s0opi"]
 
 [node name="Box" type="StaticBody3D"]
 script = ExtResource("1_s0opi")
