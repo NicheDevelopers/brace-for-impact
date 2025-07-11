@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmvg2shn15oom"]
+
+[ext_resource type="PackedScene" uid="uid://roylxbx2fqwt" path="res://src/common/demo/ExampleDemo.tscn" id="1_2tspk"]
+[ext_resource type="PackedScene" uid="uid://cdc3ubfifx2di" path="res://src/common/DamageRay/demo/ItemToDestroy.tscn" id="2_kaiyn"]
+[ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/common/DamageRay/demo/GunItem.tscn" id="3_k2c8t"]
+
+[node name="DamageRayDemo" type="Node3D"]
+
+[node name="ExampleDemo" parent="." instance=ExtResource("1_2tspk")]
+
+[node name="ItemToDestroy" parent="." instance=ExtResource("2_kaiyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840347, 0)
+
+[node name="GunItem" parent="." instance=ExtResource("3_k2c8t")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.201926, 0.793103, 2.3992)
