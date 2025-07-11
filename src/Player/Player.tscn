@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://v1af140jq2of"]
+[gd_scene load_steps=11 format=3 uid="uid://v1af140jq2of"]
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="2_4pjjn"]
 [ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
 [ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/HUD/HUD.tscn" id="3_vy1tf"]
+[ext_resource type="PackedScene" uid="uid://bgykt56kdnbpo" path="res://src/Player/Flashlight/Flashlight.tscn" id="5_3ajlp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd31a"]
 albedo_texture = ExtResource("2_4pjjn")
@@ -47,6 +48,8 @@ current = true
 collision_mask = 4
 
 [node name="HUD" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("3_vy1tf")]
+
+[node name="Flashlight" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("5_3ajlp")]
 
 [node name="Arm" type="Node3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.154471, -0.615269)
