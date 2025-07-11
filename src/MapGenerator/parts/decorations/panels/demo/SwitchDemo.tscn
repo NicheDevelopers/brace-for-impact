@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgv01dtpnf1lu"]
+[gd_scene load_steps=12 format=3 uid="uid://bgv01dtpnf1lu"]
 
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_j6ajt"]
 [ext_resource type="PackedScene" uid="uid://dd7m2c16uqyaa" path="res://src/MapGenerator/parts/decorations/panels/raw/Switch/Switch.tscn" id="2_j6ajt"]
 [ext_resource type="PackedScene" uid="uid://ce7mrfsu58nri" path="res://src/MapGenerator/parts/decorations/panels/raw/RoundKnob/RoundKnob.tscn" id="3_7salc"]
 [ext_resource type="PackedScene" uid="uid://b3yyljh7ekn40" path="res://src/MapGenerator/parts/decorations/panels/panel1/DecorationPanel1.tscn" id="4_smnso"]
+[ext_resource type="PackedScene" uid="uid://cc0hsgd5bxiys" path="res://src/MapGenerator/parts/decorations/panels/raw/Dial/Dial.tscn" id="5_53nub"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -268,3 +269,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Bottom" parent="Panels/Standard2" instance=ExtResource("4_smnso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Dial" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="Top" type="Node3D" parent="Dial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Dial" parent="Dial/Top" instance=ExtResource("5_53nub")]
+
+[node name="Dial2" parent="Dial/Top" instance=ExtResource("5_53nub")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0)
+
+[node name="Dial3" parent="Dial/Top" instance=ExtResource("5_53nub")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2, 0, 0)
+
+[node name="Center" type="Node3D" parent="Dial"]
+
+[node name="Dial" parent="Dial/Center" instance=ExtResource("5_53nub")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Dial2" parent="Dial/Center" instance=ExtResource("5_53nub")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1, 0, 0)
+
+[node name="Dial3" parent="Dial/Center" instance=ExtResource("5_53nub")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2, 0, 0)
+
+[node name="Bottom" type="Node3D" parent="Dial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Dial" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
+
+[node name="Dial2" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Dial3" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
