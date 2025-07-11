@@ -3,9 +3,9 @@ extends Node3D
 @onready var diode = $Diode
 @onready var position_on = $PositionOn
 @onready var position_off = $PositionOff
-@onready var led_green_material: Material = load("res://src/MapGenerator/parts/decorations/panels/raw/led_green.tres")
-@onready var led_red_material: Material = load("res://src/MapGenerator/parts/decorations/panels/raw/led_red.tres")
-@onready var led_off_material: Material = load("res://src/MapGenerator/parts/decorations/panels/raw/controls.tres")
+@export var led_green_material: Material
+@export var led_red_material: Material
+@export var led_off_material: Material
 
 const on_percent = 40
 const off_percent = 80

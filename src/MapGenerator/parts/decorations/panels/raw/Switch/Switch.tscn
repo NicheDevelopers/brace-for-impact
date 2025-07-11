@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd7m2c16uqyaa"]
+[gd_scene load_steps=7 format=3 uid="uid://dd7m2c16uqyaa"]
 
 [ext_resource type="PackedScene" uid="uid://b5dfoox7wjhj3" path="res://src/MapGenerator/parts/decorations/panels/raw/Switch/model/switch.glb" id="1_l0i58"]
 [ext_resource type="Script" uid="uid://d1uce3uri5i1n" path="res://src/MapGenerator/parts/decorations/panels/raw/Switch/switch.gd" id="2_6l5dm"]
 [ext_resource type="Material" uid="uid://536pvefuej46" path="res://src/MapGenerator/parts/decorations/panels/raw/base.tres" id="2_aeuya"]
 [ext_resource type="Material" uid="uid://d1u0ejpwvipq0" path="res://src/MapGenerator/parts/decorations/panels/raw/controls.tres" id="3_6l5dm"]
+[ext_resource type="Material" uid="uid://qhnsxkmqkpay" path="res://src/MapGenerator/parts/decorations/panels/raw/led_green.tres" id="3_jg5gs"]
 [ext_resource type="Material" uid="uid://ppvsq6oyxhql" path="res://src/MapGenerator/parts/decorations/panels/raw/led_red.tres" id="4_aeuya"]
 
 [node name="Switch" instance=ExtResource("1_l0i58")]
 script = ExtResource("2_6l5dm")
+led_green_material = ExtResource("3_jg5gs")
+led_red_material = ExtResource("4_aeuya")
+led_off_material = ExtResource("3_6l5dm")
 
 [node name="Base" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_aeuya")

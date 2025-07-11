@@ -3,4 +3,4 @@ extends Node3D
 
 func _ready() -> void:
 	var rand = randi_range(0,360)
-	dial.rotate(Vector3.UP, rand)
+	dial.rotate(Vector3.UP, deg_to_rad(rand))
