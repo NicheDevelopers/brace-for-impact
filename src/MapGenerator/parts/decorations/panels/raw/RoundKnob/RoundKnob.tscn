@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce7mrfsu58nri"]
+
+[ext_resource type="PackedScene" uid="uid://dphlgbkfw38y6" path="res://src/MapGenerator/parts/decorations/panels/raw/RoundKnob/model/round-knob.glb" id="1_pxqak"]
+[ext_resource type="Material" uid="uid://d1u0ejpwvipq0" path="res://src/MapGenerator/parts/decorations/panels/raw/controls.tres" id="2_jrx1n"]
+
+[node name="RoundKnob" instance=ExtResource("1_pxqak")]
+
+[node name="RoundKnob" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_jrx1n")
