@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxhjsevs56uf"]
+
+[ext_resource type="PackedScene" uid="uid://boxtwod7j2pa5" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/model/door-single.glb" id="1_0isvo"]
+[ext_resource type="Script" uid="uid://dlyw1vjva6sba" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_single.gd" id="2_ksdk8"]
+[ext_resource type="Material" uid="uid://dcc1strrrwn65" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_material.tres" id="3_dydsw"]
+[ext_resource type="Material" uid="uid://c8u7ddbirrt6a" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/window_material.tres" id="3_m2m2s"]
+[ext_resource type="Material" uid="uid://2rc44iy5ukga" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_material_2.tres" id="4_5o183"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2m2s"]
+size = Vector3(2, 6, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dydsw"]
+size = Vector3(4, 2.5, 2)
+
+[sub_resource type="Animation" id="Animation_m2m2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ksdk8"]
+resource_name = "open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igyde"]
+_data = {
+&"RESET": SubResource("Animation_m2m2s"),
+&"open": SubResource("Animation_ksdk8")
+}
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4mn3a"]
+points = PackedVector3Array(-0.882021, 0.0424461, -0.023454, 0.837809, 2.60071, -0.023454, 1.36724, 0.615901, -0.023454, 0.882021, 0.0424461, 0.108857, -1.36724, 1.93885, 0.108857, -0.837809, 2.60071, -0.023454, 1.36724, 1.93885, 0.108857, -0.882021, 0.0424461, 0.108857, -1.41145, 0.704298, -0.023454, -0.837809, 2.55638, 0.108857, 0.882021, 0.0424461, -0.023454, 1.41145, 1.89478, -0.023454, -1.41145, 1.89478, -0.023454, 1.36724, 0.660225, 0.108857, -1.36724, 0.660225, 0.108857, 0.837809, 2.55638, 0.108857, 1.41145, 0.704298, -0.023454, -1.36724, 0.615901, -0.023454, 1.36724, 1.98293, -0.023454, -1.36724, 1.98293, -0.023454, 0.926232, 2.46824, 0.108857, -0.926232, 2.46824, 0.108857, 1.0141, 0.174917, -0.023454, -1.0141, 0.174917, -0.023454, 0.926232, 2.51206, -0.023454, -0.926232, 2.51206, -0.023454, -1.23488, 0.483681, 0.108857, 1.23488, 0.483681, 0.108857)
+
+[node name="DoorSingle" instance=ExtResource("1_0isvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+script = ExtResource("2_ksdk8")
+
+[node name="DetectionArea" type="Area3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+shape = SubResource("BoxShape3D_m2m2s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DetectionArea" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 1.75)
+shape = SubResource("BoxShape3D_dydsw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DetectionArea" index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, -1.75)
+shape = SubResource("BoxShape3D_dydsw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_igyde")
+}
+
+[node name="Door" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("3_dydsw")
+
+[node name="PanelLarge1" parent="Door" index="0"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelLarge2" parent="Door" index="1"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelSmall1" parent="Door" index="2"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelSmall2" parent="Door" index="3"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="Window1" parent="Door" index="4"]
+surface_material_override/0 = ExtResource("3_m2m2s")
+
+[node name="Window2" parent="Door" index="5"]
+surface_material_override/0 = ExtResource("3_m2m2s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002105, -1.2, 0.00113583)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_4mn3a")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
