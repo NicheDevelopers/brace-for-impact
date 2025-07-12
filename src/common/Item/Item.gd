@@ -17,9 +17,11 @@ signal used(body)
 
 var _use_timeout_left: float = 0.0
 
-func _on_interacted(body: Variant) -> void:
-	print(body.name + " picked up " + self.name)
-	
+func _ready() -> void:
+	super()
+	interacted.connect(_internal_on_interacted)
+
+func _internal_on_interacted(body: Variant) -> void:
 	self.freeze = true
 	self.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	

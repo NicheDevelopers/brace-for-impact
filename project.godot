@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brace For Impact"
-run/main_scene="uid://d2orrpmjgpvbo"
+run/main_scene="uid://bsad6xpex7gmr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ SignalBus="*res://src/common/global/SignalBus.gd"
 Bits="*res://src/common/utils/Bits.gd"
 Layer="*res://src/common/global/Layer.gd"
 Random="*res://src/common/utils/Random.gd"
+Group="*res://src/common/global/Group.gd"
 
 [display]
 
