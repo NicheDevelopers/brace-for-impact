@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn5orh7t06661"]
+
+[ext_resource type="PackedScene" uid="uid://ccfvrrtje65uf" path="res://src/MapGenerator/parts/doors/raw/DoorIndicator/model/door-indicator.glb" id="1_i1lwi"]
+[ext_resource type="Material" uid="uid://dcc1strrrwn65" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_material.tres" id="2_hn6g2"]
+[ext_resource type="Script" uid="uid://dfdjispp45ffa" path="res://src/MapGenerator/parts/doors/raw/DoorIndicator/door_indicator.gd" id="2_pt31i"]
+[ext_resource type="PackedScene" uid="uid://dql4v10hq2uxw" path="res://src/MapGenerator/common/LEDComponent/LEDComponent.tscn" id="3_hn6g2"]
+
+[node name="DoorIndicator" instance=ExtResource("1_i1lwi")]
+script = ExtResource("2_pt31i")
+
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_hn6g2")
+
+[node name="LEDComponent" parent="Base/Diode1" index="0" instance=ExtResource("3_hn6g2")]
+emission_strength = 2.5
+
+[node name="LEDComponent" parent="Base/Diode2" index="0" instance=ExtResource("3_hn6g2")]
+_color = "Red"
+emission_strength = 2.5
+red_when_off = true
+
+[node name="LEDComponent" parent="Base/Diode3" index="0" instance=ExtResource("3_hn6g2")]
+emission_strength = 2.5
+green_when_off = true

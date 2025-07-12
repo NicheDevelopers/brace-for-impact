@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="3_ymrpd"]
 [ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="4_lbf74"]
 [ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
-[ext_resource type="PackedScene" uid="uid://cxhjsevs56uf" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/DoorSingle.tscn" id="6_lbf74"]
+[ext_resource type="PackedScene" uid="uid://bmlei331kx2fn" path="res://src/MapGenerator/parts/doors/Doors.tscn" id="6_lbf74"]
 [ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="6_ymrpd"]
 
 [node name="Corridor" type="Node3D"]
@@ -57,5 +57,5 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.3
 
 [node name="corridor-floor-large" parent="." instance=ExtResource("6_ymrpd")]
 
-[node name="DoorSingle" parent="." instance=ExtResource("6_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2)
+[node name="Doors" parent="." instance=ExtResource("6_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -2)

@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmlei331kx2fn"]
+
+[ext_resource type="PackedScene" uid="uid://cxhjsevs56uf" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/DoorSingle.tscn" id="1_3co4a"]
+[ext_resource type="Script" uid="uid://dlyw1vjva6sba" path="res://src/MapGenerator/parts/doors/doors.gd" id="1_m6cxk"]
+[ext_resource type="PackedScene" uid="uid://cn5orh7t06661" path="res://src/MapGenerator/parts/doors/raw/DoorIndicator/DoorIndicator.tscn" id="2_2qfrq"]
+
+[sub_resource type="Animation" id="Animation_m2m2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ksdk8"]
+resource_name = "open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 1.2, 0), Vector3(0, 3.2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igyde"]
+_data = {
+&"RESET": SubResource("Animation_m2m2s"),
+&"open": SubResource("Animation_ksdk8")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2m2s"]
+size = Vector3(2, 6, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dydsw"]
+size = Vector3(4, 2.5, 2)
+
+[node name="Doors" type="Node3D"]
+script = ExtResource("1_m6cxk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DoorSingle")
+libraries = {
+&"": SubResource("AnimationLibrary_igyde")
+}
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+shape = SubResource("BoxShape3D_m2m2s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 1.75)
+shape = SubResource("BoxShape3D_dydsw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, -1.75)
+shape = SubResource("BoxShape3D_dydsw")
+
+[node name="DoorSingle" parent="." instance=ExtResource("1_3co4a")]
+
+[node name="DoorIndicator" parent="DoorSingle/Door" index="7" instance=ExtResource("2_2qfrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125275, -0.2, 0.0450985)
+
+[node name="DoorIndicator2" parent="DoorSingle/Door" index="8" instance=ExtResource("2_2qfrq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.125, -0.2, -0.045)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+
+[editable path="DoorSingle"]
