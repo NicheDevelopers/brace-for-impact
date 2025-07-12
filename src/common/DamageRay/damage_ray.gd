@@ -11,7 +11,7 @@ func trigger(by_who: Variant):
 	
 	var collider = get_collider()
 	
-	while(true):
+	while collider != null:
 		if collider.has_method("is_in_group"):
 			if collider.is_in_group(Group.HasHealthComponent):
 				var health = collider.get_node("HealthComponent")
