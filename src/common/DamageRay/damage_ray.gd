@@ -17,7 +17,8 @@ func trigger(by_who: Variant):
 				var health = collider.get_node("HealthComponent")
 				health.damage(damage_dealt, by_who)
 				return
-		print(collider)
+		if debug_mode:
+			print(collider)
 		collider = collider.get_parent()
 		#collider.get_tree()
 		#get_tree().get_roo
