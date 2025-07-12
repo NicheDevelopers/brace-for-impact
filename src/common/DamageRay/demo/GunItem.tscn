@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=3 uid="uid://blxoss2f6pgqo"]
+
+[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="1_rrkpc"]
+[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/common/DamageRay/DamageRay.tscn" id="2_xxioe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_61cic"]
+material = SubResource("StandardMaterial3D_xxioe")
+radius = 0.01
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sov0k"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rrkpc"]
+material = SubResource("StandardMaterial3D_sov0k")
+radius = 0.08
+height = 0.5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xxioe"]
+points = PackedVector3Array(0.0696177, 0.199647, 0.0252404, -0.0778455, -0.183806, -0.0116391, -0.0697153, -0.189113, -0.0333658, 0.0696102, -0.199626, 0.0252377, 0.0244572, 0.172128, -0.0759408, -0.0477609, 0.188558, 0.061012, -0.0189669, -0.183471, 0.076435, -0.0628832, 0.197692, -0.0408893, 0.0522107, -0.169132, -0.0605353, 0.0311892, 0.155561, 0.0736262, -0.0116391, -0.183806, -0.0778456, 0.0752835, 0.173528, -0.0259163, -0.0195508, -0.24236, -0.0271171, 0.0183224, 0.242692, -0.0271534, -0.0759439, 0.172135, 0.0244583, -0.0621516, -0.188159, 0.0464063, 0.0527812, -0.170959, 0.0599122, -0.0401299, 0.172446, -0.0688724, -0.0195854, 0.242804, 0.0259114, 0.0764356, -0.183472, -0.0189671, 0.0183569, -0.243134, 0.0259474, -0.0189671, 0.183472, 0.0764356, 0.0332909, -0.233709, -0.0345607, 0.0736262, 0.155561, 0.0311892, 0.0177672, -0.184022, 0.0766663, -0.0529197, -0.15336, -0.0598996, -0.0755983, 0.171345, -0.0255982, 0.0330306, 0.224416, 0.0479948, -0.0419304, -0.23288, 0.0256497, 0.0593388, 0.169339, -0.0535452, -0.0116391, 0.183806, -0.0778455, 0.0175344, -0.181693, -0.0769579)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mx47"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6e4tu"]
+material = SubResource("StandardMaterial3D_0mx47")
+radius = 0.06
+height = 0.3
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_alidf"]
+points = PackedVector3Array(0.057196, 0.102025, 0.0128241, -0.0579554, -0.101684, -0.00930962, -0.0531933, -0.105436, -0.0224351, -0.0491996, 0.115162, -0.022617, -0.018021, 0.0965181, 0.0565694, 0.0350287, -0.110949, 0.0439077, 0.0257862, -0.100685, -0.053012, 0.00837128, 0.101845, -0.0580468, -0.044274, -0.100731, 0.0389408, 0.0565694, -0.0965181, -0.018021, 0.00866027, -0.146341, -0.0187608, -0.0267477, -0.0963304, -0.0530304, -0.0573285, 0.091835, 0.0170091, 0.00867549, 0.146585, 0.0178388, 0.0433554, 0.100808, -0.0399235, 0.0298116, 0.0951857, 0.0514535, -0.0137418, -0.101759, 0.0570454, -0.0350702, 0.0951247, -0.048047, -0.0185644, -0.140235, 0.0266619, 0.0560256, -0.0869121, 0.0212484, 0.0175918, 0.140078, -0.0275839, -0.0366393, 0.135607, 0.0130778, 0.0358527, -0.136229, 0.0131399, 0.0171484, -0.0969572, 0.0568289, -0.0141296, 0.141167, -0.0277947, -0.0572122, 0.0872725, -0.0179257, -0.0229934, -0.135124, -0.0320049, -0.0442743, 0.100731, 0.038941, 0.0570454, 0.101759, -0.0137418, -0.00930999, -0.101688, -0.0579577, 0.0477102, 0.100747, 0.0345654, 0.012827, 0.102047, 0.0572087)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61cic"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0mx47"]
+material = SubResource("StandardMaterial3D_61cic")
+radius = 0.03
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e4tu"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_alidf"]
+material = SubResource("StandardMaterial3D_6e4tu")
+radius = 0.005
+height = 0.01
+
+[node name="GunItem" type="RigidBody3D"]
+script = ExtResource("1_rrkpc")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
+
+[node name="DamageRay" parent="Node3D" instance=ExtResource("2_xxioe")]
+
+[node name="LaserMesh" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+mesh = SubResource("CapsuleMesh_61cic")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
+mesh = SubResource("CapsuleMesh_rrkpc")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
+shape = SubResource("ConvexPolygonShape3D_xxioe")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.89276e-08, 5.46392e-08, 1, 0.5, -0.866026, 3.78552e-08, 0.866026, 0.5, -4.37114e-08, 0, 0.0783424, -0.042913)
+mesh = SubResource("CapsuleMesh_6e4tu")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.89276e-08, 5.46392e-08, 1, 0.5, -0.866026, 3.78552e-08, 0.866026, 0.5, -4.37114e-08, 0, 0.0783424, -0.042913)
+shape = SubResource("ConvexPolygonShape3D_alidf")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, 0, 0.23801, -0.227811)
+mesh = SubResource("CapsuleMesh_0mx47")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
+mesh = SubResource("CapsuleMesh_alidf")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.0221966, 0.245378, -0.022)
+mesh = SubResource("CapsuleMesh_0mx47")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D3"]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
+mesh = SubResource("CapsuleMesh_alidf")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, 0.0225669, 0.245378, -0.022)
+mesh = SubResource("CapsuleMesh_0mx47")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D4"]
+transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
+mesh = SubResource("CapsuleMesh_alidf")
+skeleton = NodePath("")
+
+[connection signal="used" from="." to="." method="_on_used"]

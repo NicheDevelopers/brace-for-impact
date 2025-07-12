@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="2_4pjjn"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/common/HealthComponent/HealthComponent.tscn" id="2_dd31a"]
 [ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
 [ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/HUD/HUD.tscn" id="3_vy1tf"]
 [ext_resource type="PackedScene" uid="uid://bgykt56kdnbpo" path="res://src/Player/Flashlight/Flashlight.tscn" id="5_3ajlp"]
@@ -29,6 +30,10 @@ size = Vector3(0.1, 0.1, 0.1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_wdw76")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_dd31a")]
+
+[node name="HUD" parent="." instance=ExtResource("3_vy1tf")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_s10d5")
@@ -65,3 +70,6 @@ transform = Transform3D(1, 0, -6.77626e-22, 0, 1, 0, 6.77626e-22, 0, 1, 0, 0, -0
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="TwistPivot/PitchPivot/Arm/HandPoint"]
 mesh = SubResource("BoxMesh_vy1tf")
 skeleton = NodePath("../../../../..")
+
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_killed"]
