@@ -28,7 +28,7 @@ var digit_bitmasks: Array[int] = [
 func set_digit(digit: int):
 	var bitmask = digit_bitmasks[digit]
 	for i in range(segments.size()):
-		if bitmask & (1 << (6-i)):
+		if bitmask & (1 << ((segments.size() - 1) - i)):
 			segments[i].show()
 		else:
 			segments[i].hide()
