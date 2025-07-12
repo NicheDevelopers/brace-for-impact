@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://blxoss2f6pgqo"]
+
+[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="1_rrkpc"]
+[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/common/DamageRay/DamageRay.tscn" id="2_xxioe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_61cic"]
+material = SubResource("StandardMaterial3D_xxioe")
+radius = 0.01
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sov0k"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rrkpc"]
+material = SubResource("StandardMaterial3D_sov0k")
+radius = 0.13
+height = 0.5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xxioe"]
+points = PackedVector3Array(-0.0214555, -0.142026, -0.12616, 0.0158229, 0.134169, 0.127678, -0.013973, 0.134419, 0.127914, -0.0216532, 0.203624, -0.0971058, 0.12792, -0.134379, -0.0139617, -0.110338, -0.163226, 0.0528671, -0.126156, 0.142048, -0.0214725, 0.112178, 0.14828, -0.05835, 0.0384034, -0.19487, 0.0983653, 0.0970247, 0.162593, 0.0748567, -0.0218836, 0.24384, 0.0313846, 0.0237947, -0.243937, -0.0295174, -0.109953, -0.14047, -0.0655995, 0.0670144, -0.139478, -0.109192, -0.102216, 0.147376, 0.0746348, -0.0214557, 0.142028, -0.126162, -0.0437768, -0.141638, 0.120248, 0.0746103, -0.139982, 0.104112, 0.0686936, 0.225857, -0.0291445, 0.0524919, 0.139922, -0.116898, -0.0798596, 0.124899, -0.101915, -0.0520002, -0.234593, 0.0311773, 0.127267, 0.126287, 0.0232333, 0.112417, -0.156081, 0.0529492, -0.0668423, -0.218521, -0.0517881, -0.0970902, 0.203636, -0.0216681, -0.125915, -0.141778, 0.0233098, 0.015956, 0.21057, 0.0911657, 0.0912688, -0.210748, -0.0140791, 0.0235127, -0.203239, -0.0969203, 0.015821, -0.134151, 0.127662, 0.10387, -0.147056, -0.0725697)
+
+[node name="GunItem" type="RigidBody3D"]
+script = ExtResource("1_rrkpc")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="DamageRay" parent="Node3D" instance=ExtResource("2_xxioe")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+mesh = SubResource("CapsuleMesh_61cic")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_rrkpc")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_xxioe")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, -1.23636e-08, 0)
+
+[connection signal="used" from="." to="." method="_on_used"]

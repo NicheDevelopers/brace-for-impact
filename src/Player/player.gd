@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 # TODO: replace this with a config value that's taken from the game settings
 @export_group("mouse")
 @export var mouse_sensitivity := 0.001
@@ -26,6 +28,7 @@ extends CharacterBody3D
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
@@ -134,3 +137,6 @@ func _on_item_picked_up(item: Item):
 
 func _item_drop():
 	pass#hand_point.remo
+
+func _on_killed(by_who: Variant) -> void:
+	queue_free()

@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://duqdt1nl4il4q"]
+[gd_scene load_steps=7 format=3 uid="uid://duqdt1nl4il4q"]
 
+[ext_resource type="Script" uid="uid://b8ra668ihye81" path="res://src/HUD/hud.gd" id="1_2vejy"]
 [ext_resource type="Script" uid="uid://dvfvto711c2nv" path="res://src/HUD/fps_label.gd" id="1_5j8ly"]
 [ext_resource type="Texture2D" uid="uid://c8bvcne1nujgu" path="res://src/HUD/crosshair.png" id="1_41kbx"]
+
+[sub_resource type="Gradient" id="Gradient_41kbx"]
+offsets = PackedFloat32Array(0, 0.946524, 1)
+colors = PackedColorArray(0.326883, 8.15215e-07, 9.62615e-08, 1, 0.712035, 3.48755e-07, 4.11814e-08, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2vejy"]
+gradient = SubResource("Gradient_41kbx")
+width = 216
+height = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_2vejy"]
+font_size = 32
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -11,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_2vejy")
 
 [node name="Crosshair" type="TextureRect" parent="."]
 layout_mode = 1
@@ -44,3 +58,21 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_5j8ly")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 617.0
+offset_right = 231.0
+offset_bottom = 633.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_2vejy")
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 82.0
+offset_bottom = 41.0
+scale = Vector2(0.5, 0.5)
+text = "100"
+label_settings = SubResource("LabelSettings_2vejy")
