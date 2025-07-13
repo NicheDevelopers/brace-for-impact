@@ -1,5 +1,5 @@
 extends Node3D
-@onready var dial = $Dial
+@onready var dial = $Base/Dial
 
 func _ready() -> void:
 	var rand = randi_range(0,360)

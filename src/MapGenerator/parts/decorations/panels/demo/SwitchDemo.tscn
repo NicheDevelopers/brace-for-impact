@@ -1,10 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgv01dtpnf1lu"]
+[gd_scene load_steps=9 format=3 uid="uid://bgv01dtpnf1lu"]
 
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_j6ajt"]
-[ext_resource type="PackedScene" uid="uid://dd7m2c16uqyaa" path="res://src/MapGenerator/parts/decorations/panels/raw/Switch/Switch.tscn" id="2_j6ajt"]
-[ext_resource type="PackedScene" uid="uid://ce7mrfsu58nri" path="res://src/MapGenerator/parts/decorations/panels/raw/RoundKnob/RoundKnob.tscn" id="3_7salc"]
-[ext_resource type="PackedScene" uid="uid://b3yyljh7ekn40" path="res://src/MapGenerator/parts/decorations/panels/panel1/DecorationPanel1.tscn" id="4_smnso"]
-[ext_resource type="PackedScene" uid="uid://cc0hsgd5bxiys" path="res://src/MapGenerator/parts/decorations/panels/raw/Dial/Dial.tscn" id="5_53nub"]
+[ext_resource type="PackedScene" uid="uid://b3yyljh7ekn40" path="res://src/MapGenerator/parts/decorations/panels/demo/DemoPanel.tscn" id="4_smnso"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -39,7 +36,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_j6ajt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_hbmfo")
@@ -49,259 +46,23 @@ mesh = SubResource("PlaneMesh_hbmfo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ryhks")
 
-[node name="Switches" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-
-[node name="Switch" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, -1)
-
-[node name="Switch2" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 1, -1)
-
-[node name="Switch3" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 1, -1)
-
-[node name="Switch4" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2, -1)
-
-[node name="Switch5" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 2, -1)
-
-[node name="Switch6" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 2, -1)
-
-[node name="Switch7" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -1)
-
-[node name="Switch8" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 0, -1)
-
-[node name="Switch9" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 0, -1)
-
-[node name="Switch10" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 1, -1)
-
-[node name="Switch11" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 1, -1)
-
-[node name="Switch12" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 1, -1)
-
-[node name="Switch13" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 0, -1)
-
-[node name="Switch14" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 0, -1)
-
-[node name="Switch15" parent="Switches" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 0, -1)
-
-[node name="Switches2" type="Node3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 5.53167, 0, 4.72195)
-
-[node name="Switch" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, -1)
-
-[node name="Switch2" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 1, -1)
-
-[node name="Switch3" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 1, -1)
-
-[node name="Switch4" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2, -1)
-
-[node name="Switch5" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 2, -1)
-
-[node name="Switch6" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 2, -1)
-
-[node name="Switch7" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -1)
-
-[node name="Switch8" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 0, -1)
-
-[node name="Switch9" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 0, -1)
-
-[node name="Switch10" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 1, -1)
-
-[node name="Switch11" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 1, -1)
-
-[node name="Switch12" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 1, -1)
-
-[node name="Switch13" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 0, -1)
-
-[node name="Switch14" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 0, -1)
-
-[node name="Switch15" parent="Switches2" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 0, -1)
-
-[node name="Switches3" type="Node3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 0, 5)
-
-[node name="Switch" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
-
-[node name="Switch2" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 1, -1)
-
-[node name="Switch3" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2, 1, -1)
-
-[node name="Switch4" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2, -1)
-
-[node name="Switch5" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1, 2, -1)
-
-[node name="Switch6" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 2, 2, -1)
-
-[node name="Switch7" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, -1)
-
-[node name="Switch8" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 1, 0, -1)
-
-[node name="Switch9" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 2, 0, -1)
-
-[node name="Switch10" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 1, -1)
-
-[node name="Switch11" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 1, -1)
-
-[node name="Switch12" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 1, -1)
-
-[node name="Switch13" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3, 0, -1)
-
-[node name="Switch14" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 4, 0, -1)
-
-[node name="Switch15" parent="Switches3" instance=ExtResource("2_j6ajt")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5, 0, -1)
-
-[node name="RoundKnobs" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8, 1, 6)
-
-[node name="RoundKnob" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-
-[node name="RoundKnob2" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 0, 0)
-
-[node name="RoundKnob3" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1, 0, 0)
-
-[node name="RoundKnob4" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, 0)
-
-[node name="RoundKnob5" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1, 1, 0)
-
-[node name="RoundKnob6" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 2, 1, 0)
-
-[node name="RoundKnob7" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 2, 0)
-
-[node name="RoundKnob8" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 1, 2, 0)
-
-[node name="RoundKnob9" parent="RoundKnobs" instance=ExtResource("3_7salc")]
-transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 2, 2, 0)
-
 [node name="Panels" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Standard" type="Node3D" parent="Panels"]
-transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, -0.25, 0)
+[node name="DecorationPanel1" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -4)
 
-[node name="Top2" parent="Panels/Standard" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="DecorationPanel2" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.6, -4)
 
-[node name="Top" parent="Panels/Standard" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="DecorationPanel3" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -4)
 
-[node name="Center" parent="Panels/Standard" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="DecorationPanel4" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -4)
 
-[node name="Bottom" parent="Panels/Standard" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="DecorationPanel5" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -4)
 
-[node name="Bigger" type="Node3D" parent="Panels"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, -0.5, 0)
-
-[node name="Top2" parent="Panels/Bigger" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Top" parent="Panels/Bigger" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="Center" parent="Panels/Bigger" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Bottom" parent="Panels/Bigger" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Standard2" type="Node3D" parent="Panels"]
-transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 1.75, 0)
-
-[node name="Top2" parent="Panels/Standard2" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Top" parent="Panels/Standard2" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="Center" parent="Panels/Standard2" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Bottom" parent="Panels/Standard2" instance=ExtResource("4_smnso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Dial" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-
-[node name="Top" type="Node3D" parent="Dial"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="Dial" parent="Dial/Top" instance=ExtResource("5_53nub")]
-
-[node name="Dial2" parent="Dial/Top" instance=ExtResource("5_53nub")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0)
-
-[node name="Dial3" parent="Dial/Top" instance=ExtResource("5_53nub")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2, 0, 0)
-
-[node name="Center" type="Node3D" parent="Dial"]
-
-[node name="Dial" parent="Dial/Center" instance=ExtResource("5_53nub")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-
-[node name="Dial2" parent="Dial/Center" instance=ExtResource("5_53nub")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1, 0, 0)
-
-[node name="Dial3" parent="Dial/Center" instance=ExtResource("5_53nub")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2, 0, 0)
-
-[node name="Bottom" type="Node3D" parent="Dial"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="Dial" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
-
-[node name="Dial2" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="Dial3" parent="Dial/Bottom" instance=ExtResource("5_53nub")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="DecorationPanel6" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.1, -4)

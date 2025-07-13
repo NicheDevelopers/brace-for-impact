@@ -1,8 +1,8 @@
 extends Node3D
 
-@onready var diode = $Diode
-@onready var position_on = $PositionOn
-@onready var position_off = $PositionOff
+@onready var diode = $Base/Diode
+@onready var position_on = $Base/PositionOn
+@onready var position_off = $Base/PositionOff
 @export var led_green_material: Material
 @export var led_red_material: Material
 @export var led_off_material: Material

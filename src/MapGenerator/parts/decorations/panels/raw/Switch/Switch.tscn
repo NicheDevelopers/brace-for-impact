@@ -16,14 +16,11 @@ led_off_material = ExtResource("3_6l5dm")
 [node name="Base" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_aeuya")
 
-[node name="Cylinder" parent="." index="1"]
+[node name="Cylinder" parent="Base" index="0"]
+material_override = ExtResource("3_6l5dm")
+
+[node name="PositionOff" parent="Base" index="2"]
 surface_material_override/0 = ExtResource("3_6l5dm")
 
-[node name="PositionOn" parent="." index="2"]
-surface_material_override/0 = ExtResource("3_6l5dm")
-
-[node name="PositionOff" parent="." index="3"]
-surface_material_override/0 = ExtResource("3_6l5dm")
-
-[node name="Diode" parent="." index="4"]
-surface_material_override/0 = ExtResource("4_aeuya")
+[node name="PositionOn" parent="Base" index="3"]
+material_override = ExtResource("3_6l5dm")
