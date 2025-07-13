@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cn01hq3gqcpu1"
-path="res://.godot/imported/seven-segment-digit.glb-599bde895209d49c485cbd3aa804daec.scn"
+uid="uid://3535octgm5t8"
+path="res://.godot/imported/seven-segment-body.glb-d8517608d024bdfa1d6ff654b2a0e1a1.scn"
 
 [deps]
 
-source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-digit.glb"
-dest_files=["res://.godot/imported/seven-segment-digit.glb-599bde895209d49c485cbd3aa804daec.scn"]
+source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-body.glb"
+dest_files=["res://.godot/imported/seven-segment-body.glb-d8517608d024bdfa1d6ff654b2a0e1a1.scn"]
 
 [params]
 

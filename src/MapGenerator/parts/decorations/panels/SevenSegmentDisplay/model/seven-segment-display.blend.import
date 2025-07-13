@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bytbmmr8uhjqt"
-path="res://.godot/imported/seven-segment-display.blend-24dc3c8f888b9b370c213a88e08893eb.scn"
+path="res://.godot/imported/seven-segment-display.blend-16a7180e533e1ee6f0041bccb3d51d9a.scn"
 
 [deps]
 
-source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-display.blend"
-dest_files=["res://.godot/imported/seven-segment-display.blend-24dc3c8f888b9b370c213a88e08893eb.scn"]
+source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-display.blend"
+dest_files=["res://.godot/imported/seven-segment-display.blend-16a7180e533e1ee6f0041bccb3d51d9a.scn"]
 
 [params]
 
