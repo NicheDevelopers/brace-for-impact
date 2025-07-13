@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://s0pgr17mgovo"]
+
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_i51ex"]
+[ext_resource type="PackedScene" uid="uid://nnpop8tdwuok" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/SevenSegmentDisplay.tscn" id="2_i51ex"]
+
+[node name="SevenSegmentDisplayDemo" type="Node3D"]
+
+[node name="ExampleDemo" parent="." instance=ExtResource("1_i51ex")]
+
+[node name="SevenSegmentDisplay" parent="." instance=ExtResource("2_i51ex")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.380205, 0.808098, 0.632311)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.380205, 0.808098, 0.632311)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0.25456, -0.523496, -0.245887)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0.25456, -0.638822, 0.072525)
+size = Vector3(1, 0.927246, 0.880859)
