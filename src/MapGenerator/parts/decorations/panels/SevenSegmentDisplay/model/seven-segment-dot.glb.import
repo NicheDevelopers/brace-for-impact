@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://boxtwod7j2pa5"
-path="res://.godot/imported/door-single.glb-9392fd63d4ae5bebbc401ba4951979a3.scn"
+uid="uid://bj8cghux6rc3p"
+path="res://.godot/imported/seven-segment-dot.glb-fdf7c512962d4b213f694b2353271fe9.scn"
 
 [deps]
 
-source_file="res://src/MapGenerator/parts/doors/DoorSingle/model/door-single.glb"
-dest_files=["res://.godot/imported/door-single.glb-9392fd63d4ae5bebbc401ba4951979a3.scn"]
+source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-dot.glb"
+dest_files=["res://.godot/imported/seven-segment-dot.glb-fdf7c512962d4b213f694b2353271fe9.scn"]
 
 [params]
 
