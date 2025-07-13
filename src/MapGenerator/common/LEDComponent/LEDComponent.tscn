@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dql4v10hq2uxw"]
+
+[ext_resource type="Script" uid="uid://tyckx7djl335" path="res://src/MapGenerator/common/LEDComponent/led_component.gd" id="1_al6g1"]
+
+[node name="LEDComponent" type="Node"]
+script = ExtResource("1_al6g1")
