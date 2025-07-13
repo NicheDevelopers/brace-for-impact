@@ -21,7 +21,7 @@ func _ready() -> void:
 	super()
 	interacted.connect(_internal_on_interacted)
 
-func _internal_on_interacted(body: Variant) -> void:
+func _internal_on_interacted(_body: Variant) -> void:
 	self.freeze = true
 	self.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	

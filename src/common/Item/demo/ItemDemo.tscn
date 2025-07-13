@@ -1,85 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2orrpmjgpvbo"]
+[gd_scene load_steps=3 format=3 uid="uid://x6n4gyudf0ae"]
 
-[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_i33xi"]
-[ext_resource type="PackedScene" uid="uid://croybsp4l24c6" path="res://src/common/Item/demo/SphereItem.tscn" id="2_8maef"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_hbmfo"]
-sky_material = SubResource("ProceduralSkyMaterial_7ljiq")
-
-[sub_resource type="Environment" id="Environment_ryhks"]
-background_mode = 2
-sky = SubResource("Sky_hbmfo")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_l0icc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_roelj"]
-width = 2
-height = 2
-seamless = true
-noise = SubResource("FastNoiseLite_l0icc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ljiq"]
-albedo_color = Color(0.106593, 0.162472, 0.173119, 1)
-albedo_texture = SubResource("NoiseTexture2D_roelj")
-metallic = 0.6
-metallic_specular = 0.4
-uv1_scale = Vector3(10, 10, 10)
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_hbmfo"]
-material = SubResource("StandardMaterial3D_7ljiq")
-size = Vector2(20, 20)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ryhks"]
-data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_8maef"]
+[ext_resource type="PackedScene" uid="uid://c8f4g418ueb85" path="res://src/common/Item/demo/ItemSphere.tscn" id="2_ey4n3"]
 
 [node name="ItemDemo" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ryhks")
+[node name="ExampleDemo" parent="." instance=ExtResource("1_8maef")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
+[node name="ItemSphere" parent="." instance=ExtResource("2_ey4n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05425, 0, 0)
+prompt_message = "Use once"
 
-[node name="Player" parent="." instance=ExtResource("1_i33xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.60217)
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_hbmfo")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ryhks")
-
-[node name="ItemSphereOnce" parent="." instance=ExtResource("2_8maef")]
-prompt_message = "Pick up (Once)"
-
-[node name="ItemSphereContinuous" parent="." instance=ExtResource("2_8maef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="ItemSphere2" parent="." instance=ExtResource("2_ey4n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.620359, 0, 0)
 usage_mode = "Continuous"
-prompt_message = "Pick up (Continuous)"
+prompt_message = "Use continuous"
 
-[node name="ItemSphereTimeout" parent="." instance=ExtResource("2_8maef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+[node name="ItemSphere3" parent="." instance=ExtResource("2_ey4n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.802793, 0, 0)
 use_timeout = 0.5
 usage_mode = "Continuous"
-prompt_message = "Pick up (Timeout)"
+prompt_message = "Use timeout"
 
-[node name="ItemSphereDisabled" parent="." instance=ExtResource("2_8maef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+[node name="ItemSphere4" parent="." instance=ExtResource("2_ey4n3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23362, 0, 0)
 is_usage_enabled = false
-prompt_message = "Pick up (disabled)"
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, 0)
-text = "Pick up items and hold LMB to test their usage.
-Each has a different mode indicated in parenthesis on interaction's label
-No dropping yet, but picking up another item overrides the use behavior"
+prompt_message = "Use disabled"

@@ -31,6 +31,7 @@ var _timeout_left: float = 0.0
 
 func _ready() -> void:
 	self.collision_layer = Bits.from([Layer.Interactables])
+	self.collision_mask = Bits.from([Layer.World, Layer.Interactables])
 	self.label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
 	self._key_name = _get_key()
 	self.label.text = get_prompt()

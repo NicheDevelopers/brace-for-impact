@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ijqbgx8n1bec"]
+
+[ext_resource type="Script" uid="uid://d2xoubn4co7gw" path="res://src/common/Interactable/demo/interactable_box.gd" id="1_4c07q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c07q"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4c07q"]
+material = SubResource("StandardMaterial3D_4c07q")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_575tu"]
+points = PackedVector3Array(-0.25, -0.25, -0.25, 0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, -0.25, -0.25, -0.25, 0.25, -0.25, 0.25, -0.25)
+
+[node name="InteractableBox" type="RigidBody3D"]
+script = ExtResource("1_4c07q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4c07q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_575tu")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379453, 0)
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
