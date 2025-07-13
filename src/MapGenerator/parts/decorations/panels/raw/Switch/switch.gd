@@ -17,6 +17,7 @@ func switch_off():
 	
 func switch_on():
 	position_off.hide()
+	position_on.show()
 	diode.material_override = led_green_material
 
 func switch_disabled():
