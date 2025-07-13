@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://3535octgm5t8"
-path="res://.godot/imported/seven-segment-body.glb-8d08b7067808a6f00c4265c315889fc3.scn"
+path="res://.godot/imported/seven-segment-body.glb-9d9b7908a373e4cc19aa11c0b04b027a.scn"
 
 [deps]
 
-source_file="res://src/MapGenerator/parts/decorations/panels/SevenDigitDisplay/raw/seven-segment-body.glb"
-dest_files=["res://.godot/imported/seven-segment-body.glb-8d08b7067808a6f00c4265c315889fc3.scn"]
+source_file="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-body.glb"
+dest_files=["res://.godot/imported/seven-segment-body.glb-9d9b7908a373e4cc19aa11c0b04b027a.scn"]
 
 [params]
 

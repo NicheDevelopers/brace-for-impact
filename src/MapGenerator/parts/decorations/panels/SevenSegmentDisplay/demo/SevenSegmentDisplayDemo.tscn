@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://s0pgr17mgovo"]
 
 [ext_resource type="PackedScene" uid="uid://roylxbx2fqwt" path="res://src/common/demo/ExampleDemo.tscn" id="1_i51ex"]
-[ext_resource type="PackedScene" uid="uid://nnpop8tdwuok" path="res://src/MapGenerator/parts/decorations/panels/SevenDigitDisplay/SevenDigitDisplay.tscn" id="2_i51ex"]
+[ext_resource type="PackedScene" uid="uid://nnpop8tdwuok" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/SevenSegmentDisplay.tscn" id="2_i51ex"]
 
-[node name="SevenDigitDisplayDemo" type="Node3D"]
+[node name="SevenSegmentDisplayDemo" type="Node3D"]
 
 [node name="ExampleDemo" parent="." instance=ExtResource("1_i51ex")]
 
-[node name="SevenDigitDisplay" parent="." instance=ExtResource("2_i51ex")]
+[node name="SevenSegmentDisplay" parent="." instance=ExtResource("2_i51ex")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.380205, 0.808098, 0.632311)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
