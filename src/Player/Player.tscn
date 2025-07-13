@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v1af140jq2of"]
+[gd_scene load_steps=12 format=3 uid="uid://v1af140jq2of"]
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="2_4pjjn"]
@@ -51,8 +51,6 @@ current = true
 
 [node name="InteractRay" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("2_rwoh2")]
 collision_mask = 4
-
-[node name="HUD" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("3_vy1tf")]
 
 [node name="Flashlight" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("5_3ajlp")]
 
