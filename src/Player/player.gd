@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 # TODO: replace this with a config value that's taken from the game settings
 @export_group("mouse")
 @export var mouse_sensitivity := 0.001
@@ -25,14 +27,29 @@ extends CharacterBody3D
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
 
+# TODO: move this functionality to equipment
+var held_item: Item
+
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
 
+func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			get_viewport().set_input_as_handled()
+
 func _ready() -> void:
+	SignalBus.item_picked_up.connect(_on_item_picked_up)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -101,6 +118,10 @@ func _process(delta: float) -> void:
 	mouse_twist = 0.0
 	mouse_pitch = 0.0
 	
+	if Input.is_action_pressed("use_item"):
+		if held_item != null:
+			held_item.use(self)
+	
 	previous_input = input
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -108,3 +129,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
+
+func _on_item_picked_up(item: Item):
+	print("Player picks up item")
+	held_item = item
+	hand_point.add_child(item)
+
+func _item_drop():
+	pass#hand_point.remo
+
+func _on_killed(by_who: Variant) -> void:
+	queue_free()
