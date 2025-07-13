@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 	else:
 		twist_pivot.position.y = standing_height
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	var mapped_input = map_direction(input)
+	#var mapped_input = map_direction(input)
 	var velocity_2d = Vector2.ZERO
 	velocity_2d.x = velocity.x
 	velocity_2d.y = velocity.z
@@ -138,5 +138,5 @@ func _on_item_picked_up(item: Item):
 func _item_drop():
 	pass#hand_point.remo
 
-func _on_killed(by_who: Variant) -> void:
+func _on_killed(_by_who: Variant) -> void:
 	queue_free()
