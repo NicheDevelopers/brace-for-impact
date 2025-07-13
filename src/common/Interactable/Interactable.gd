@@ -25,9 +25,11 @@ signal interacted(body)
 @export_enum("Once", "Continuous") var interaction_mode: String = "Once"
 
 @onready var label: Label3D = $Label3D
+@onready var label_initial_local_transform = label.transform.origin
 
 var _key_name: String
 var _timeout_left: float = 0.0
+
 
 func _ready() -> void:
 	self.collision_layer = Bits.from([Layer.Interactables])
@@ -35,6 +37,7 @@ func _ready() -> void:
 	self.label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
 	self._key_name = _get_key()
 	self.label.text = get_prompt()
+
 	hide_label()
 
 func interact(body):
@@ -44,10 +47,13 @@ func interact(body):
 	interacted.emit(body)
 	_timeout_left = interaction_timeout
 
-## Handles counting down the potential interaction timeout
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
+	# Handles counting down the potential interaction timeout
 	if _timeout_left > 0:
 		_timeout_left -= delta
+		
+	# Make the label disregard the parent's rotation
+	label.global_position = self.global_position + label_initial_local_transform
 	
 func get_prompt() -> String:
 	if not displays_prompt:

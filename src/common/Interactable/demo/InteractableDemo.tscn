@@ -17,7 +17,7 @@ prompt_message = "Continuous"
 interaction_mode = "Continuous"
 
 [node name="InteractableBox3" parent="." instance=ExtResource("2_er83y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58781, 1.91793, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000506145, 0, -0.000506145, 1, 1.58781, 1.91793, 0)
 prompt_message = "Timeout"
 interaction_timeout = 0.5
 interaction_mode = "Continuous"
@@ -30,3 +30,15 @@ is_interaction_enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00262, 0.988594, 0)
 text = "Disabled
 interaction"
+
+[node name="InteractableBox5" parent="." instance=ExtResource("2_er83y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97955, 1.24558, 0)
+is_interaction_enabled = false
+
+[node name="InteractableBox6" parent="." instance=ExtResource("2_er83y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97955, 1.24558, 0)
+is_interaction_enabled = false
+
+[node name="InteractableBox7" parent="." instance=ExtResource("2_er83y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57955, 0.24558, 0)
+is_interaction_enabled = false
