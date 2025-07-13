@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckrvmkxdbl3vb"]
 
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_i33xi"]
-[ext_resource type="PackedScene" uid="uid://ijqbgx8n1bec" path="res://src/common/Interactable/demo/InteractableBox.tscn" id="2_er83y"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_i33xi"]
+[ext_resource type="PackedScene" uid="uid://ijqbgx8n1bec" path="res://src/core/Interactable/demo/InteractableBox.tscn" id="2_er83y"]
 
 [node name="InteractableDemo" type="Node3D"]
 

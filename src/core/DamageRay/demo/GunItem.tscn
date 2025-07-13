@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://blxoss2f6pgqo"]
 
-[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="1_rrkpc"]
-[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/common/DamageRay/DamageRay.tscn" id="2_xxioe"]
+[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/core/DamageRay/demo/gun_item.gd" id="1_rrkpc"]
+[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/core/DamageRay/DamageRay.tscn" id="2_xxioe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
 albedo_color = Color(1, 0, 0, 1)

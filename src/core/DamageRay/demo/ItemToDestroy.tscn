@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdc3ubfifx2di"]
 
-[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/common/HealthComponent/HealthComponent.tscn" id="1_gjtvy"]
-[ext_resource type="Script" uid="uid://bg8mf4un3kv6f" path="res://src/common/DamageRay/demo/item_to_destroy.gd" id="1_u1hde"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="1_gjtvy"]
+[ext_resource type="Script" uid="uid://bg8mf4un3kv6f" path="res://src/core/DamageRay/demo/item_to_destroy.gd" id="1_u1hde"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="3_5x33j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uw6y"]

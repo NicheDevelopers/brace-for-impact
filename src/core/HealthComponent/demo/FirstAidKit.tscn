@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dekk6fk7qsrkg"]
 
-[ext_resource type="Script" uid="uid://cdl7bwu7212ff" path="res://src/common/HealthComponent/demo/first_aid_kit.gd" id="1_w1jbf"]
+[ext_resource type="Script" uid="uid://cdl7bwu7212ff" path="res://src/core/HealthComponent/demo/first_aid_kit.gd" id="1_w1jbf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ra5ct"]
 albedo_color = Color(0.129558, 0.129558, 0.129558, 1)
