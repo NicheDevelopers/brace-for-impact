@@ -12,6 +12,7 @@ const off_percent = 80
 
 func switch_off():
 	position_on.hide()
+	position_off.show()
 	diode.material_override = led_red_material
 	
 func switch_on():
