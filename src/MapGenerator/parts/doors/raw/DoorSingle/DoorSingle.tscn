@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxhjsevs56uf"]
+
+[ext_resource type="PackedScene" uid="uid://boxtwod7j2pa5" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/model/door-single.glb" id="1_0isvo"]
+[ext_resource type="Material" uid="uid://dcc1strrrwn65" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_material.tres" id="3_dydsw"]
+[ext_resource type="Material" uid="uid://c8u7ddbirrt6a" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/window_material.tres" id="3_m2m2s"]
+[ext_resource type="Material" uid="uid://2rc44iy5ukga" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/door_material_2.tres" id="4_5o183"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4mn3a"]
+points = PackedVector3Array(-0.882021, -1.23153, -0.112054, 1.36724, -0.658325, 0.108486, -1.36724, 0.620304, 0.108486, -0.837809, 1.23783, -0.112054, 1.36724, -0.658325, -0.112054, -0.882021, -1.27585, 0.108486, 0.882021, -1.27585, 0.108486, 1.36724, 0.620304, 0.108486, -1.36724, -0.658325, -0.112054, -0.837809, 1.23783, 0.108486, 1.36724, 0.620304, -0.112054, 0.882021, -1.23153, -0.112054, -1.36724, 0.620304, -0.112054, -1.36724, -0.658325, 0.108486, 0.837809, 1.23783, -0.112054, 0.837809, 1.23783, 0.108486, -0.926232, 1.14994, -0.112054, 0.926232, 1.14994, -0.112054, 1.0141, -1.09931, -0.112054, -1.0141, -1.09931, -0.112054, 0.926232, 1.14994, 0.108486, -0.926232, 1.14994, 0.108486, 1.23488, -0.834619, 0.108486, -1.23488, -0.834619, 0.108486)
+
+[node name="DoorSingle" instance=ExtResource("1_0isvo")]
+
+[node name="Door" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+surface_material_override/0 = ExtResource("3_dydsw")
+
+[node name="PanelLarge1" parent="Door" index="0"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelLarge2" parent="Door" index="1"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelSmall1" parent="Door" index="2"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="PanelSmall2" parent="Door" index="3"]
+surface_material_override/0 = ExtResource("4_5o183")
+
+[node name="Window1" parent="Door" index="4"]
+surface_material_override/0 = ExtResource("3_m2m2s")
+
+[node name="Window2" parent="Door" index="5"]
+surface_material_override/0 = ExtResource("3_m2m2s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_4mn3a")

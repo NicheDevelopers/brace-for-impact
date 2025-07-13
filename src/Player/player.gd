@@ -16,9 +16,9 @@ class_name Player
 @export var acceleration_loss = 50.0
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
-@export var standing_height = 0.7
+@export var standing_height = 0.65
 @export var bobbing_depth = 0.1
-@export var crouching_height = standing_height - 0.7
+@export var crouching_height = standing_height - 0.65
 # placeholder variable which determines whether the player should obey the laws of gravity or not.
 # if there is no gravity, the player can jump, but not move up/down freely.
 # the reverse happens if there is no gravity.
