@@ -1,13 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmvg2shn15oom"]
+[gd_scene load_steps=18 format=3 uid="uid://bmvg2shn15oom"]
 
-[ext_resource type="PackedScene" uid="uid://roylxbx2fqwt" path="res://src/common/demo/ExampleDemo.tscn" id="1_2tspk"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_2tspk"]
 [ext_resource type="PackedScene" uid="uid://cdc3ubfifx2di" path="res://src/common/DamageRay/demo/ItemToDestroy.tscn" id="2_kaiyn"]
 [ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/common/DamageRay/demo/GunItem.tscn" id="3_k2c8t"]
 [ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="4_dpbh2"]
-[ext_resource type="Script" uid="uid://cfstvgjkbveo8" path="res://src/common/DamageRay/demo/item_to_destroy_2.gd" id="4_ttslm"]
-[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/common/HealthComponent/HealthComponent.tscn" id="5_gj2kf"]
 [ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/common/DamageRay/DamageRay.tscn" id="5_w52n2"]
-[ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="6_dpbh2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
 albedo_color = Color(1, 0, 0, 1)
@@ -54,17 +51,6 @@ albedo_color = Color(0, 1, 0, 1)
 material = SubResource("StandardMaterial3D_6e4tu")
 radius = 0.005
 height = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uw6y"]
-albedo_texture = ExtResource("6_dpbh2")
-uv1_scale = Vector3(3, 2, 1)
-uv1_offset = Vector3(-0.015, 0, 0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_d1k3y"]
-material = SubResource("StandardMaterial3D_7uw6y")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5x33j"]
-points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="DamageRayDemo" type="Node3D"]
 
@@ -144,28 +130,13 @@ transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e
 mesh = SubResource("CapsuleMesh_alidf")
 skeleton = NodePath("")
 
-[node name="ItemToDestroy2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6483, 0, 0)
-script = ExtResource("4_ttslm")
+[node name="ItemToDestroy2" parent="." instance=ExtResource("2_kaiyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24779, 0.903774, 0)
 
-[node name="HealthComponent" parent="ItemToDestroy2" instance=ExtResource("5_gj2kf")]
+[node name="HealthComponent" parent="ItemToDestroy2" index="0"]
 default_health = 500.0
 max_health = 500.0
 
-[node name="Label3D" type="Label3D" parent="ItemToDestroy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35413, 0)
-billboard = 1
-text = "100"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ItemToDestroy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("BoxMesh_d1k3y")
-skeleton = NodePath("../Label3D")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemToDestroy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("ConvexPolygonShape3D_5x33j")
-
 [connection signal="used" from="GunItem2" to="GunItem2" method="_on_used"]
-[connection signal="health_changed" from="ItemToDestroy2/HealthComponent" to="ItemToDestroy2" method="_health_changed"]
-[connection signal="killed" from="ItemToDestroy2/HealthComponent" to="ItemToDestroy2" method="_on_killed"]
+
+[editable path="ItemToDestroy2"]
