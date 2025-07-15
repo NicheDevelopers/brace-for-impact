@@ -22,6 +22,11 @@ mesh = SubResource("BoxMesh_4c07q")
 shape = SubResource("ConvexPolygonShape3D_575tu")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379453, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+pixel_size = 0.001
+no_depth_test = true
+fixed_size = true
+font_size = 45
+outline_size = 14
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]
