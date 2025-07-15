@@ -1,7 +1,7 @@
 extends RayCast3D
 
 # Stores the last encountered collider to toggle its Label3D
-var last_collider: Interactable
+var last_collider: InteractionComponent
 
 func _physics_process(_delta: float) -> void:
 	if last_collider:
@@ -12,7 +12,7 @@ func _physics_process(_delta: float) -> void:
 	
 	var collider := get_collider()
 	
-	if collider is not Interactable:
+	if collider is not InteractionComponent:
 		return
 	
 	last_collider = collider

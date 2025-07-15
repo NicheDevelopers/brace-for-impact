@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="2_4pjjn"]
 [ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/common/HealthComponent/HealthComponent.tscn" id="2_dd31a"]
-[ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractRay.tscn" id="2_rwoh2"]
+[ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractionRay/InteractionRay.tscn" id="2_rwoh2"]
 [ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/HUD/HUD.tscn" id="3_vy1tf"]
 [ext_resource type="PackedScene" uid="uid://bgykt56kdnbpo" path="res://src/Player/Flashlight/Flashlight.tscn" id="5_3ajlp"]
 
@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426155, 0)
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
 current = true
 
-[node name="InteractRay" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("2_rwoh2")]
+[node name="InteractionRay" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("2_rwoh2")]
 collision_mask = 4
 
 [node name="Flashlight" parent="TwistPivot/PitchPivot/Camera3D" instance=ExtResource("5_3ajlp")]
