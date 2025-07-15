@@ -1,40 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg7f5lsmrs0v"]
+[gd_scene load_steps=4 format=3 uid="uid://cg7f5lsmrs0v"]
 
 [ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_ahga7"]
 [ext_resource type="PackedScene" uid="uid://ck51qhq5a5xm6" path="res://src/common/InteractionComponent/demo/InteractionObject.tscn" id="2_pss0s"]
 [ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/common/InteractionComponent/InteractionComponent.tscn" id="3_pss0s"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pss0s"]
-points = PackedVector3Array(-0.214183, -0.948028, -0.451129, 0.0227317, 0.952146, 0.498887, 0.171488, 0.951995, 0.469018, -0.125934, 0.952684, -0.483291, 0.499663, -0.953674, -0.00688883, -0.387646, -0.93796, 0.315653, -0.483292, 0.952686, -0.12593, 0.375097, 0.940128, -0.329816, 0.171488, -0.951995, 0.469018, 0.140783, -0.945485, -0.479579, 0.469014, 0.952011, 0.171499, -0.387646, 0.93796, 0.315653, -0.483292, -0.952686, -0.12593, -0.183511, -0.943076, 0.464698, 0.407412, -0.946994, 0.288983, 0.375097, -0.940128, -0.329816, -0.395154, 0.955761, -0.305523, -0.479555, 0.945437, 0.14088, 0.464698, 0.943099, -0.183512, 0.140783, 0.945485, -0.479579, -0.243203, 0.945955, 0.436491, -0.479555, -0.945437, 0.14088, 0.288971, 0.946988, 0.407421, -0.395154, -0.955761, -0.305523, -0.0069906, -0.953641, 0.499658, 0.499663, 0.953674, -0.00688883, -0.271948, 0.943071, -0.419217, 0.464698, -0.943099, -0.183512, -0.125934, -0.952684, -0.483291, 0.315648, 0.937973, -0.387651, 0.469014, -0.952011, 0.171499, 0.407412, 0.946994, 0.288983)
 
 [node name="InteractionComponentDemo" type="Node3D"]
 
 [node name="ExampleDemo" parent="." instance=ExtResource("1_ahga7")]
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81946, 1.86254, 0.561566)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57761, 1.48446, 0.561566)
 text = "Disabled"
 
 [node name="InteractionObject" parent="." instance=ExtResource("2_pss0s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07749, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38434, 2.07749, 0)
 
 [node name="InteractionComponent" parent="InteractionObject" instance=ExtResource("3_pss0s")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionObject/InteractionComponent"]
-shape = SubResource("ConvexPolygonShape3D_pss0s")
+prompt_message_new = "Interact Once"
 
 [node name="Label3D" type="Label3D" parent="InteractionObject/InteractionComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.614283)
+billboard = 1
+text = "Interact Once
+[key]"
 
 [node name="InteractionObject2" parent="." instance=ExtResource("2_pss0s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35996, 1.9888, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0243764, 1.9888, 0)
 
 [node name="InteractionComponent" parent="InteractionObject2" instance=ExtResource("3_pss0s")]
+prompt_message_new = "Interact continuous"
 interaction_mode = "Continuous"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionObject2/InteractionComponent"]
-shape = SubResource("ConvexPolygonShape3D_pss0s")
 
 [node name="Label3D" type="Label3D" parent="InteractionObject2/InteractionComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.614283)
+billboard = 1
+text = "Interact continuous
+[key]"
+
+[node name="InteractionObject3" parent="." instance=ExtResource("2_pss0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88468, 1.9888, 0)
+
+[node name="InteractionComponent" parent="InteractionObject3" instance=ExtResource("3_pss0s")]
+prompt_message_new = "Interact timeout"
+interaction_timeout = 0.5
+interaction_mode = "Continuous"
+
+[node name="Label3D" type="Label3D" parent="InteractionObject3/InteractionComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.614283)
+billboard = 1
+text = "Interact timeout
+[key]"
+
+[node name="InteractionObject4" parent="." instance=ExtResource("2_pss0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6026, 1.9888, 0)
+
+[node name="InteractionComponent" parent="InteractionObject4" instance=ExtResource("3_pss0s")]
+is_interaction_enabled = false
+interaction_timeout = 0.5
+interaction_mode = "Continuous"
+
+[node name="Label3D" type="Label3D" parent="InteractionObject4/InteractionComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.614283)
+billboard = 1
+text = "
+[key]"
+
+[node name="InteractionObject5" parent="." instance=ExtResource("2_pss0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19193, 1.89432, 2.3176)
+
+[node name="InteractionComponent" parent="InteractionObject5" instance=ExtResource("3_pss0s")]
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.4944, 1.48446, 2.35132)
+text = "InteractionComponent
+without the 'Label3D' node
+(still works now, just doesn't display
+the prompt)"

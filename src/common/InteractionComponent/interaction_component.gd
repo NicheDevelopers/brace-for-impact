@@ -5,14 +5,9 @@ class_name InteractionComponent
 
 signal interacted(body)
 
-@export var displays_prompt: bool = true:
-	set(v):
-		displays_prompt = v
-		notify_property_list_changed()
+@export var _displays_prompt: bool = true
 
-
-## Message that will appear floating near the object when it's a candidate for interaction
-var _prompt_message: String = ""
+@export var prompt_message_new: String = ""
 
 ## Enable or disable interacting with this object. Will also hide its label.
 @export var is_interaction_enabled: bool = true
@@ -29,38 +24,6 @@ var _prompt_message: String = ""
 ## Continuous - press and hold to interact repeatedly
 @export_enum("Once", "Continuous") var interaction_mode: String = "Once"
 
-@export var show_string_setting_ok := false:
-	set(v):
-		show_string_setting_ok = v
-		notify_property_list_changed()
-
-var _string_setting := "hello"
-
-func _get_property_list() -> Array[Dictionary]:
-	var properties = []
-	if displays_prompt:
-		properties.append({"name": "prompt_message", "type": TYPE_STRING})
-	if show_string_setting_ok:
-		properties.append({"name": "string_setting", "type": TYPE_STRING})
-
-	return properties
-
-func _get(property):
-	if property == "prompt_message":
-		return _prompt_message
-	if property == "string_setting":
-		return _string_setting
-	return null
-
-func _set(property, value):
-	if property == "prompt_message":
-		_prompt_message = value
-		return true
-	if property == "string_setting":
-		_string_setting = value
-		return true
-	return false
-
 @onready var parent = get_parent()
 @onready var label: Label3D
 @onready var hitbox: CollisionShape3D
@@ -68,21 +31,31 @@ func _set(property, value):
 var _key_name: String
 var _timeout_left: float = 0.0
 
+var label_initial_local_transform: Vector3
+
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
 	_key_name = _get_key()
 	
-	label = $Label3D
-	hitbox = $CollisionShape3D
+	label = get_node_or_null("Label3D")
+	hitbox = get_node_or_null("CollisionShape3D")
+	
+	if not hitbox:
+		var parent_hitbox = parent.get_node_or_null("CollisionShape3D")
+		if parent_hitbox:
+			hitbox = parent_hitbox.duplicate()
+			add_child(hitbox)
+		elif not Engine.is_editor_hint():
+			push_error("No viable CollisionShape3D for InteractionComponent")
+	
 	if label != null:
+		label_initial_local_transform = label.transform.origin
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
 		label.text = get_prompt()
-		hide_label()
 	
-	self.collision_layer = Bits.from([Layer.Interactables])
-	self.collision_mask = Bits.from([Layer.World, Layer.Interactables])
-
+	if not Engine.is_editor_hint():
+		if label != null: hide_label()
+		self.collision_layer = Bits.from([Layer.Interactables])
+		self.collision_mask = Bits.from([Layer.World, Layer.Interactables])
 
 func interact(body):
 	if _timeout_left > 0.0:
@@ -95,27 +68,33 @@ func interact(body):
 func _process(delta: float) -> void:
 	if _timeout_left > 0:
 		_timeout_left -= delta
-	
+
+func _physics_process(_delta: float) -> void:
+	if not label: return
+	label.global_position = self.global_position + label_initial_local_transform
+
 func get_prompt() -> String:
-	if not displays_prompt:
+	if not _displays_prompt:
 		return ""
-	return _prompt_message + "\n[" + _key_name + "]"
+	return prompt_message_new + "\n[" + _key_name + "]"
 
 func hide_label():
 	if label == null: return
 	label.hide()
-	
+
 func show_label():
 	if label == null: return
 	label.show()
-	
+
 func set_prompt(new_prompt: String):
 	if label == null: return
-	_prompt_message = new_prompt
+	prompt_message_new = new_prompt
 	self.label.text = get_prompt()
 
 ## Called once to get the key assigned for interacting with this object
 func _get_key() -> String:
+	if Engine.is_editor_hint(): return "key"
+	
 	var key_name := ""
 	for action in InputMap.action_get_events(self.interact_action_name):
 		if action is InputEventKey:
