@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bmvg2shn15oom"]
 
-[ext_resource type="PackedScene" uid="uid://roylxbx2fqwt" path="res://src/common/demo/ExampleDemo.tscn" id="1_2tspk"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/common/demo/ExampleDemo.tscn" id="1_2tspk"]
 [ext_resource type="PackedScene" uid="uid://cdc3ubfifx2di" path="res://src/common/DamageRay/demo/ItemToDestroy.tscn" id="2_kaiyn"]
 [ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/common/DamageRay/demo/GunItem.tscn" id="3_k2c8t"]
 [ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="4_dpbh2"]

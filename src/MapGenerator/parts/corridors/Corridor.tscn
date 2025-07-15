@@ -1,61 +1,142 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb8tg12r4rl3x"]
+[gd_scene load_steps=8 format=3 uid="uid://cb8tg12r4rl3x"]
 
 [ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="1_fgx8y"]
-[ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="3_ymrpd"]
-[ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="4_lbf74"]
+[ext_resource type="PackedScene" uid="uid://bh4mvruiqdck2" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor/CorridorPipeUnderFloor.tscn" id="3_ymrpd"]
 [ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
+[ext_resource type="PackedScene" uid="uid://dhlrs6gn2k4l5" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe3x/CorridorPipe3x.tscn" id="5_ymrpd"]
 [ext_resource type="PackedScene" uid="uid://bmlei331kx2fn" path="res://src/MapGenerator/parts/doors/Doors.tscn" id="6_lbf74"]
-[ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="6_ymrpd"]
+[ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="7_3vh87"]
+[ext_resource type="PackedScene" uid="uid://bmt61higtx053" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/CorridorFloorSmall.tscn" id="7_lbf74"]
 
 [node name="Corridor" type="Node3D"]
+
+[node name="Doors" parent="." instance=ExtResource("6_lbf74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.9)
+
+[node name="CorridorFloorSmall" parent="." instance=ExtResource("7_lbf74")]
 
 [node name="Section1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="Walls" parent="Section1" instance=ExtResource("1_fgx8y")]
 
-[node name="corridor-cables" parent="Section1" instance=ExtResource("3_ymrpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08123, 0.555982, 0)
-
-[node name="corridor-cables2" parent="Section1" instance=ExtResource("3_ymrpd")]
-transform = Transform3D(-0.304449, -0.952529, 0, 0.952529, -0.304449, 0, 0, 0, 1, -0.909919, 0.338436, 0)
-
-[node name="corridor-pipe" parent="Section1" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00819, 0.453771, 0)
-
-[node name="corridor-pipe2" parent="Section1" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
-
-[node name="corridor-pipe3" parent="Section1" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
-
 [node name="CorridorLamp" parent="Section1" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.38218, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
+
+[node name="WallPipes" type="Node3D" parent="Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CorridorPipe3x5" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, 1)
+
+[node name="CorridorPipe3x6" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, 1)
+
+[node name="CorridorPipe3x" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, 1)
+
+[node name="CorridorPipe3x4" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, 1)
+
+[node name="UnderFloorPipes" type="Node3D" parent="Section1"]
+
+[node name="CorridorPipeUnderFloor" parent="Section1/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor2" parent="Section1/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
+
+[node name="CorridorPipeUnderFloor3" parent="Section1/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor4" parent="Section1/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
+
+[node name="CorridorPipeUnderFloor5" parent="Section1/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
+
+[node name="Cables" type="Node3D" parent="Section1"]
+
+[node name="CorridorCables" parent="Section1/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(-0.882258, -0.470766, 0, 0.470766, -0.882258, 0, 0, 0, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="Section1/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(-0.632543, 0.774525, 0, -0.774525, -0.632543, 0, 0, 0, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="Section1/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.2649, 0.964276, 0, -0.964276, 0.2649, 0, 0, 0, 1, -1.03994, 0.319207, 0)
+
+[node name="Cables2" type="Node3D" parent="Section1"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CorridorCables" parent="Section1/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(-0.896548, -0.442946, 4.27534e-11, 0.442946, -0.896548, -2.73381e-09, 1.24926e-09, -2.43206e-09, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="Section1/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.879732, 0.475471, 1.03876e-07, -0.475471, 0.879732, -8.58605e-08, -1.32207e-07, 2.61442e-08, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="Section1/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.639358, 0.768909, 7.79757e-09, -0.768909, 0.639358, -3.60911e-08, -3.27362e-08, 1.70795e-08, 1, -1.03994, 0.319207, 0)
 
 [node name="Section2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="Walls" parent="Section2" instance=ExtResource("1_fgx8y")]
 
-[node name="corridor-cables" parent="Section2" instance=ExtResource("3_ymrpd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08123, 0.555982, 0)
-
-[node name="corridor-cables2" parent="Section2" instance=ExtResource("3_ymrpd")]
-transform = Transform3D(-0.304449, -0.952529, 0, 0.952529, -0.304449, 0, 0, 0, 1, -0.909919, 0.338436, 0)
-
-[node name="corridor-pipe" parent="Section2" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00819, 0.453771, 0)
-
-[node name="corridor-pipe2" parent="Section2" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04463, 0.495897, 0)
-
-[node name="corridor-pipe3" parent="Section2" instance=ExtResource("4_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96506, 0.401783, 0)
-
 [node name="CorridorLamp" parent="Section2" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.38218, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
 
-[node name="corridor-floor-large" parent="." instance=ExtResource("6_ymrpd")]
+[node name="WallPipes" type="Node3D" parent="Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="Doors" parent="." instance=ExtResource("6_lbf74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -2)
+[node name="CorridorPipe3x2" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, -1)
+
+[node name="CorridorPipe3x3" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, -1)
+
+[node name="CorridorPipe3x4" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, -1)
+
+[node name="CorridorPipe3x5" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
+transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, -1)
+
+[node name="UnderFloorPipes" type="Node3D" parent="Section2"]
+
+[node name="CorridorPipeUnderFloor" parent="Section2/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor2" parent="Section2/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
+
+[node name="CorridorPipeUnderFloor3" parent="Section2/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor4" parent="Section2/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
+
+[node name="CorridorPipeUnderFloor5" parent="Section2/UnderFloorPipes" instance=ExtResource("3_ymrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
+
+[node name="Cables" type="Node3D" parent="Section2"]
+
+[node name="CorridorCables" parent="Section2/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(-0.718114, -0.695925, 0, 0.695925, -0.718114, 0, 0, 0, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="Section2/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(-0.632543, 0.774525, 0, -0.774525, -0.632543, 0, 0, 0, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="Section2/Cables" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.2649, 0.964276, 0, -0.964276, 0.2649, 0, 0, 0, 1, -1.03994, 0.319207, 0)
+
+[node name="Cables2" type="Node3D" parent="Section2"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CorridorCables" parent="Section2/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.798205, 0.602386, 1.73779e-07, -0.602386, 0.798205, -1.36111e-08, -1.46911e-07, -9.38179e-08, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="Section2/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.0417188, 0.999129, 2.20776e-08, -0.999129, 0.0417188, -5.80754e-08, -5.89458e-08, -1.96355e-08, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="Section2/Cables2" instance=ExtResource("7_3vh87")]
+transform = Transform3D(0.930443, 0.366436, 3.49849e-08, -0.366436, 0.930443, -6.995e-08, -5.81837e-08, 5.22648e-08, 1, -1.03994, 0.319207, 0)
