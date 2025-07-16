@@ -110,7 +110,7 @@ func can_interact_with(body: Variant):
 	if not is_interaction_enabled:
 		return false
 	if interaction_type == "Instant" and _timeout_left > 0.0:
-		return
+		return false
 	if interaction_type == "Lasting":
 		if is_busy():
 			return false
