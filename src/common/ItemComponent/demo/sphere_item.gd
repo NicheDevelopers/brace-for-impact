@@ -1,9 +1,9 @@
-extends Item
+extends RigidBody3D
 
+func _ready() -> void:
+	$ItemComponent.used.connect(_on_used)
 
-func _on_used(body: Variant) -> void:
-	print(body.name + " used item: " + self.name)
-
+func _on_used(_body: Variant):
 	var mesh_instance := $MeshInstance3D
 	var material: Material = mesh_instance.get_surface_override_material(0)
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://btpuyx6de84m0"]
+[gd_scene load_steps=13 format=3 uid="uid://btpuyx6de84m0"]
 
 [ext_resource type="PackedScene" uid="uid://d1k5l587hgsug" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/wall-box.glb" id="1_6rpuc"]
 [ext_resource type="Script" uid="uid://dg6c2iral3730" path="res://src/MapGenerator/parts/decorations/panels/WallBox/wall_box.gd" id="1_svtra"]
+[ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/common/InteractionComponent/InteractionComponent.tscn" id="2_trukd"]
 [ext_resource type="Material" uid="uid://2uo4bajv3kiq" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/box_material.tres" id="3_trukd"]
 [ext_resource type="AudioStream" uid="uid://bx322qq0j2ek8" path="res://src/MapGenerator/parts/decorations/panels/WallBox/sounds/wall_box_lock.wav" id="4_r4c2l"]
 [ext_resource type="Material" uid="uid://bab71bh7mv2at" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/metal_material.tres" id="5_8pn2e"]
 [ext_resource type="AudioStream" uid="uid://crjy6y4faj0tb" path="res://src/MapGenerator/parts/decorations/panels/WallBox/sounds/wall_box_close_1.wav" id="6_a8ea8"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nese8"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trukd"]
 points = PackedVector3Array(-0.085, -0.195918, -0.147732, 0.085, 0.192653, 0.143696, 0.085, 0.192653, -0.145283, -0.085, 0.195918, -0.147732, -0.085, -0.195918, 0.146145, 0.085, -0.192653, -0.145283, -0.085, 0.195918, 0.146145, 0.085, -0.192653, 0.143696)
 
 [sub_resource type="Animation" id="Animation_r4c2l"]
@@ -136,11 +137,20 @@ _data = {
 
 [node name="WallBox" type="StaticBody3D"]
 script = ExtResource("1_svtra")
-prompt_message = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
-shape = SubResource("ConvexPolygonShape3D_nese8")
+shape = SubResource("ConvexPolygonShape3D_trukd")
+
+[node name="InteractionComponent" parent="." instance=ExtResource("2_trukd")]
+interaction_type = "Lasting"
+instant_interaction_mode = "Once"
+instant_interaction_timeout = 0.0
+
+[node name="Label3D" type="Label3D" parent="InteractionComponent"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.217651, 0.147747, 0.00729045)
+billboard = 1
+text = "
+[key]"
 
 [node name="wall-box" parent="." instance=ExtResource("1_6rpuc")]
 
@@ -174,12 +184,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_5cpnw")
 }
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.217651, 0.147747, 0.00729045)
+[connection signal="interacted" from="InteractionComponent" to="." method="_on_interacted"]
 
-<<<<<<< HEAD
-=======
-[connection signal="interacted" from="." to="." method="_on_interacted"]
-
->>>>>>> main
 [editable path="wall-box"]

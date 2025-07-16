@@ -40,10 +40,10 @@ signal interaction_stopped(body)
 ## Once - pressing and holding the interaction key is effective only once - holding has no effect
 ##
 ## Continuous - press and hold to interact repeatedly
-@export_enum("Once", "Continuous") var interaction_mode: String = "Once"
+@export_enum("Once", "Continuous") var instant_interaction_mode: String = "Once"
 
 ## Restricts the frequency of possible interactions
-@export var interaction_timeout: float = 0.0
+@export var instant_interaction_timeout: float = 0.0
 
 @export_group("Lasting Interactions")
 ## Defines how many players can interact with the object at once.
@@ -58,7 +58,7 @@ signal interaction_stopped(body)
 var _key_name: String
 var _timeout_left: float = 0.0
 
-var _ongoing_interactions: int = 0
+var _current_users: Array[Variant] = []
 
 var label_initial_local_transform: Vector3
 
@@ -88,35 +88,53 @@ func _ready() -> void:
 		interaction_stopped.connect(_on_interaction_stopped)
 
 func interact(body):
-	if _timeout_left > 0.0:
-		return
-	if is_busy():
+	if not can_interact_with(body):
 		return
 	
 	_start_interaction(body)
-	_timeout_left = interaction_timeout
+	if interaction_type == "Instant":
+		_timeout_left = instant_interaction_timeout
 
 ## Whether this [InteractionComponent] is busy, i.e.
 ## is of type 'Lasting' and the number of ongoing interactions
 ## has reached [member max_interactions_at_a_time]
 func is_busy():
 	if interaction_type == "Lasting":
-		if _ongoing_interactions >= max_interactions_at_a_time:
+		if _current_users.size() >= max_interactions_at_a_time:
 			return true
 	return false
 
+## Whether this [InteractionComponent] can interact
+## with the provided [param body].
+func can_interact_with(body: Variant):
+	if not is_interaction_enabled:
+		return false
+	if interaction_type == "Instant" and _timeout_left > 0.0:
+		return
+	if interaction_type == "Lasting":
+		if is_busy():
+			return false
+		if _current_users.has(body):
+			return false
+	return true
+
+## Returns a list of bodies who are actively in an
+## interaction with this [InteractionComponent].
+## Always an empty array for the 'Instant' type
+## [InteractionComponent]s
+func get_current_users() -> Array[Variant]:
+	return _current_users
+
 func _start_interaction(body):
 	if interaction_type == "Lasting":
-		_ongoing_interactions += 1
-		if is_busy():
-			is_interaction_enabled = false
+		_current_users.append(body)
 	
 	interacted.emit(body)
 
 func _on_interaction_stopped(body):
-	_ongoing_interactions -= 1
-	if not is_busy():
-		is_interaction_enabled = true
+	_current_users = _current_users.filter(func(user):
+		return user != body
+	)
 
 ## Handles counting down the potential interaction timeout
 func _process(delta: float) -> void:
@@ -125,6 +143,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not label: return
+	if Engine.is_editor_hint(): return
 	label.global_position = self.global_position + label_initial_local_transform
 
 func get_prompt() -> String:

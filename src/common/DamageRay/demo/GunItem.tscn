@@ -1,7 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://blxoss2f6pgqo"]
+[gd_scene load_steps=17 format=3 uid="uid://blxoss2f6pgqo"]
 
 [ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/common/DamageRay/demo/gun_item.gd" id="1_rrkpc"]
+[ext_resource type="PackedScene" uid="uid://dykcrbb7u3khj" path="res://src/common/ItemComponent/ItemComponent.tscn" id="2_61cic"]
 [ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/common/DamageRay/DamageRay.tscn" id="2_xxioe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_61cic"]
+size = Vector3(0.1716, 0.36853, 0.514099)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
 albedo_color = Color(1, 0, 0, 1)
@@ -52,6 +56,16 @@ height = 0.01
 [node name="GunItem" type="RigidBody3D"]
 script = ExtResource("1_rrkpc")
 
+[node name="ItemComponent" parent="." instance=ExtResource("2_61cic")]
+
+[node name="Label3D" type="Label3D" parent="ItemComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ItemComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00318909, 0.120056, -0.124359)
+visible = false
+shape = SubResource("BoxShape3D_61cic")
+
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
 
@@ -79,9 +93,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.89276e-08, 5.46392e-08, 1, 0.5, -0.866026, 3.78552e-08, 0.866026, 0.5, -4.37114e-08, 0, 0.0783424, -0.042913)
 shape = SubResource("ConvexPolygonShape3D_alidf")
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, 0, 0.23801, -0.227811)
@@ -113,4 +124,4 @@ transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e
 mesh = SubResource("CapsuleMesh_alidf")
 skeleton = NodePath("")
 
-[connection signal="used" from="." to="." method="_on_used"]
+[connection signal="used" from="ItemComponent" to="." method="_on_used"]

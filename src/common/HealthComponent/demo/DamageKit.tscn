@@ -36,8 +36,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0850348, 0.0555496)
 text = "Damage"
 
 [node name="InteractionComponent" parent="." instance=ExtResource("2_2a7ce")]
-interaction_type = null
-max_interactions_at_a_time = null
+instant_interaction_mode = null
+instant_interaction_timeout = null
 
 [node name="Label3D" type="Label3D" parent="InteractionComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448023, 0.35373)

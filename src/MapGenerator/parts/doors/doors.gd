@@ -19,7 +19,7 @@ func unlock():
 	is_locked = false
 	_update_door_indicators()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_is_moving = animation_player.is_playing()
 	_update_door_indicators()
 
