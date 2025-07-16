@@ -1,19 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d308n4tea1len"]
+[gd_scene load_steps=3 format=3 uid="uid://d308n4tea1len"]
 
 [ext_resource type="PackedScene" uid="uid://h3vypx632mi4" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/model/corridor-pipe.glb" id="1_50k8j"]
+[ext_resource type="Material" uid="uid://q11d8yfolnpg" path="res://src/MapGenerator/parts/corridors/corridor_secondary.tres" id="2_lleo1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50k8j"]
-albedo_color = Color(0.464235, 0.464235, 0.464235, 1)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_50k8j"]
-points = PackedVector3Array(-5.84498e-06, -0.0300001, -1, -0.00585549, -0.0294245, -1, 0.00584968, -0.0294245, -1, -5.84498e-06, -0.0300001, 1, -0.00585549, -0.0294245, 1, -0.011482, -0.0277213, -1, 0.0114761, -0.0277213, -1, 0.00584968, -0.0294245, 1, -0.011482, -0.0277213, 1, -0.0166679, -0.0249492, -1, 0.0166621, -0.0249492, -1, 0.0114761, -0.0277213, 1, -0.0166679, -0.0249492, 1, -0.0212138, -0.0212138, -1, 0.0212079, -0.0212138, -1, 0.0166621, -0.0249492, 1, -0.0212138, -0.0212138, 1, -0.0249491, -0.016668, -1, 0.0249433, -0.016668, -1, 0.0212079, -0.0212138, 1, -0.0249491, -0.016668, 1, -0.0277212, -0.011482, -1, 0.0277154, -0.011482, -1, 0.0249433, -0.016668, 1, -0.0277212, -0.011482, 1, -0.0294244, -0.00585554, -1, 0.0294186, -0.00585554, -1, 0.0277154, -0.011482, 1, -0.0294244, -0.00585554, 1, -0.03, -5.87292e-06, -1, 0.03, -5.87292e-06, -1, 0.0294186, -0.00585554, 1, -0.03, -5.87292e-06, 1, -0.0294244, 0.00584967, -1, 0.0294186, 0.00584967, -1, 0.03, -5.87292e-06, 1, -0.0294244, 0.00584967, 1, -0.0277212, 0.0114762, -1, 0.0277154, 0.0114762, -1, 0.0294186, 0.00584967, 1, -0.0277212, 0.0114762, 1, -0.0249491, 0.0166622, -1, 0.0249433, 0.0166622, -1, 0.0277154, 0.0114762, 1, -0.0249491, 0.0166622, 1, -0.0212138, 0.021208, -1, 0.0212079, 0.021208, -1, 0.0249433, 0.0166622, 1, -0.0212138, 0.021208, 1, -0.0166679, 0.0249433, -1, 0.0166621, 0.0249433, -1, 0.0212079, 0.021208, 1, -0.0166679, 0.0249433, 1, -0.011482, 0.0277154, -1, 0.0114761, 0.0277154, -1, 0.0166621, 0.0249433, 1, -0.011482, 0.0277154, 1, -0.00585549, 0.0294186, -1, 0.00584968, 0.0294186, -1, 0.0114761, 0.0277154, 1, -0.00585549, 0.0294186, 1, -5.84498e-06, 0.0300001, -1, 0.00584968, 0.0294186, 1, -5.84498e-06, 0.0299942, 1)
-
-[node name="corridor-pipe" instance=ExtResource("1_50k8j")]
+[node name="CorridorPipe" instance=ExtResource("1_50k8j")]
 
 [node name="Pipe" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_50k8j")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Pipe" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/StaticBody3D" index="0"]
-shape = SubResource("ConvexPolygonShape3D_50k8j")
+surface_material_override/0 = ExtResource("2_lleo1")

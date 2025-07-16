@@ -3,42 +3,42 @@
 [ext_resource type="PackedScene" uid="uid://by6m4aqqdqt25" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/model/corridor-cables.glb" id="1_765o5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_765o5"]
-albedo_color = Color(0.340407, 0.616874, 0.444652, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cn34"]
-albedo_color = Color(0.846681, 0.368887, 0.485682, 1)
+albedo_color = Color(0.290266, 0.079663, 0.137311, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3hft"]
-albedo_color = Color(0.388137, 0.469859, 0.798733, 1)
+albedo_color = Color(0.182477, 0.234578, 0.480221, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lj3e4"]
-albedo_color = Color(0.849393, 0.555881, 0.341797, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkvxw"]
-albedo_color = Color(0.606853, 0.347981, 1, 1)
+albedo_color = Color(0.263666, 0.13179, 0.186047, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3f7r"]
-albedo_color = Color(3.36915e-07, 0.711464, 0.507884, 1)
+albedo_color = Color(6.257e-07, 0.285633, 0.195157, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7557"]
-albedo_color = Color(1, 0.374235, 0.418481, 1)
+albedo_color = Color(0.415374, 0, 0.0905875, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug65r"]
-albedo_color = Color(0.761268, 0.599179, 0, 1)
+albedo_color = Color(0.227355, 0.275313, 9.62615e-08, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4lht"]
-albedo_color = Color(0.242763, 0.506212, 0.824984, 1)
+albedo_color = Color(0.116788, 0.317438, 0.553758, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylc51"]
-albedo_color = Color(1, 0.192065, 0.330295, 1)
+albedo_color = Color(0.386236, 0, 0.0884395, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i2ku"]
-albedo_color = Color(0.896035, 0.555526, 0, 1)
+albedo_color = Color(0.153195, 0.265344, 0.273372, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbn0g"]
 albedo_color = Color(0.262932, 0.262932, 0.262932, 1)
 
-[node name="corridor-cables" instance=ExtResource("1_765o5")]
+[node name="CorridorCables" instance=ExtResource("1_765o5")]
 
 [node name="Cable" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_765o5")

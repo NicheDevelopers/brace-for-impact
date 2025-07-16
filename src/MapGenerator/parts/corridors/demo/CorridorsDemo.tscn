@@ -20,8 +20,7 @@ sky = SubResource("Sky_1raf0")
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
 glow_enabled = true
-glow_bloom = 0.18
-volumetric_fog_density = 0.04
+glow_bloom = 0.86
 volumetric_fog_temporal_reprojection_enabled = false
 
 [node name="CorridorsDemo" type="Node3D"]
@@ -38,8 +37,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2174, 0)
 
 [node name="Map" type="Node3D" parent="."]
-
-[node name="CorridorJunctionX" parent="Map" instance=ExtResource("3_ao3t5")]
 
 [node name="Corridor" parent="Map" instance=ExtResource("2_1raf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -94,3 +91,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
 
 [node name="Corridor8" parent="Map" instance=ExtResource("2_1raf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="Corridor11" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Corridor12" parent="Map" instance=ExtResource("2_1raf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CorridorJunctionT5" parent="Map" instance=ExtResource("5_l06nq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

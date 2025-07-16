@@ -18,6 +18,6 @@ material_override = ExtResource("2_yswvo")
 surface_material_override/0 = SubResource("StandardMaterial3D_vh37p")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180427, -1.57734e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309582, -2.70645e-08)
 light_color = Color(0.854902, 1, 0.847059, 1)
 light_energy = 0.2
