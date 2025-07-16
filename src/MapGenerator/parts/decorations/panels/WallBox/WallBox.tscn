@@ -136,6 +136,7 @@ _data = {
 
 [node name="WallBox" type="StaticBody3D"]
 script = ExtResource("1_svtra")
+prompt_message = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 visible = false
@@ -176,4 +177,9 @@ libraries = {
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.217651, 0.147747, 0.00729045)
 
+<<<<<<< HEAD
+=======
+[connection signal="interacted" from="." to="." method="_on_interacted"]
+
+>>>>>>> main
 [editable path="wall-box"]
