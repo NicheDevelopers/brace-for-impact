@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cxy1wrmb6w7nc" path="res://src/MapGenerator/parts/corridors/raw/CorridorJunctionT/CorridorJunctionT.tscn" id="1_v0fdv"]
 [ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="2_p6jlr"]
 [ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="3_p6jlr"]
-[ext_resource type="PackedScene" uid="uid://bh4mvruiqdck2" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor/CorridorPipeUnderFloor.tscn" id="4_c23pf"]
+[ext_resource type="PackedScene" uid="uid://cghyroha1i3t0" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor5x/CorridorPipeUnderFloor5x.tscn" id="4_c23pf"]
 
 [node name="CorridorJunctionT" type="Node3D"]
 
@@ -16,56 +16,11 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4
 
 [node name="Pipes" type="Node3D" parent="."]
 
-[node name="UnderFloorPipes" type="Node3D" parent="Pipes"]
+[node name="CorridorPipeUnderFloor5x" parent="Pipes" instance=ExtResource("4_c23pf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="CorridorPipeUnderFloor" parent="Pipes/UnderFloorPipes" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor2" parent="Pipes/UnderFloorPipes" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
-
-[node name="CorridorPipeUnderFloor3" parent="Pipes/UnderFloorPipes" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor4" parent="Pipes/UnderFloorPipes" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
-
-[node name="CorridorPipeUnderFloor5" parent="Pipes/UnderFloorPipes" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
-
-[node name="UnderFloorPipes2" type="Node3D" parent="Pipes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="CorridorPipeUnderFloor" parent="Pipes/UnderFloorPipes2" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor2" parent="Pipes/UnderFloorPipes2" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
-
-[node name="CorridorPipeUnderFloor3" parent="Pipes/UnderFloorPipes2" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor4" parent="Pipes/UnderFloorPipes2" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
-
-[node name="CorridorPipeUnderFloor5" parent="Pipes/UnderFloorPipes2" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
-
-[node name="UnderFloorPipes3" type="Node3D" parent="Pipes"]
+[node name="CorridorPipeUnderFloor5x2" parent="Pipes" instance=ExtResource("4_c23pf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0)
 
-[node name="CorridorPipeUnderFloor" parent="Pipes/UnderFloorPipes3" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor2" parent="Pipes/UnderFloorPipes3" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
-
-[node name="CorridorPipeUnderFloor3" parent="Pipes/UnderFloorPipes3" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
-
-[node name="CorridorPipeUnderFloor4" parent="Pipes/UnderFloorPipes3" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
-
-[node name="CorridorPipeUnderFloor5" parent="Pipes/UnderFloorPipes3" instance=ExtResource("4_c23pf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
+[node name="CorridorPipeUnderFloor5x3" parent="Pipes" instance=ExtResource("4_c23pf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
