@@ -58,5 +58,8 @@ text = "Heal"
 
 [node name="Label3D" type="Label3D" parent="InteractionComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.450347, 0.350056)
+billboard = 1
+text = "
+[key]"
 
 [connection signal="interacted" from="InteractionComponent" to="." method="_on_interacted"]
