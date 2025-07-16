@@ -10,7 +10,7 @@ enum WallBoxState {
 var state := WallBoxState.CLOSED
 
 func _on_interacted(body: Variant) -> void:
-	if (state == WallBoxState.CLOSED):
+	if state == WallBoxState.CLOSED:
 		animation_player.play("open")
 		state = WallBoxState.OPEN
 		return
