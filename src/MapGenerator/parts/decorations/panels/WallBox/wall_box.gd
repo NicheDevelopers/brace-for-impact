@@ -9,7 +9,7 @@ enum WallBoxState {
 
 var state := WallBoxState.CLOSED
 
-func _on_interacted(body: Variant) -> void:
+func _on_interacted(_body: Variant) -> void:
 	if state == WallBoxState.CLOSED:
 		animation_player.play("open")
 		state = WallBoxState.OPEN
