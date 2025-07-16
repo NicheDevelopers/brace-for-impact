@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3mytoagst265"]
+
+[ext_resource type="PackedScene" uid="uid://bifspdjim33iv" path="res://src/MapGenerator/parts/corridors/demo/CorridorsDemo.tscn" id="1_sqiv8"]
+[ext_resource type="PackedScene" uid="uid://btpuyx6de84m0" path="res://src/MapGenerator/parts/decorations/panels/WallBox/WallBox.tscn" id="2_e1ps2"]
+
+[node name="WallBoxDemo" type="Node3D"]
+
+[node name="CorridorsDemo" parent="." instance=ExtResource("1_sqiv8")]
+
+[node name="WallBox" parent="." instance=ExtResource("2_e1ps2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.4, -2.514)
+
+[node name="WallBox2" parent="." instance=ExtResource("2_e1ps2")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.15859, 1.34966, -3.39098)
