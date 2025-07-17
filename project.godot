@@ -28,6 +28,10 @@ Group="*res://src/core/global/Group.gd"
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 
+[gui]
+
+theme/custom_font="uid://cicu0io8bnshf"
+
 [input]
 
 move_forward={
