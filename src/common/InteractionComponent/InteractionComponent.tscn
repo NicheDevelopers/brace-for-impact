@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbee6wbmb1cts"]
-
-[ext_resource type="Script" uid="uid://cjkg62faffiu8" path="res://src/common/InteractionComponent/interaction_component.gd" id="1_t4qrh"]
-
-[node name="InteractionComponent" type="Area3D"]
-script = ExtResource("1_t4qrh")
-instant_interaction_mode = null
-instant_interaction_timeout = null
