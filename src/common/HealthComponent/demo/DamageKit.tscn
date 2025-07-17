@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://gk204xd014gp"]
+[gd_scene load_steps=6 format=3 uid="uid://gk204xd014gp"]
 
 [ext_resource type="Script" uid="uid://olitpkre382d" path="res://src/common/HealthComponent/demo/damage_kit.gd" id="1_xvuyt"]
+[ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/common/InteractionComponent/InteractionComponent.tscn" id="2_2a7ce"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ra5ct"]
 albedo_color = Color(0.129558, 0.129558, 0.129558, 1)
@@ -26,7 +27,7 @@ height = 0.2
 sides = 15
 material = SubResource("StandardMaterial3D_52exq")
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.462891, 0.139039)
 shape = SubResource("ConcavePolygonShape3D_2r2yi")
 
@@ -34,7 +35,14 @@ shape = SubResource("ConcavePolygonShape3D_2r2yi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0850348, 0.0555496)
 text = "Damage"
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448023, 0.35373)
+[node name="InteractionComponent" parent="." instance=ExtResource("2_2a7ce")]
+instant_interaction_mode = null
+instant_interaction_timeout = null
 
-[connection signal="interacted" from="." to="." method="_on_interacted"]
+[node name="Label3D" type="Label3D" parent="InteractionComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448023, 0.35373)
+billboard = 1
+text = "
+[key]"
+
+[connection signal="interacted" from="InteractionComponent" to="." method="_on_interacted"]

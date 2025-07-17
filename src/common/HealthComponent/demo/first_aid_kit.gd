@@ -1,4 +1,4 @@
-extends Interactable
+extends StaticBody3D
 
 func _on_interacted(body: Variant) -> void:
 	var health: HealthComponent = body.get_node("HealthComponent")

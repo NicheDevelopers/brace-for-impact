@@ -1,4 +1,4 @@
-extends Item
+extends RigidBody3D
 
 @onready var ray = $Node3D/DamageRay
 @onready var laser = $Node3D/LaserMesh
@@ -6,7 +6,6 @@ extends Item
 var laser_timer: Timer
 
 func _ready() -> void:
-	super()
 	laser.hide()
 	
 	laser_timer = Timer.new()

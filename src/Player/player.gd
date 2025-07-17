@@ -34,7 +34,7 @@ var previous_input: Vector2 = Vector2.ZERO
 var current_direction: Vector2 = Vector2.ZERO
 
 # TODO: move this functionality to equipment
-var held_item: Item
+var held_item_component: ItemComponent
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
@@ -119,8 +119,12 @@ func _process(delta: float) -> void:
 	mouse_pitch = 0.0
 	
 	if Input.is_action_pressed("use_item"):
-		if held_item != null:
-			held_item.use(self)
+		if held_item_component != null:
+			held_item_component.use(self)
+	
+	if Input.is_action_pressed("drop_item"):
+		if held_item_component != null:
+			held_item_component.drop(self)
 	
 	previous_input = input
 
@@ -130,10 +134,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
 
-func _on_item_picked_up(item: Item):
-	print("Player picks up item")
-	held_item = item
-	hand_point.add_child(item)
+func _on_item_picked_up(item_component: ItemComponent):
+	held_item_component = item_component
+	hand_point.add_child(item_component.parent)
 
 func _item_drop():
 	pass#hand_point.remo
