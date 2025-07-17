@@ -6,7 +6,7 @@ static func bool() -> bool:
 static func int(min_val: int, max_val: int) -> int:
 	return randi_range(min_val, max_val)
 
-static func float(min_val: float, max_val: float) -> float:
+static func float(min_val: float = 0.0, max_val: float = 1.0) -> float:
 	return randf_range(min_val, max_val)
 
 # Returns a random index of the provided array
