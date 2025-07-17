@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1k5l587hgsug" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/wall-box.glb" id="1_6rpuc"]
 [ext_resource type="Script" uid="uid://dg6c2iral3730" path="res://src/MapGenerator/parts/decorations/panels/WallBox/wall_box.gd" id="1_svtra"]
-[ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/common/InteractionComponent/InteractionComponent.tscn" id="2_trukd"]
+[ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/core/InteractionComponent/InteractionComponent.tscn" id="2_trukd"]
 [ext_resource type="Material" uid="uid://2uo4bajv3kiq" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/box_material.tres" id="3_trukd"]
 [ext_resource type="AudioStream" uid="uid://bx322qq0j2ek8" path="res://src/MapGenerator/parts/decorations/panels/WallBox/sounds/wall_box_lock.wav" id="4_r4c2l"]
 [ext_resource type="Material" uid="uid://bab71bh7mv2at" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/metal_material.tres" id="5_8pn2e"]
