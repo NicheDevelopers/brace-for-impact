@@ -15,7 +15,7 @@ signal interaction_stopped(body)
 
 @export var _displays_prompt: bool = true
 
-@export var prompt_message_new: String = ""
+@export var prompt_message: String = ""
 
 ## Enable or disable interacting with this object. Will also hide its label.
 @export var is_interaction_enabled: bool = true
@@ -79,6 +79,9 @@ func _ready() -> void:
 	if label != null:
 		label_initial_local_transform = label.transform.origin
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player
+		label.pixel_size = 0.002
+		label.no_depth_test = true # Make the label always render on top, so it won't be obstructed by other objects
+		label.fixed_size = true # Always stays the same size, no matter the distance
 		label.text = get_prompt()
 	
 	if not Engine.is_editor_hint():
@@ -149,7 +152,7 @@ func _physics_process(_delta: float) -> void:
 func get_prompt() -> String:
 	if not _displays_prompt:
 		return ""
-	return prompt_message_new + "\n[" + _key_name + "]"
+	return prompt_message + "\n[" + _key_name + "]"
 
 func hide_label():
 	if label == null: return
@@ -161,7 +164,7 @@ func show_label():
 
 func set_prompt(new_prompt: String):
 	if label == null: return
-	prompt_message_new = new_prompt
+	prompt_message = new_prompt
 	self.label.text = get_prompt()
 
 ## Called once to get the key assigned for interacting with this object
