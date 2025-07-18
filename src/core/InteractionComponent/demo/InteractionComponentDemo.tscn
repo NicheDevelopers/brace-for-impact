@@ -20,12 +20,12 @@ text = "Disabled"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38434, 4.02757, 0)
 
 [node name="InteractionComponent" parent="InteractionObject" instance=ExtResource("3_pss0s")]
-prompt_message_new = "Interact Once"
+prompt_message = "Interact Once"
 instant_interaction_mode = "Once"
 instant_interaction_timeout = 0.0
 
 [node name="Label3D" type="Label3D" parent="InteractionObject/InteractionComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.614283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00718927, 0.000978947, 0.614283)
 billboard = 1
 text = "Interact Once
 [key]"
@@ -34,7 +34,7 @@ text = "Interact Once
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0243764, 3.93888, 0)
 
 [node name="InteractionComponent" parent="InteractionObject2" instance=ExtResource("3_pss0s")]
-prompt_message_new = "Interact continuous"
+prompt_message = "Interact Continuous"
 instant_interaction_mode = "Continuous"
 instant_interaction_timeout = 0.0
 
@@ -48,7 +48,7 @@ text = "Interact continuous
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88468, 3.93888, 0)
 
 [node name="InteractionComponent" parent="InteractionObject3" instance=ExtResource("3_pss0s")]
-prompt_message_new = "Interact timeout"
+prompt_message = "Interact Timeout"
 instant_interaction_mode = "Continuous"
 instant_interaction_timeout = 0.5
 
@@ -76,6 +76,7 @@ text = "
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19193, 3.8444, 2.3176)
 
 [node name="InteractionComponent" parent="InteractionObject5" instance=ExtResource("3_pss0s")]
+prompt_message = null
 instant_interaction_mode = "Once"
 instant_interaction_timeout = 0.0
 
