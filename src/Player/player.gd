@@ -43,9 +43,7 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:
 			return
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			get_viewport().set_input_as_handled()
+		
 
 func _ready() -> void:
 	SignalBus.item_picked_up.connect(_on_item_picked_up)
@@ -106,7 +104,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") && Input.is_key_pressed(KEY_ALT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	twist_pivot.rotate_y(mouse_twist)
