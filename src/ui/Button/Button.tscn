@@ -10,7 +10,6 @@ offset_bottom = 91.0
 scale = Vector2(0.495378, 0.492262)
 size_flags_horizontal = 0
 theme = ExtResource("1_lven6")
-text = "Resume"
 clip_text = true
 expand_icon = true
 script = ExtResource("1_8jb4b")
