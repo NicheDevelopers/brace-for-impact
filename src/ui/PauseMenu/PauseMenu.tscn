@@ -62,5 +62,6 @@ layout_mode = 2
 [node name="ResumeButton" parent="ColorRect/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_my5q4")]
 layout_mode = 2
 size_flags_horizontal = 1
+text = "Resume"
 
 [connection signal="button_down" from="ColorRect/HBoxContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_button_down"]

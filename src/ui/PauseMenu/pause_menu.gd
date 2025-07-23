@@ -11,10 +11,13 @@ func _process(delta: float) -> void:
 		_toggle()
 
 func _toggle() -> void:
-	_hide() if pause_menu_container.visible else _show()
+	if pause_menu_container.visible:
+		_hide()
+	else:
+		_show()
 
 func _show() -> void:
-	grab_focus()
+	resume_button.grab_focus()
 	pause_menu_container.show()
 	pause_menu_container.mouse_filter = Control.MOUSE_FILTER_STOP
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -103,8 +103,7 @@ func _process(delta: float) -> void:
 		#input.y = Input.get_action_strength("jump") * 3
 	move_and_slide()
 	
-	
-	if Input.is_action_just_pressed("ui_cancel") && Input.is_key_pressed(KEY_ALT):
+	if Input.is_action_just_pressed("dev_free_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	twist_pivot.rotate_y(mouse_twist)
