@@ -1,5 +1,5 @@
 extends Node3D
-@onready var dial: MeshInstance3D = $Base/Plate/Dial 
+@onready var dial: MeshInstance3D = $Base/Plate/Dial
 
 func _ready() -> void:
 	var rand = Random.int(-110,110)
