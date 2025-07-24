@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://v1af140jq2of"]
+[gd_scene load_steps=13 format=3 uid="uid://v1af140jq2of"]
 
 [ext_resource type="Script" uid="uid://d0n8vcge5p4u3" path="res://src/Player/player.gd" id="1_wdw76"]
 [ext_resource type="Texture2D" uid="uid://ct6kbx46t62kc" path="res://src/Player/dziadu-french.png" id="2_4pjjn"]
+[ext_resource type="PackedScene" uid="uid://cuymhoqw2f3og" path="res://src/ui/PauseMenu/PauseMenu.tscn" id="2_31ddy"]
 [ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="2_dd31a"]
 [ext_resource type="PackedScene" uid="uid://b1kcy0xwnxjbd" path="res://src/Player/InteractionRay/InteractionRay.tscn" id="2_rwoh2"]
-[ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/HUD/HUD.tscn" id="3_vy1tf"]
+[ext_resource type="PackedScene" uid="uid://duqdt1nl4il4q" path="res://src/ui/HUD/HUD.tscn" id="3_vy1tf"]
 [ext_resource type="PackedScene" uid="uid://bgykt56kdnbpo" path="res://src/Player/Flashlight/Flashlight.tscn" id="5_3ajlp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd31a"]
@@ -31,9 +32,20 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_wdw76")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_dd31a")]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="HUD" parent="." instance=ExtResource("3_vy1tf")]
+[node name="HUD" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("3_vy1tf")]
+layout_mode = 1
+player = NodePath("../..")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_dd31a")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_s10d5")
@@ -68,6 +80,9 @@ transform = Transform3D(1, 0, -6.77626e-22, 0, 1, 0, 6.77626e-22, 0, 1, 0, 0, -0
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="TwistPivot/PitchPivot/Arm/HandPoint"]
 mesh = SubResource("BoxMesh_vy1tf")
 skeleton = NodePath("../../../../..")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_31ddy")]
+top_level = true
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_killed"]

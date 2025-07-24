@@ -1,6 +1,7 @@
 extends Control
 
-@onready var player: Player = get_parent()
+@export var player: Player = null
+
 @onready var health: HealthComponent = player.get_node("HealthComponent")
 @onready var health_bar = $HealthBar
 @onready var health_label = $HealthBar/HealthLabel
