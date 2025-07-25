@@ -25,6 +25,7 @@ class_name Player
 @export var no_gravity_mode := 0
 
 @export_group("Debug")
+@export var third_person_camera := false
 @export var third_person_camera_distance := 2.0
 
 @onready var twist_pivot: Node3D = $TwistPivot
@@ -110,10 +111,12 @@ func _process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_just_pressed("dev_third_person_camera"):
-		if camera.position.z == 0:
-			camera.position.z = third_person_camera_distance
+		if third_person_camera:
+			camera.position.z -= third_person_camera_distance
+			third_person_camera = false
 		else:
-			camera.position.z = 0
+			camera.position.z += third_person_camera_distance
+			third_person_camera = true
 		
 	twist_pivot.rotate_y(mouse_twist)
 	pitch_pivot.rotate_x(mouse_pitch)
