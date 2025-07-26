@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 SignalBus="*res://src/core/global/SignalBus.gd"
 Bits="*res://src/core/utils/Bits.gd"
 Layer="*res://src/core/global/Layer.gd"
-Random="*res://src/core/utils/Random.gd"
 Group="*res://src/core/global/Group.gd"
 
 [display]
