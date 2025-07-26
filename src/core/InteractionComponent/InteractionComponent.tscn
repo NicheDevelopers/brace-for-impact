@@ -4,4 +4,3 @@
 
 [node name="InteractionComponent" type="Area3D"]
 script = ExtResource("1_t4qrh")
-prompt_message = null
