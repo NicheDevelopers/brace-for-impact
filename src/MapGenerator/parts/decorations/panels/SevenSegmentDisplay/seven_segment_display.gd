@@ -87,24 +87,25 @@ func set_number(number: float):
 ## Accepted modes: "Fixed", "SoftRandom", "FullRandom"
 func set_mode(mode: String):
 	display_mode = mode
-	if mode == "Fixed":
-		set_number(fixed_displayed_number)
-		timer.stop()
-	if mode == "SoftRandom":
-		set_number(softrandom_starting_value)
-		timer.wait_time = softrandom_interval
-		timer.start()
-		if timer.timeout.is_connected(_fullrandom_trigger):
-			timer.timeout.disconnect(_fullrandom_trigger)
-		if not timer.timeout.is_connected(_softrandom_trigger):
-			timer.timeout.connect(_softrandom_trigger)
-	if mode == "FullRandom":
-		timer.wait_time = fullrandom_interval
-		timer.start()
-		if timer.timeout.is_connected(_softrandom_trigger):
-			timer.timeout.disconnect(_softrandom_trigger)
-		if not timer.timeout.is_connected(_fullrandom_trigger):
-			timer.timeout.connect(_fullrandom_trigger)
+	match mode:
+		"Fixed":
+			set_number(fixed_displayed_number)
+			timer.stop()
+		"SoftRandom":
+			set_number(softrandom_starting_value)
+			timer.wait_time = softrandom_interval
+			timer.start()
+			if timer.timeout.is_connected(_fullrandom_trigger):
+				timer.timeout.disconnect(_fullrandom_trigger)
+			if not timer.timeout.is_connected(_softrandom_trigger):
+				timer.timeout.connect(_softrandom_trigger)
+		"FullRandom":
+			timer.wait_time = fullrandom_interval
+			timer.start()
+			if timer.timeout.is_connected(_softrandom_trigger):
+				timer.timeout.disconnect(_softrandom_trigger)
+			if not timer.timeout.is_connected(_fullrandom_trigger):
+				timer.timeout.connect(_fullrandom_trigger)
 
 func _ready():
 	set_mode(display_mode)
