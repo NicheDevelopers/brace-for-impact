@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cge1ps2pdy6uu"
+path.s3tc="res://.godot/imported/business_male_3_low_poly_style_0.png-4a4b133dc28e5460e38dc615a1c7a7ea.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "3c4842fb0afaed3e50c2cc4d5532b9f3"
+}
+
+[deps]
+
+source_file="res://src/Player/business_male_3_low_poly_style_0.png"
+dest_files=["res://.godot/imported/business_male_3_low_poly_style_0.png-4a4b133dc28e5460e38dc615a1c7a7ea.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

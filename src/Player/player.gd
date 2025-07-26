@@ -14,11 +14,7 @@ class_name Player
 @export var sprint_speed_multiplier = 2.0
 @export var crouch_speed_multiplier = 0.5
 @export var acceleration_loss = 50.0
-# placeholder values correct for the default pill-shaped model
-# TODO: change these values to be correct for the target player model
-@export var standing_height = 0.65
-@export var bobbing_depth = 0.1
-@export var crouching_height = standing_height - 0.65
+
 # placeholder variable which determines whether the player should obey the laws of gravity or not.
 # if there is no gravity, the player can jump, but not move up/down freely.
 # the reverse happens if there is no gravity.
@@ -32,6 +28,13 @@ class_name Player
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+@onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+
+# placeholder values correct for the default pill-shaped model
+# TODO: change these values to be correct for the target player model
+@onready var standing_height = camera.position.y
+@export var bobbing_depth = 0.1
+@onready var crouching_height = standing_height - 0.65
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -60,6 +63,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	state_machine.travel("Idle")
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
@@ -75,13 +79,11 @@ func _process(delta: float) -> void:
 	direction = direction.normalized()
 	if Input.get_action_strength("crouch"):
 		crouch_value = crouch_speed_multiplier
-		twist_pivot.position.y = crouching_height
+		#twist_pivot.position.y = crouching_height
 	elif Input.get_action_strength("sprint") and input[1] < 0.0:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
-		twist_pivot.position.y = standing_height
-	else:
-		twist_pivot.position.y = standing_height
+		#twist_pivot.position.y = standing_height
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
 	#var mapped_input = map_direction(input)
 	var velocity_2d = Vector2.ZERO
@@ -105,6 +107,7 @@ func _process(delta: float) -> void:
 	#else:
 		## TODO: implement actual gravity-obedient jumping
 		#input.y = Input.get_action_strength("jump") * 3
+	#direction.y = input.y
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("dev_free_cursor"):
