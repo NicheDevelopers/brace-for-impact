@@ -34,16 +34,23 @@ class_name Player
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
 @onready var standing_height = camera.position.y
-@export var bobbing_depth = 0.1
+var t_bob = 0
+var returning = 0
+@export var bobbing_depth = 0.15
+@export var bobbing_frequency = 5
 @onready var crouching_height = standing_height - 0.65
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
+var previous_tbob_depth: float = 0
 var current_direction: Vector2 = Vector2.ZERO
 var gravity = 9.81 * 9.81
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
@@ -62,6 +69,11 @@ func _ready() -> void:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+		
+func _headbob(time) -> Vector3:
+	var position = Vector3.ZERO
+	position.y = abs(sin(time * bobbing_frequency)) * bobbing_depth * -1
+	return position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -111,11 +123,8 @@ func _physics_process(delta: float) -> void:
 		# TODO: implement actual gravity-obedient jumping
 		velocity.y = Input.get_action_strength("jump") * 50 * int(is_on_floor())
 		if velocity.y:
-			print("jump")
 			if state_machine.get_current_node().substr(0, 4) != "Jump":
 				state_machine.travel("Jump_Start")
-		else:
-			print("no jump")
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	if velocity.length():
@@ -156,6 +165,24 @@ func _physics_process(delta: float) -> void:
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
 	)
+	var current_headbob_depth = _headbob(t_bob)
+	if velocity.length():
+		t_bob += delta * float(is_on_floor())
+	else:
+		if round_to_dec(current_headbob_depth.y, 2) != 0:
+			if returning:
+				t_bob += delta * float(is_on_floor()) * returning
+			else:
+				if previous_tbob_depth < current_headbob_depth.y:
+					returning = 1
+				else:
+					returning = -1
+		else:
+			t_bob = 0
+			returning = 0
+			camera.transform.origin = Vector3.ZERO
+	camera.transform.origin = Vector3(0, standing_height, 0) + current_headbob_depth
+	previous_tbob_depth = current_headbob_depth.y
 	mouse_twist = 0.0
 	mouse_pitch = 0.0
 	
