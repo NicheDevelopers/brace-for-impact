@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqwh7akecoeoe"]
+[gd_scene load_steps=21 format=3 uid="uid://bqwh7akecoeoe"]
 
 [ext_resource type="PackedScene" uid="uid://bru1ast2xoxwg" path="res://src/core/DamageArea/DamageArea.tscn" id="1_817so"]
 [ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_pycp1"]
@@ -33,11 +33,6 @@ point_count = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6meqw"]
 transparency = 1
 albedo_color = Color(0, 1, 0, 0.247059)
-
-[sub_resource type="Curve" id="Curve_1i1rb"]
-_limits = [0.0, 10.0, 0.0, 10.0]
-_data = [Vector2(0, 100), 0.0, 0.0, 0, 0]
-point_count = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i1rb"]
 transparency = 1
@@ -120,7 +115,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6meqw")
 
 [node name="DamageArea4" parent="." instance=ExtResource("1_817so")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 6.79636, 0, -0.883727)
-damage_curve = SubResource("Curve_1i1rb")
+dirac_impulse = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea4"]
 shape = SubResource("BoxShape3D_brn4y")
