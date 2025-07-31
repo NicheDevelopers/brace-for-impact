@@ -68,6 +68,7 @@ text = "Interact Timeout
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6026, 3.93888, 0)
 
 [node name="InteractionComponent" parent="InteractionObject4" instance=ExtResource("3_pss0s")]
+prompt_message = ""
 is_interaction_enabled = false
 
 [node name="Label3D" type="Label3D" parent="InteractionObject4/InteractionComponent"]
@@ -83,6 +84,7 @@ text = "
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19193, 3.8444, 2.3176)
 
 [node name="InteractionComponent" parent="InteractionObject5" instance=ExtResource("3_pss0s")]
+prompt_message = ""
 
 [node name="Label3D2" type="Label3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.4944, 1.48446, 2.35132)
