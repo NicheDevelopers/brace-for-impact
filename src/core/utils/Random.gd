@@ -1,5 +1,7 @@
 extends Node
 
+class_name Random
+
 static func bool() -> bool:
 	return randi() % 2 == 0
 

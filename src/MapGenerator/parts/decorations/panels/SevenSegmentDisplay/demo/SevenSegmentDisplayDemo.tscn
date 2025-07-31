@@ -7,9 +7,6 @@
 
 [node name="ExampleDemo" parent="." instance=ExtResource("1_i51ex")]
 
-[node name="SevenSegmentDisplay" parent="." instance=ExtResource("2_i51ex")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.380205, 0.808098, 0.632311)
-
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.380205, 0.808098, 0.632311)
 
@@ -19,3 +16,15 @@ transform = Transform3D(1, 0, 0, 0, -1.19209e-07, 1, 0, -1, -1.19209e-07, 0.2545
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0.25456, -0.638822, 0.072525)
 size = Vector3(1, 0.927246, 0.880859)
+
+[node name="SevenSegmentDisplay" parent="." instance=ExtResource("2_i51ex")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.350745, 0.808098, 0.632311)
+display_mode = "Fixed"
+fixed_displayed_number = 123.4
+
+[node name="SevenSegmentDisplay2" parent="." instance=ExtResource("2_i51ex")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.637502, 0.808098, 0.632311)
+
+[node name="SevenSegmentDisplay3" parent="." instance=ExtResource("2_i51ex")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0.919528, 0.808098, 0.632311)
+display_mode = "FullRandom"
