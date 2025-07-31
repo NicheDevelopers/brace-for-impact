@@ -90,8 +90,8 @@ prompt_message = ""
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.4944, 1.48446, 2.35132)
 text = "InteractionComponent
 without the 'Label3D' node
-(still works now, just doesn't display
-the prompt)"
+(still works, just doesn't display
+the prompt, but also logs an error)"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.13177, 1.09921, 2.58297)
