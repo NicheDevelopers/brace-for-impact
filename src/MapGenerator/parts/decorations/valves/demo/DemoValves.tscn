@@ -1,0 +1,226 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfjcbcuhmwcxs"]
+
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_ep3j4"]
+[ext_resource type="PackedScene" uid="uid://chc2rcp6mgk00" path="res://src/MapGenerator/parts/decorations/valves/raw/Valve/Valve.tscn" id="2_0sadp"]
+[ext_resource type="PackedScene" uid="uid://cj3pfcufte5pl" path="res://src/MapGenerator/parts/decorations/valves/raw/Elbow/Elbow.tscn" id="2_ko24h"]
+[ext_resource type="PackedScene" uid="uid://h7821updon4y" path="res://src/MapGenerator/parts/decorations/valves/raw/Pipe/Pipe.tscn" id="3_0sadp"]
+[ext_resource type="PackedScene" uid="uid://cjhnsftmqeu3x" path="res://src/MapGenerator/parts/decorations/valves/raw/Tee/Tee.tscn" id="4_mnxrv"]
+[ext_resource type="PackedScene" uid="uid://bmlei331kx2fn" path="res://src/MapGenerator/parts/doors/Doors.tscn" id="6_mcfcx"]
+[ext_resource type="PackedScene" uid="uid://bmt61higtx053" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/CorridorFloorSmall.tscn" id="7_ktiyj"]
+[ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="8_esfds"]
+[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="9_uby2q"]
+[ext_resource type="PackedScene" uid="uid://dhlrs6gn2k4l5" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe3x/CorridorPipe3x.tscn" id="10_0ev5y"]
+[ext_resource type="PackedScene" uid="uid://b6ap4p00nbeww" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/CorridorCables.tscn" id="11_071kr"]
+[ext_resource type="PackedScene" uid="uid://cghyroha1i3t0" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor5x/CorridorPipeUnderFloor5x.tscn" id="12_orbcp"]
+
+[node name="DemoValves" type="Node3D"]
+
+[node name="ExampleDemo" parent="." instance=ExtResource("1_ep3j4")]
+
+[node name="Raw" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Valve" parent="Raw" instance=ExtResource("2_0sadp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 1, 0)
+
+[node name="Tee" parent="Raw" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="Pipe" parent="Raw" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="Elbow" parent="Raw" instance=ExtResource("2_ko24h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ValvesCorridors" type="Node3D" parent="."]
+
+[node name="Corridor" type="Node3D" parent="ValvesCorridors"]
+
+[node name="Doors" parent="ValvesCorridors/Corridor" instance=ExtResource("6_mcfcx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.9)
+
+[node name="CorridorFloorSmall" parent="ValvesCorridors/Corridor" instance=ExtResource("7_ktiyj")]
+
+[node name="Section1" type="Node3D" parent="ValvesCorridors/Corridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Walls" parent="ValvesCorridors/Corridor/Section1" instance=ExtResource("8_esfds")]
+
+[node name="CorridorLamp" parent="ValvesCorridors/Corridor/Section1" instance=ExtResource("9_uby2q")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
+
+[node name="WallPipes" type="Node3D" parent="ValvesCorridors/Corridor/Section1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CorridorPipe3x5" parent="ValvesCorridors/Corridor/Section1/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, 1)
+
+[node name="CorridorPipe3x6" parent="ValvesCorridors/Corridor/Section1/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, 1)
+
+[node name="CorridorPipe3x" parent="ValvesCorridors/Corridor/Section1/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, 1)
+
+[node name="CorridorPipe3x4" parent="ValvesCorridors/Corridor/Section1/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, 1)
+
+[node name="Cables" type="Node3D" parent="ValvesCorridors/Corridor/Section1"]
+
+[node name="CorridorCables" parent="ValvesCorridors/Corridor/Section1/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(-0.882258, -0.470766, 0, 0.470766, -0.882258, 0, 0, 0, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="ValvesCorridors/Corridor/Section1/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(-0.632543, 0.774525, 0, -0.774525, -0.632543, 0, 0, 0, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="ValvesCorridors/Corridor/Section1/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.2649, 0.964276, 0, -0.964276, 0.2649, 0, 0, 0, 1, -1.03994, 0.319207, 0)
+
+[node name="Cables2" type="Node3D" parent="ValvesCorridors/Corridor/Section1"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CorridorCables" parent="ValvesCorridors/Corridor/Section1/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(-0.896548, -0.442946, 4.27534e-11, 0.442946, -0.896548, -2.73381e-09, 1.24926e-09, -2.43206e-09, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="ValvesCorridors/Corridor/Section1/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.879732, 0.475471, 1.03876e-07, -0.475471, 0.879732, -8.58605e-08, -1.32207e-07, 2.61442e-08, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="ValvesCorridors/Corridor/Section1/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.639358, 0.768909, 7.79757e-09, -0.768909, 0.639358, -3.60911e-08, -3.27362e-08, 1.70795e-08, 1, -1.03994, 0.319207, 0)
+
+[node name="CorridorPipeUnderFloor5x" parent="ValvesCorridors/Corridor/Section1" instance=ExtResource("12_orbcp")]
+
+[node name="Section2" type="Node3D" parent="ValvesCorridors/Corridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Walls" parent="ValvesCorridors/Corridor/Section2" instance=ExtResource("8_esfds")]
+
+[node name="CorridorLamp" parent="ValvesCorridors/Corridor/Section2" instance=ExtResource("9_uby2q")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
+
+[node name="WallPipes" type="Node3D" parent="ValvesCorridors/Corridor/Section2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="CorridorPipe3x2" parent="ValvesCorridors/Corridor/Section2/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, -1)
+
+[node name="CorridorPipe3x3" parent="ValvesCorridors/Corridor/Section2/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, -1)
+
+[node name="CorridorPipe3x4" parent="ValvesCorridors/Corridor/Section2/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, -1)
+
+[node name="CorridorPipe3x5" parent="ValvesCorridors/Corridor/Section2/WallPipes" instance=ExtResource("10_0ev5y")]
+transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, -1)
+
+[node name="Cables" type="Node3D" parent="ValvesCorridors/Corridor/Section2"]
+
+[node name="CorridorCables" parent="ValvesCorridors/Corridor/Section2/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(-0.718114, -0.695925, 0, 0.695925, -0.718114, 0, 0, 0, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="ValvesCorridors/Corridor/Section2/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(-0.632543, 0.774525, 0, -0.774525, -0.632543, 0, 0, 0, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="ValvesCorridors/Corridor/Section2/Cables" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.2649, 0.964276, 0, -0.964276, 0.2649, 0, 0, 0, 1, -1.03994, 0.319207, 0)
+
+[node name="Cables2" type="Node3D" parent="ValvesCorridors/Corridor/Section2"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CorridorCables" parent="ValvesCorridors/Corridor/Section2/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.798205, 0.602386, 1.73779e-07, -0.602386, 0.798205, -1.36111e-08, -1.46911e-07, -9.38179e-08, 1, -0.87769, 0.217535, 0)
+
+[node name="CorridorCables2" parent="ValvesCorridors/Corridor/Section2/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.0417188, 0.999129, 2.20776e-08, -0.999129, 0.0417188, -5.80754e-08, -5.89458e-08, -1.96355e-08, 1, -1.18366, 0.460771, 0)
+
+[node name="CorridorCables3" parent="ValvesCorridors/Corridor/Section2/Cables2" instance=ExtResource("11_071kr")]
+transform = Transform3D(0.930443, 0.366436, 3.49849e-08, -0.366436, 0.930443, -6.995e-08, -5.81837e-08, 5.22648e-08, 1, -1.03994, 0.319207, 0)
+
+[node name="CorridorPipeUnderFloor5x" parent="ValvesCorridors/Corridor/Section2" instance=ExtResource("12_orbcp")]
+
+[node name="Example1" type="Node3D" parent="ValvesCorridors"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.31732, 1.31055, 0.806081)
+
+[node name="Pipe" parent="ValvesCorridors/Example1" instance=ExtResource("3_0sadp")]
+
+[node name="Valve" parent="ValvesCorridors/Example1" instance=ExtResource("2_0sadp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Tee" parent="ValvesCorridors/Example1" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Pipe2" parent="ValvesCorridors/Example1" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="Tee2" parent="ValvesCorridors/Example1" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -0.699887, 0.3, -2.38419e-07)
+
+[node name="Pipe3" parent="ValvesCorridors/Example1" instance=ExtResource("3_0sadp")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.35, 0.3, 0)
+
+[node name="Elbow" parent="ValvesCorridors/Example1" instance=ExtResource("2_ko24h")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.7, 0.09, 0)
+
+[node name="Pipe4" parent="ValvesCorridors/Example1" instance=ExtResource("3_0sadp")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, -0.92, 0.09, 0)
+
+[node name="Example2" type="Node3D" parent="ValvesCorridors"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.31732, 1.31583, -1.19392)
+
+[node name="Pipe" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117185, 0)
+
+[node name="Valve" parent="ValvesCorridors/Example2" instance=ExtResource("2_0sadp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.117185, 0)
+
+[node name="Tee" parent="ValvesCorridors/Example2" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(1, -0.000139713, -8.74228e-08, 0.000139713, 1, -6.10324e-12, 8.74228e-08, -6.11088e-12, 1, 0.208335, 0.243, 3.57628e-07)
+
+[node name="Pipe2" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="Tee2" parent="ValvesCorridors/Example2" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -0.7, -0.117185, 0)
+
+[node name="Pipe3" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.35, -0.117185, 0)
+
+[node name="Elbow" parent="ValvesCorridors/Example2" instance=ExtResource("2_ko24h")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.7, -0.327185, 0)
+
+[node name="Pipe4" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, -0.92, -0.327339, 0)
+
+[node name="Elbow2" parent="ValvesCorridors/Example2" instance=ExtResource("2_ko24h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243462, 0)
+
+[node name="Pipe5" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0.403998, 0.243456, 4.76837e-07)
+
+[node name="Pipe6" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.700486, 0.225127, 1.19209e-07)
+
+[node name="Pipe7" parent="ValvesCorridors/Example2" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.207937, 0.410153, 4.76837e-07)
+
+[node name="Example3" type="Node3D" parent="ValvesCorridors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32055, 0.957516, -1.46804)
+
+[node name="Pipe" parent="ValvesCorridors/Example3" instance=ExtResource("3_0sadp")]
+
+[node name="Elbow" parent="ValvesCorridors/Example3" instance=ExtResource("2_ko24h")]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -8.05855e-05, 0.358112, -0.000588775)
+
+[node name="Pipe2" parent="ValvesCorridors/Example3" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.358, 0.35951)
+
+[node name="Pipe3" parent="ValvesCorridors/Example3" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.358, 0.60409)
+
+[node name="Tee2" parent="ValvesCorridors/Example3" instance=ExtResource("4_mnxrv")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0.358, 0.942331)
+
+[node name="Pipe4" parent="ValvesCorridors/Example3" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0402242, 0.942142)
+
+[node name="Pipe5" parent="ValvesCorridors/Example3" instance=ExtResource("3_0sadp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.584812, 0.942142)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://chc2rcp6mgk00"]
+
+[ext_resource type="PackedScene" uid="uid://cb7th20oopl0g" path="res://src/MapGenerator/parts/decorations/valves/raw/Valve/model/valve.glb" id="1_pnv8g"]
+[ext_resource type="Material" uid="uid://c0bo67r7pjlad" path="res://src/MapGenerator/parts/decorations/valves/valve_base_color.tres" id="2_akgsi"]
+[ext_resource type="Material" uid="uid://o8yqhs1n35ad" path="res://src/MapGenerator/parts/decorations/valves/valv_color.tres" id="3_gmb6n"]
+
+[node name="Valve" instance=ExtResource("1_pnv8g")]
+
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_akgsi")
+
+[node name="Valve" parent="Base" index="0"]
+surface_material_override/0 = ExtResource("3_gmb6n")
