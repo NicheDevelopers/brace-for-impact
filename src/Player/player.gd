@@ -33,12 +33,16 @@ class_name Player
 
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
-@onready var standing_height = camera.position.y
+@onready var standing_height = twist_pivot.position.y
+@onready var current_camera_height = twist_pivot.position.y
 var t_bob = 0
 var returning = 0
-@export var bobbing_depth = 0.15
-@export var bobbing_frequency = 5
-@onready var crouching_height = standing_height - 0.65
+@export var standing_bobbing_depth = 0.15
+@export var standing_bobbing_frequency = 5
+@export var crouching_bobbing_depth = standing_bobbing_depth / 2
+@export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
+@onready var crouching_height = standing_height - 0.85
+@onready var desired_height = standing_height
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -70,9 +74,12 @@ func _ready() -> void:
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 		
-func _headbob(time) -> Vector3:
+func _headbob(time, is_standing) -> Vector3:
 	var position = Vector3.ZERO
-	position.y = abs(sin(time * bobbing_frequency)) * bobbing_depth * -1
+	if is_standing:
+		position.y = abs(sin(time * standing_bobbing_frequency)) * standing_bobbing_depth * -1
+	else:
+		position.y = abs(sin(time * crouching_bobbing_frequency)) * crouching_bobbing_depth * -1
 	return position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -83,8 +90,8 @@ func _physics_process(delta: float) -> void:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 	
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var forward := camera.global_basis.z
-	var right := camera.global_basis.x
+	var forward := twist_pivot.global_basis.z
+	var right := twist_pivot.global_basis.x
 	var direction := forward * input.y + right * input.x
 	var crouch_value := 1.0
 	var sprint_value := 1.0
@@ -94,29 +101,16 @@ func _physics_process(delta: float) -> void:
 	if Input.get_action_strength("crouch"):
 		crouch_value = crouch_speed_multiplier
 		is_standing = false
-		#twist_pivot.position.y = crouching_height
 	elif Input.get_action_strength("sprint") and input[1] < 0.0:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
-		#twist_pivot.position.y = standing_height
 	#var mapped_input = map_direction(input)
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
 	var velocity_2d = Vector2.ZERO
 	velocity_2d.x = velocity.x
 	velocity_2d.y = velocity.z
-	#print("Velocity 2D:", velocity_2d)
-	#print("Mapped input:", mapped_input)
-	#print("Direction:", direction.x, " ", direction.z)
 	current_direction = map_direction(velocity_2d)
-	# works only for no tilt	
-	#if current_direction[0] != mapped_input[0]:
-		#velocity.x /= acceleration_loss
-	#if current_direction[1] != mapped_input[1]:
-		#velocity.z /= acceleration_loss
-	#if current_direction[0] != mapped_input[0] or current_direction[1] != mapped_input[1]:
-		#velocity.x -= direction.x * acceleration_loss
-		#velocity.z -= direction.z * acceleration_loss
-
+		
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
@@ -165,7 +159,7 @@ func _physics_process(delta: float) -> void:
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
 	)
-	var current_headbob_depth = _headbob(t_bob)
+	var current_headbob_depth = _headbob(t_bob, is_standing)
 	if velocity.length():
 		t_bob += delta * float(is_on_floor())
 	else:
@@ -180,8 +174,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			t_bob = 0
 			returning = 0
-			camera.transform.origin = Vector3.ZERO
-	camera.transform.origin = Vector3(0, standing_height, 0) + current_headbob_depth
+			twist_pivot.transform.origin = Vector3.ZERO
+	if not is_standing:
+		desired_height = lerp(desired_height, crouching_height, 15 * delta)
+	else:
+		desired_height = lerp(desired_height, standing_height, 15 * delta)
+	twist_pivot.transform.origin = Vector3(0, desired_height, 0) + current_headbob_depth
 	previous_tbob_depth = current_headbob_depth.y
 	mouse_twist = 0.0
 	mouse_pitch = 0.0
