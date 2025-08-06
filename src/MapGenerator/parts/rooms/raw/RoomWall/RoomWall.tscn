@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobxo560gme1v"]
+
+[ext_resource type="PackedScene" uid="uid://nlgx5sbxywf5" path="res://src/MapGenerator/parts/rooms/raw/RoomWall/model/room-wall.glb" id="1_7pwck"]
+[ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/common/materials/corridor_wall_material.tres" id="2_g23ln"]
+
+[node name="RoomWall" instance=ExtResource("1_7pwck")]
+
+[node name="Cylinder_001" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_g23ln")

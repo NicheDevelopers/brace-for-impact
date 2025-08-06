@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://cdns7aui281nn"]
+
+[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_xt1ef"]
+[ext_resource type="PackedScene" uid="uid://bey8m1bscc25w" path="res://src/MapGenerator/parts/rooms/raw/RoomEntrance/RoomEntrance.tscn" id="2_ryupw"]
+[ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/Corridor.tscn" id="3_nxbr4"]
+[ext_resource type="PackedScene" uid="uid://cobxo560gme1v" path="res://src/MapGenerator/parts/rooms/raw/RoomWall/RoomWall.tscn" id="4_nxbr4"]
+[ext_resource type="PackedScene" uid="uid://goqutdkpplvd" path="res://src/MapGenerator/parts/rooms/raw/RoomFloor/RoomFloor.tscn" id="5_2eibf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hbmfo"]
+sky_material = SubResource("ProceduralSkyMaterial_7ljiq")
+
+[sub_resource type="Environment" id="Environment_ryhks"]
+background_mode = 2
+sky = SubResource("Sky_hbmfo")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l0icc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_roelj"]
+width = 2
+height = 2
+seamless = true
+noise = SubResource("FastNoiseLite_l0icc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ljiq"]
+albedo_color = Color(0.106593, 0.162472, 0.173119, 1)
+albedo_texture = SubResource("NoiseTexture2D_roelj")
+metallic = 0.6
+metallic_specular = 0.4
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hbmfo"]
+material = SubResource("StandardMaterial3D_7ljiq")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ryhks"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="RoomsDemo" type="Node3D"]
+
+[node name="ExampleDemo" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ExampleDemo"]
+environment = SubResource("Environment_ryhks")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ExampleDemo"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="ExampleDemo" instance=ExtResource("1_xt1ef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.2, 0.00217)
+
+[node name="Floor" type="MeshInstance3D" parent="ExampleDemo"]
+mesh = SubResource("PlaneMesh_hbmfo")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ExampleDemo/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExampleDemo/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ryhks")
+
+[node name="RoomEntrance" parent="." instance=ExtResource("2_ryupw")]
+
+[node name="Corridor" parent="." instance=ExtResource("3_nxbr4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0, 0)
+
+[node name="RoomWall" parent="." instance=ExtResource("4_nxbr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="RoomWall2" parent="." instance=ExtResource("4_nxbr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="RoomWall3" parent="." instance=ExtResource("4_nxbr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="RoomWall4" parent="." instance=ExtResource("4_nxbr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="RoomEntrance2" parent="." instance=ExtResource("2_ryupw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="RoomEntrance3" parent="." instance=ExtResource("2_ryupw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 0)
+
+[node name="RoomFloor" parent="." instance=ExtResource("5_2eibf")]
+
+[node name="RoomFloor2" parent="." instance=ExtResource("5_2eibf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="RoomFloor3" parent="." instance=ExtResource("5_2eibf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
