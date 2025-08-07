@@ -43,12 +43,13 @@ var returning = 0
 @export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
 @onready var crouching_height = standing_height - 0.85
 @onready var desired_height = standing_height
+@onready var jump_strength = 20.0
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var previous_tbob_depth: float = 0
 var current_direction: Vector2 = Vector2.ZERO
-var gravity = 9.81 * 9.81
+var gravity = 100
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
@@ -84,6 +85,7 @@ func _headbob(time, is_standing) -> Vector3:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	print("Initial velocity y: ", velocity.y)
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
@@ -107,20 +109,25 @@ func _physics_process(delta: float) -> void:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
 
-	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
 		# TODO: implement actual gravity-obedient jumping
-		velocity.y = Input.get_action_strength("jump") * 50 * int(is_on_floor())
+		if Input.get_action_strength("jump") and is_on_floor():
+			velocity.y += jump_strength
 		if velocity.y:
 			if state_machine.get_current_node().substr(0, 4) != "Jump":
 				state_machine.travel("Jump_Start")
-	
+	var expected_delta = 0
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y = velocity.y - (gravity * delta)
+		expected_delta = gravity * delta
+		
+	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	if velocity.y:
+		print(velocity.y, " ", delta, " ", gravity, " ", expected_delta)
 	
 	if velocity.length():
 		if abs(velocity.x) > speed or abs(velocity.z) > speed:
@@ -198,6 +205,9 @@ func _physics_process(delta: float) -> void:
 			held_item_component.drop(self)
 	
 	previous_input = input
+	print("Final velocity y: ", velocity.y)
+	print("Expected initial velocity: ", velocity.y + expected_delta)
+	print("______________________")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
