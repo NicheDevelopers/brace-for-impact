@@ -43,7 +43,7 @@ var returning = 0
 @export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
 @onready var crouching_height = standing_height - 0.85
 @onready var desired_height = standing_height
-@onready var jump_strength = 20.0
+@onready var jump_strength = 2000.0
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -85,7 +85,9 @@ func _headbob(time, is_standing) -> Vector3:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	print("Initial velocity y: ", velocity.y)
+	var initial_velocity_y = velocity.y
+	print("Initial Y velocity: ", initial_velocity_y)
+
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
@@ -98,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	var crouch_value := 1.0
 	var sprint_value := 1.0
 	var is_standing := true
-	
+	print("after vars: ", velocity.y)
 	direction.y = 0.0
 	direction = direction.normalized()
 	
@@ -109,25 +111,32 @@ func _physics_process(delta: float) -> void:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
 
+	print("before move_toward: ", velocity.y)
+	print("ARG 1: ", direction * speed * crouch_value * sprint_value)
+	print("ARG 2: ", acceleration * delta)
+	#velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	print("after move_toward: ", velocity.y)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
-		# TODO: implement actual gravity-obedient jumping
-		if Input.get_action_strength("jump") and is_on_floor():
-			velocity.y += jump_strength
-		if velocity.y:
-			if state_machine.get_current_node().substr(0, 4) != "Jump":
-				state_machine.travel("Jump_Start")
-	var expected_delta = 0
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y += jump_strength * delta
+			state_machine.travel("Jump_Start")
+	
+	var should_slow_down_by = 0
+	var vel_before_slowdown: = velocity.y
+	print("Before slowdown: ", vel_before_slowdown)
 	if not is_on_floor():
-		velocity.y = velocity.y - (gravity * delta)
-		expected_delta = gravity * delta
-		
-	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	if velocity.y:
-		print(velocity.y, " ", delta, " ", gravity, " ", expected_delta)
+		velocity.y -= gravity * delta
+		should_slow_down_by = gravity * delta
+	var vel_after_slowdown: = velocity.y
+	print("After slowdown: ", vel_after_slowdown)
+	print("Slowed down by: ", vel_before_slowdown - vel_after_slowdown)
+	print("Should be: ", vel_before_slowdown - should_slow_down_by)
+	print("Is: ", velocity.y)
+	print("Error: ", (vel_before_slowdown - should_slow_down_by) - vel_after_slowdown)
 	
 	if velocity.length():
 		if abs(velocity.x) > speed or abs(velocity.z) > speed:
@@ -205,9 +214,10 @@ func _physics_process(delta: float) -> void:
 			held_item_component.drop(self)
 	
 	previous_input = input
-	print("Final velocity y: ", velocity.y)
-	print("Expected initial velocity: ", velocity.y + expected_delta)
-	print("______________________")
+
+	print("Final Y velocity: ", velocity)
+	print("Delta from initial: ", velocity.y - initial_velocity_y)
+	print("------------------------------------")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
