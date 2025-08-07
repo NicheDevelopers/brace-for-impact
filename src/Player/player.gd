@@ -22,7 +22,7 @@ class_name Player
 
 @export_group("Debug")
 @export var third_person_camera := false
-@export var third_person_camera_distance := 2.0
+@export var third_person_camera_distance := 3.0
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
@@ -96,21 +96,20 @@ func _physics_process(delta: float) -> void:
 	var crouch_value := 1.0
 	var sprint_value := 1.0
 	var is_standing := true
+	
 	direction.y = 0.0
 	direction = direction.normalized()
+	
 	if Input.get_action_strength("crouch"):
 		crouch_value = crouch_speed_multiplier
 		is_standing = false
 	elif Input.get_action_strength("sprint") and input[1] < 0.0:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
-	#var mapped_input = map_direction(input)
+
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	var velocity_2d = Vector2.ZERO
-	velocity_2d.x = velocity.x
-	velocity_2d.y = velocity.z
-	current_direction = map_direction(velocity_2d)
-		
+	current_direction = map_direction(Vector2(velocity.x, velocity.z))
+	
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
@@ -119,8 +118,10 @@ func _physics_process(delta: float) -> void:
 		if velocity.y:
 			if state_machine.get_current_node().substr(0, 4) != "Jump":
 				state_machine.travel("Jump_Start")
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
 	if velocity.length():
 		if abs(velocity.x) > speed or abs(velocity.z) > speed:
 			if state_machine.get_current_node() != "Sprint":
@@ -139,6 +140,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			if state_machine.get_current_node() != "Crouch_Idle":
 				state_machine.travel("Crouch_Idle")
+	
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("dev_free_cursor"):
@@ -155,11 +157,12 @@ func _physics_process(delta: float) -> void:
 	twist_pivot.rotate_y(mouse_twist)
 	pitch_pivot.rotate_x(mouse_pitch)
 	rig.rotate_y(mouse_twist)
-	
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
 	)
+	
 	var current_headbob_depth = _headbob(t_bob, is_standing)
+	
 	if velocity.length():
 		t_bob += delta * float(is_on_floor())
 	else:
@@ -175,10 +178,12 @@ func _physics_process(delta: float) -> void:
 			t_bob = 0
 			returning = 0
 			twist_pivot.transform.origin = Vector3.ZERO
+			
 	if not is_standing:
 		desired_height = lerp(desired_height, crouching_height, 15 * delta)
 	else:
 		desired_height = lerp(desired_height, standing_height, 15 * delta)
+		
 	twist_pivot.transform.origin = Vector3(0, desired_height, 0) + current_headbob_depth
 	previous_tbob_depth = current_headbob_depth.y
 	mouse_twist = 0.0
@@ -205,7 +210,7 @@ func _on_item_picked_up(item_component: ItemComponent):
 	hand_point.add_child(item_component.parent)
 
 func _item_drop():
-	pass#hand_point.remo
+	pass
 
 func _on_killed(_by_who: Variant) -> void:
 	queue_free()
