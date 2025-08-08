@@ -5,5 +5,5 @@
 
 [node name="RoomWall" instance=ExtResource("1_7pwck")]
 
-[node name="Cylinder_001" parent="." index="0"]
+[node name="Wall" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_g23ln")
