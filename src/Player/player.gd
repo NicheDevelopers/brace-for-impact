@@ -32,6 +32,8 @@ class_name Player
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var rig: Node3D = $Rig
 @onready var skeleton: Skeleton3D = $Rig/Skeleton3D
+@onready var hitbox: CollisionShape3D = $CollisionShape3D
+@onready var bone_simulator: PhysicalBoneSimulator3D = $Rig/Skeleton3D/PhysicalBoneSimulator3D
 
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
@@ -51,7 +53,7 @@ var returning = 0
 var previous_input: Vector2 = Vector2.ZERO
 var previous_tbob_depth: float = 0
 var current_direction: Vector2 = Vector2.ZERO
-var gravity = 100
+var gravity = 55
 
 var is_standing: bool = true
 
@@ -120,7 +122,7 @@ func _physics_process(delta: float) -> void:
 	print("before move_toward: ", velocity.y)
 	print("ARG 1: ", direction * speed * crouch_value * sprint_value)
 	print("ARG 2: ", acceleration * delta)
-	#velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
 	print("after move_toward: ", velocity.y)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
@@ -241,4 +243,5 @@ func _item_drop():
 	pass
 
 func _on_killed(_by_who: Variant) -> void:
-	queue_free()
+	hitbox.queue_free()
+	bone_simulator.physical_bones_start_simulation()
