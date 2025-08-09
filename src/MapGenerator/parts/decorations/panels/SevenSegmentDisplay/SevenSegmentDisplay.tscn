@@ -1,19 +1,21 @@
 [gd_scene load_steps=10 format=3 uid="uid://nnpop8tdwuok"]
 
 [ext_resource type="Script" uid="uid://gguw7s270bsq" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/seven_segment_display.gd" id="1_6jauc"]
-[ext_resource type="PackedScene" uid="uid://3535octgm5t8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-body.glb" id="2_tswnh"]
-[ext_resource type="PackedScene" uid="uid://bj8cghux6rc3p" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-dot.glb" id="3_a6no7"]
+[ext_resource type="PackedScene" uid="uid://3535octgm5t8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-body.glb" id="2_tswnh"]
+[ext_resource type="PackedScene" uid="uid://bj8cghux6rc3p" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-dot.glb" id="3_a6no7"]
 [ext_resource type="Material" uid="uid://cc0fujxnoacyt" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/segment_on_material.tres" id="4_vfvb3"]
 [ext_resource type="Material" uid="uid://qm83n2xcnqg1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/segment_off_material.tres" id="5_yv4xj"]
-[ext_resource type="PackedScene" uid="uid://cwygkkaidrmj8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-plus.glb" id="6_3phho"]
+[ext_resource type="PackedScene" uid="uid://cwygkkaidrmj8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-plus.glb" id="6_3phho"]
 [ext_resource type="PackedScene" uid="uid://b1wasr6q67iha" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/Digit.tscn" id="7_xy6dr"]
-[ext_resource type="PackedScene" uid="uid://cn01hq3gqcpu1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-digit.glb" id="8_38m3g"]
+[ext_resource type="PackedScene" uid="uid://cn01hq3gqcpu1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-digit.glb" id="8_38m3g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dk57q"]
 albedo_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
 
 [node name="SevenSegmentDisplay" type="Node3D"]
 script = ExtResource("1_6jauc")
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="seven-segment-body" parent="." instance=ExtResource("2_tswnh")]
 

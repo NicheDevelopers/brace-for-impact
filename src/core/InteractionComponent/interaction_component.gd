@@ -68,6 +68,9 @@ func _ready() -> void:
 	label = get_node_or_null("Label3D")
 	hitbox = get_node_or_null("CollisionShape3D")
 	
+	if not label:
+		push_error(name + " initialized without a Label3D")
+	
 	if not hitbox:
 		var parent_hitbox = parent.get_node_or_null("CollisionShape3D")
 		if parent_hitbox:
