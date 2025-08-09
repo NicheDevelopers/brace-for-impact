@@ -28,8 +28,10 @@ class_name Player
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+@onready var animation_tree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var rig: Node3D = $Rig
+@onready var skeleton: Skeleton3D = $Rig/Skeleton3D
 
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
@@ -43,13 +45,15 @@ var returning = 0
 @export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
 @onready var crouching_height = standing_height - 0.85
 @onready var desired_height = standing_height
-@onready var jump_strength = 2000.0
+@onready var jump_strength = 20.0
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var previous_tbob_depth: float = 0
 var current_direction: Vector2 = Vector2.ZERO
 var gravity = 100
+
+var is_standing: bool = true
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
@@ -99,8 +103,10 @@ func _physics_process(delta: float) -> void:
 	var direction := forward * input.y + right * input.x
 	var crouch_value := 1.0
 	var sprint_value := 1.0
-	var is_standing := true
+	is_standing = true
+
 	print("after vars: ", velocity.y)
+
 	direction.y = 0.0
 	direction = direction.normalized()
 	
@@ -118,12 +124,28 @@ func _physics_process(delta: float) -> void:
 	print("after move_toward: ", velocity.y)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	#if velocity.length():
+		#if abs(velocity.x) > speed or abs(velocity.z) > speed:
+			#state_machine.travel("Sprint")
+		#else:
+			#if is_standing:
+				#state_machine.travel("Walk")
+			#else:
+				#state_machine.travel("Crouch_Fwd")
+	#else:
+		#if is_standing:
+			#state_machine.travel("Idle")
+		#else:
+			#state_machine.travel("Crouch_Idle")
+	
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y += jump_strength * delta
-			state_machine.travel("Jump_Start")
+			velocity.y += jump_strength
 	
 	var should_slow_down_by = 0
 	var vel_before_slowdown: = velocity.y
@@ -138,26 +160,9 @@ func _physics_process(delta: float) -> void:
 	print("Is: ", velocity.y)
 	print("Error: ", (vel_before_slowdown - should_slow_down_by) - vel_after_slowdown)
 	
-	if velocity.length():
-		if abs(velocity.x) > speed or abs(velocity.z) > speed:
-			if state_machine.get_current_node() != "Sprint":
-				state_machine.travel("Sprint")
-		else:
-			if is_standing:
-				if state_machine.get_current_node() != "Walk":
-					state_machine.travel("Walk")
-			else:
-				if state_machine.get_current_node() != "Crouch_Fwd":
-					state_machine.travel("Crouch_Fwd")
-	else:
-		if is_standing:
-			if state_machine.get_current_node() != "Idle":
-				state_machine.travel("Idle")
-		else:
-			if state_machine.get_current_node() != "Crouch_Idle":
-				state_machine.travel("Crouch_Idle")
-	
 	move_and_slide()
+	
+	animation_tree.update_animation(self)
 	
 	if Input.is_action_just_pressed("dev_free_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -194,7 +199,10 @@ func _physics_process(delta: float) -> void:
 			t_bob = 0
 			returning = 0
 			twist_pivot.transform.origin = Vector3.ZERO
-			
+	
+	var head_bone_index = skeleton.find_bone("DEF-head")
+	var global_head_pos
+	desired_height
 	if not is_standing:
 		desired_height = lerp(desired_height, crouching_height, 15 * delta)
 	else:

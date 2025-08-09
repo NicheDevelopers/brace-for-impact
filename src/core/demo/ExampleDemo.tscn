@@ -28,15 +28,15 @@ albedo_color = Color(0.106593, 0.162472, 0.173119, 1)
 albedo_texture = SubResource("NoiseTexture2D_roelj")
 metallic = 0.6
 metallic_specular = 0.4
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(20, 20, 20)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hbmfo"]
 material = SubResource("StandardMaterial3D_7ljiq")
-size = Vector2(20, 20)
+size = Vector2(40, 40)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ryhks"]
-data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_287cu"]
+points = PackedVector3Array(-20, 0, -20, -20, 0, 20, 20, 0, -20, 20, 0, 20)
 
 [node name="ExampleDemo" type="Node3D"]
 
@@ -50,11 +50,11 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_04png")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.60217)
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("PlaneMesh_hbmfo")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ryhks")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_287cu")
