@@ -217,8 +217,8 @@ func _start_blink_cycle():
 	
 	# Calculate timings
 	var half_cycle = blink_cycle_time / 2.0
-	var on_time = half_cycle - blink_fade_time
-	var off_time = half_cycle - blink_fade_time
+	var on_time = max(0.0, half_cycle - blink_fade_time)
+	var off_time = max(0.0, half_cycle - blink_fade_time)
 	
 	# Blink cycle: fade in -> stay on -> fade out -> stay off
 	_blink_tween.tween_method(_update_emission_intensity, 0.0, 1.0, blink_fade_time)
