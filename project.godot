@@ -125,3 +125,7 @@ dev_respawn={
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
 3d_physics/layer_3="interactables"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"

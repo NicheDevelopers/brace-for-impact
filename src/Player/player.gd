@@ -36,6 +36,7 @@ class_name Player
 @onready var after_death_hitbox: CollisionShape3D = $AfterDeathHitbox
 @onready var bone_simulator: PhysicalBoneSimulator3D = $Rig/Skeleton3D/PhysicalBoneSimulator3D
 @onready var health: HealthComponent = $HealthComponent
+@onready var hud: Control = $UI/HUD
 
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
@@ -257,14 +258,13 @@ func _on_killed(_by_who: Variant) -> void:
 	
 	bone_simulator.physical_bones_start_simulation()
 	
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(1.5).timeout
 	
 	respawn()
 
 # Respawn the player, making them invincible for 0.5s to ensure
 # physics adjusts to the reset transforms before it can be damaged again
 func respawn():
-	var was_invincible := health.can_be_damaged
 	health.can_be_damaged = false
 	health.restore(self)
 	
@@ -278,12 +278,14 @@ func respawn():
 	bone_simulator.physical_bones_stop_simulation()
 	
 	await get_tree().create_timer(0.5).timeout
-	health.can_be_damaged = was_invincible
+	health.can_be_damaged = true
 
 func toggle_third_person_camera():
 	if third_person_camera:
 		camera.position.z -= third_person_camera_distance
 		third_person_camera = false
+		hud.show_crosshair()
 	else:
 		camera.position.z += third_person_camera_distance
 		third_person_camera = true
+		hud.hide_crosshair()
