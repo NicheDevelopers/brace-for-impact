@@ -1,6 +1,6 @@
 extends Area3D
 
-## Whether this damage area deals 999999 damage each tick, disregarding
+## Whether this damage area instantly kills, disregarding
 ## the damage curve
 @export var dirac_impulse: bool = false
 
@@ -34,7 +34,7 @@ func apply_damage(delta: float) -> void:
 	for body in inside.keys():
 		var health = body.get_node("HealthComponent")
 		if dirac_impulse:
-			health.damage(999999, get_parent().name)
+			health.kill(get_parent().name)
 			continue
 		
 		var time_in_area = inside[body]

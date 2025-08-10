@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bqwh7akecoeoe"]
 
 [ext_resource type="PackedScene" uid="uid://bru1ast2xoxwg" path="res://src/core/DamageArea/DamageArea.tscn" id="1_817so"]
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_pycp1"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_pycp1"]
 
 [sub_resource type="Curve" id="Curve_817so"]
 _limits = [0.0, 10.0, 0.0, 10.0]
