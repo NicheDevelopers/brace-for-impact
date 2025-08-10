@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb8tg12r4rl3x"]
+[gd_scene load_steps=9 format=3 uid="uid://cb8tg12r4rl3x"]
 
+[ext_resource type="PackedScene" uid="uid://dy3wwg36656db" path="res://src/MapGenerator/parts/decorations/vents/Vent/Vent.tscn" id="1_3vh87"]
 [ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="1_fgx8y"]
 [ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
 [ext_resource type="PackedScene" uid="uid://dhlrs6gn2k4l5" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe3x/CorridorPipe3x.tscn" id="5_ymrpd"]
@@ -9,6 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://bmt61higtx053" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/CorridorFloorSmall.tscn" id="7_lbf74"]
 
 [node name="Corridor" type="Node3D"]
+
+[node name="Vent" parent="." instance=ExtResource("1_3vh87")]
+transform = Transform3D(-1.26132, 1.55211, 0, -1.55211, -1.26132, 0, 0, 0, 2, -1.163, 2.178, 1.046)
+
+[node name="Vent2" parent="." instance=ExtResource("1_3vh87")]
+transform = Transform3D(1.26132, -1.55211, 1.74846e-07, -1.55211, -1.26132, 0, 1.10269e-07, -1.3569e-07, -2, 1.16304, 2.1781, 1.04629)
 
 [node name="Doors" parent="." instance=ExtResource("6_lbf74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.9)
