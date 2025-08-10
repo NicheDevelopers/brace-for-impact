@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dos5tnrtcpo02"]
+[gd_scene load_steps=14 format=3 uid="uid://dos5tnrtcpo02"]
 
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_ux1e0"]
+[ext_resource type="Script" uid="uid://b7c3hn4kjj3fl" path="res://src/core/demo/parkour_demo.gd" id="1_7rhtb"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_ux1e0"]
+[ext_resource type="PackedScene" uid="uid://bru1ast2xoxwg" path="res://src/core/DamageArea/DamageArea.tscn" id="2_usjgn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_usjgn"]
 albedo_color = Color(0.223261, 0.46571, 1, 1)
@@ -17,9 +19,29 @@ albedo_color = Color(0.223261, 0.46571, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yywo7"]
 albedo_color = Color(0.513426, 0.747271, 0.076811, 1)
 
-[node name="ParkourDemo" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye3fm"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.145098)
 
-[node name="ExampleDemo" parent="." instance=ExtResource("1_ux1e0")]
+[sub_resource type="BoxMesh" id="BoxMesh_af0wq"]
+material = SubResource("StandardMaterial3D_ye3fm")
+size = Vector3(23, 0.25, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7rhtb"]
+size = Vector3(23, 0.25, 11)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_usjgn"]
+height = 0.46846
+radius = 0.788574
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_usjgn"]
+size = Vector3(3.38197, 0.113525, 3.38318)
+
+[node name="ParkourDemo" type="Node3D"]
+script = ExtResource("1_7rhtb")
+
+[node name="DemoBasis" parent="." instance=ExtResource("1_ux1e0")]
+third_person_camera = true
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0442431, 0.057495, 0)
@@ -121,8 +143,61 @@ height = 0.294678
 material = SubResource("StandardMaterial3D_yywo7")
 
 [node name="CSGCylinder3D12" type="CSGCylinder3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.58362, 5.27146, -1.67416)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.58362, 5.27146, -0.602268)
 use_collision = true
 radius = 0.6
 height = 0.294678
 material = SubResource("StandardMaterial3D_yywo7")
+
+[node name="DamageArea" parent="." instance=ExtResource("2_usjgn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2597, -6.80653)
+dirac_impulse = true
+damage_curve = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32973, -1.17246, 1.24435)
+mesh = SubResource("BoxMesh_af0wq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42337, -1.10615, 1.24736)
+shape = SubResource("BoxShape3D_7rhtb")
+
+[node name="StartArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91897, 1.60257, -2.06009)
+shape = SubResource("CylinderShape3D_usjgn")
+
+[node name="EndArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.95132, 6.66702, 1.6819)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82636, -0.280392, -0.488349)
+shape = SubResource("BoxShape3D_usjgn")
+
+[node name="TimeLabel" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.50212, 8.15979, 1.76056)
+text = "Course finished!
+Time:"
+font_size = 64
+
+[node name="Leaderboard" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0574566, 2.77289, 9.685)
+text = "Leaderboard
+
+1. Artnight: 3.337(9)
+2. Artnight: 3.352
+3. Artnight: 3.353"
+font_size = 48
+vertical_alignment = 0
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0663717, 1.25629, 10.0029)
+size = Vector3(3.03732, 3.51257, 0.635254)
+
+[connection signal="body_entered" from="StartArea" to="." method="_on_start_area_body_entered"]
+[connection signal="body_entered" from="EndArea" to="." method="_on_end_area_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsad6xpex7gmr"]
 
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_6ug10"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_6ug10"]
 [ext_resource type="PackedScene" uid="uid://dekk6fk7qsrkg" path="res://src/core/HealthComponent/demo/FirstAidKit.tscn" id="2_iuhnd"]
 [ext_resource type="PackedScene" uid="uid://gk204xd014gp" path="res://src/core/HealthComponent/demo/DamageKit.tscn" id="3_um2hr"]
 

@@ -32,7 +32,7 @@ func heal(value: float, by_who: Variant):
 		fully_healed.emit(by_who)
 
 func damage(value: float, by_who: Variant):
-	if not can_be_damaged:
+	if not can_be_damaged or hp == 0:
 		return
 	hp = clamp(hp - value, 0, max_health)
 	
@@ -40,3 +40,23 @@ func damage(value: float, by_who: Variant):
 	damaged.emit(value, by_who)
 	if (hp == 0):
 		killed.emit(by_who)
+		
+func kill(by_who: Variant):
+	if not can_be_damaged or hp == 0:
+		return
+	var damage_value = hp
+	hp = 0
+	
+	health_changed.emit(hp, by_who)
+	damaged.emit(damage_value, by_who)
+	killed.emit(by_who)
+	
+func restore(by_who: Variant):
+	if not can_be_healed:
+		return
+	var healed_value = max_health - hp
+	hp = max_health
+	
+	health_changed.emit(hp, by_who)
+	healed.emit(healed_value, by_who)
+	fully_healed.emit(by_who)

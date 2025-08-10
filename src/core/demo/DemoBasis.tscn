@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2wqxfwdm7a"]
+[gd_scene load_steps=11 format=3 uid="uid://b2wqxfwdm7a"]
 
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_04png"]
+[ext_resource type="Script" uid="uid://d0btr2kbiua5x" path="res://src/core/demo/demo_basis.gd" id="1_7iajn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,7 +39,8 @@ size = Vector2(40, 40)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_287cu"]
 points = PackedVector3Array(-20, 0, -20, -20, 0, 20, 20, 0, -20, 20, 0, 20)
 
-[node name="ExampleDemo" type="Node3D"]
+[node name="DemoBasis" type="Node3D"]
+script = ExtResource("1_7iajn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ryhks")

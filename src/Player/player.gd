@@ -32,6 +32,11 @@ class_name Player
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var rig: Node3D = $Rig
 @onready var skeleton: Skeleton3D = $Rig/Skeleton3D
+@onready var hitbox: CollisionShape3D = $Hitbox
+@onready var after_death_hitbox: CollisionShape3D = $AfterDeathHitbox
+@onready var bone_simulator: PhysicalBoneSimulator3D = $Rig/Skeleton3D/PhysicalBoneSimulator3D
+@onready var health: HealthComponent = $HealthComponent
+@onready var hud: Control = $UI/HUD
 
 # placeholder values correct for the default pill-shaped model
 # TODO: change these values to be correct for the target player model
@@ -51,9 +56,13 @@ var returning = 0
 var previous_input: Vector2 = Vector2.ZERO
 var previous_tbob_depth: float = 0
 var current_direction: Vector2 = Vector2.ZERO
-var gravity = 100
-
+var gravity = 55
 var is_standing: bool = true
+
+@onready var respawn_transform: Transform3D = transform
+@onready var respawn_twist_transform: Transform3D = twist_pivot.transform
+@onready var respawn_pitch_transform: Transform3D = pitch_pivot.transform
+@onready var respawn_rig_transform: Transform3D = rig.transform
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
@@ -78,7 +87,7 @@ func _ready() -> void:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
-		
+
 func _headbob(time, is_standing) -> Vector3:
 	var position = Vector3.ZERO
 	if is_standing:
@@ -87,10 +96,12 @@ func _headbob(time, is_standing) -> Vector3:
 		position.y = abs(sin(time * crouching_bobbing_frequency)) * crouching_bobbing_depth * -1
 	return position
 
+var log_velocity := false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var initial_velocity_y = velocity.y
-	print("Initial Y velocity: ", initial_velocity_y)
+	if log_velocity: print("Initial Y velocity: ", initial_velocity_y)
 
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -105,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	var sprint_value := 1.0
 	is_standing = true
 
-	print("after vars: ", velocity.y)
+	if log_velocity: print("after vars: ", velocity.y)
 
 	direction.y = 0.0
 	direction = direction.normalized()
@@ -117,11 +128,11 @@ func _physics_process(delta: float) -> void:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
 
-	print("before move_toward: ", velocity.y)
-	print("ARG 1: ", direction * speed * crouch_value * sprint_value)
-	print("ARG 2: ", acceleration * delta)
-	#velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	print("after move_toward: ", velocity.y)
+	if log_velocity: print("before move_toward: ", velocity.y)
+	if log_velocity: print("ARG 1: ", direction * speed * crouch_value * sprint_value)
+	if log_velocity: print("ARG 2: ", acceleration * delta)
+	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	if log_velocity: print("after move_toward: ", velocity.y)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
 	if not is_on_floor():
@@ -149,16 +160,16 @@ func _physics_process(delta: float) -> void:
 	
 	var should_slow_down_by = 0
 	var vel_before_slowdown: = velocity.y
-	print("Before slowdown: ", vel_before_slowdown)
+	if log_velocity: print("Before slowdown: ", vel_before_slowdown)
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		should_slow_down_by = gravity * delta
 	var vel_after_slowdown: = velocity.y
-	print("After slowdown: ", vel_after_slowdown)
-	print("Slowed down by: ", vel_before_slowdown - vel_after_slowdown)
-	print("Should be: ", vel_before_slowdown - should_slow_down_by)
-	print("Is: ", velocity.y)
-	print("Error: ", (vel_before_slowdown - should_slow_down_by) - vel_after_slowdown)
+	if log_velocity: print("After slowdown: ", vel_after_slowdown)
+	if log_velocity: print("Slowed down by: ", vel_before_slowdown - vel_after_slowdown)
+	if log_velocity: print("Should be: ", vel_before_slowdown - should_slow_down_by)
+	if log_velocity: print("Is: ", velocity.y)
+	if log_velocity: print("Error: ", (vel_before_slowdown - should_slow_down_by) - vel_after_slowdown)
 	
 	move_and_slide()
 	
@@ -168,13 +179,14 @@ func _physics_process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_just_pressed("dev_third_person_camera"):
-		if third_person_camera:
-			camera.position.z -= third_person_camera_distance
-			third_person_camera = false
-		else:
-			camera.position.z += third_person_camera_distance
-			third_person_camera = true
-		
+		toggle_third_person_camera()
+	
+	if Input.is_action_just_pressed("dev_kill"):
+		health.kill(self)
+	
+	if Input.is_action_just_pressed("dev_respawn"):
+		respawn()
+	
 	twist_pivot.rotate_y(mouse_twist)
 	pitch_pivot.rotate_x(mouse_pitch)
 	rig.rotate_y(mouse_twist)
@@ -223,9 +235,9 @@ func _physics_process(delta: float) -> void:
 	
 	previous_input = input
 
-	print("Final Y velocity: ", velocity)
-	print("Delta from initial: ", velocity.y - initial_velocity_y)
-	print("------------------------------------")
+	if log_velocity: print("Final Y velocity: ", velocity)
+	if log_velocity: print("Delta from initial: ", velocity.y - initial_velocity_y)
+	if log_velocity: print("------------------------------------")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -241,4 +253,39 @@ func _item_drop():
 	pass
 
 func _on_killed(_by_who: Variant) -> void:
-	queue_free()
+	hitbox.disabled = true
+	after_death_hitbox.disabled = false
+	
+	bone_simulator.physical_bones_start_simulation()
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	respawn()
+
+# Respawn the player, making them invincible for 0.5s to ensure
+# physics adjusts to the reset transforms before it can be damaged again
+func respawn():
+	health.can_be_damaged = false
+	health.restore(self)
+	
+	transform = respawn_transform
+	twist_pivot.transform = respawn_twist_transform
+	pitch_pivot.transform = respawn_pitch_transform
+	rig.transform = respawn_rig_transform
+	
+	hitbox.disabled = false
+	after_death_hitbox.disabled = true
+	bone_simulator.physical_bones_stop_simulation()
+	
+	await get_tree().create_timer(0.5).timeout
+	health.can_be_damaged = true
+
+func toggle_third_person_camera():
+	if third_person_camera:
+		camera.position.z -= third_person_camera_distance
+		third_person_camera = false
+		hud.show_crosshair()
+	else:
+		camera.position.z += third_person_camera_distance
+		third_person_camera = true
+		hud.hide_crosshair()

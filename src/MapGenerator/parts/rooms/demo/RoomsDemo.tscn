@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4f5poboh0bn6"]
 
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="1_xt1ef"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_xt1ef"]
 
 [node name="RoomsDemo" type="Node3D"]
 

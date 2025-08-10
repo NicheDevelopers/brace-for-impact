@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/core/DamageRay/demo/gun_item.gd" id="4_dpbh2"]
 [ext_resource type="PackedScene" uid="uid://dykcrbb7u3khj" path="res://src/core/ItemComponent/ItemComponent.tscn" id="5_ttslm"]
 [ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/core/DamageRay/DamageRay.tscn" id="5_w52n2"]
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/ExampleDemo.tscn" id="6_3j6ab"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="6_3j6ab"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_61cic"]
 size = Vector3(0.1716, 0.36853, 0.514099)
