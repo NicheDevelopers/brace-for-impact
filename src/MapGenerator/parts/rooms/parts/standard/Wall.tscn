@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://rxxhny6v5ey6"]
+
+[ext_resource type="PackedScene" uid="uid://cobxo560gme1v" path="res://src/MapGenerator/parts/rooms/raw/walls/RoomWall/RawRoomWall.tscn" id="1_gt8e5"]
+[ext_resource type="PackedScene" uid="uid://dbeem6trfruo7" path="res://src/MapGenerator/parts/rooms/raw/ceilings/RoomWallCeiling/RawRoomWallCeiling.tscn" id="2_catag"]
+
+[node name="Wall" type="Node3D"]
+
+[node name="RawRoomWall" parent="." instance=ExtResource("1_gt8e5")]
+
+[node name="RawRoomWallCeiling" parent="." instance=ExtResource("2_catag")]
