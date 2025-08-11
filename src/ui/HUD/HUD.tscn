@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://duqdt1nl4il4q"]
 
-[ext_resource type="Script" uid="uid://b8ra668ihye81" path="res://src/HUD/hud.gd" id="1_2vejy"]
-[ext_resource type="Script" uid="uid://dvfvto711c2nv" path="res://src/HUD/fps_label.gd" id="1_5j8ly"]
-[ext_resource type="Texture2D" uid="uid://c8bvcne1nujgu" path="res://src/HUD/crosshair.png" id="1_41kbx"]
+[ext_resource type="Script" uid="uid://b8ra668ihye81" path="res://src/ui/HUD/hud.gd" id="1_2vejy"]
+[ext_resource type="Script" uid="uid://dvfvto711c2nv" path="res://src/ui/HUD/fps_label.gd" id="1_5j8ly"]
+[ext_resource type="Texture2D" uid="uid://c8bvcne1nujgu" path="res://src/ui/HUD/crosshair.png" id="1_41kbx"]
 
 [sub_resource type="Gradient" id="Gradient_41kbx"]
 offsets = PackedFloat32Array(0, 0.946524, 1)

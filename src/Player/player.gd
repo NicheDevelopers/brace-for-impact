@@ -3,12 +3,12 @@ extends CharacterBody3D
 class_name Player
 
 # TODO: replace this with a config value that's taken from the game settings
-@export_group("mouse")
+@export_group("Mouse")
 @export var mouse_sensitivity := 0.001
 @export var mouse_twist := 0.0
 @export var mouse_pitch := 0.0
 
-@export_group("player_properties")
+@export_group("Movement")
 @export var speed = 4.0
 @export var acceleration = 80.0
 @export var sprint_speed_multiplier = 2.0
@@ -23,6 +23,10 @@ class_name Player
 # if there is no gravity, the player can jump, but not move up/down freely.
 # the reverse happens if there is no gravity.
 @export var no_gravity_mode := 0
+
+@export_group("Debug")
+@export var third_person_camera := false
+@export var third_person_camera_distance := 2.0
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
@@ -43,9 +47,7 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:
 			return
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			get_viewport().set_input_as_handled()
+		
 
 func _ready() -> void:
 	SignalBus.item_picked_up.connect(_on_item_picked_up)
@@ -105,9 +107,16 @@ func _process(delta: float) -> void:
 		#input.y = Input.get_action_strength("jump") * 3
 	move_and_slide()
 	
-	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("dev_free_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if Input.is_action_just_pressed("dev_third_person_camera"):
+		if third_person_camera:
+			camera.position.z -= third_person_camera_distance
+			third_person_camera = false
+		else:
+			camera.position.z += third_person_camera_distance
+			third_person_camera = true
 		
 	twist_pivot.rotate_y(mouse_twist)
 	pitch_pivot.rotate_x(mouse_pitch)
