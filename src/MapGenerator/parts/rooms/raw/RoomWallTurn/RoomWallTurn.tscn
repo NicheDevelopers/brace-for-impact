@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://vgamw1ehrelw"]
-
-[ext_resource type="PackedScene" uid="uid://bbsqdshcgelsl" path="res://src/MapGenerator/parts/rooms/raw/RoomWallTurn/model/room-wall-turn.glb" id="1_play0"]
-[ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/common/materials/corridor_wall_material.tres" id="2_721hk"]
-
-[node name="RoomWallTurn" instance=ExtResource("1_play0")]
-
-[node name="Turn" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_721hk")
