@@ -50,7 +50,7 @@ func _input(event: InputEvent):
 		
 
 func _ready() -> void:
-	SignalBus.item_picked_up.connect(_on_item_picked_up)
+	SignalBus.attempted_item_pick_up.connect(_on_attempted_item_pick_up)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
@@ -143,7 +143,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
 
-func _on_item_picked_up(item_component: ItemComponent):
+func _on_attempted_item_pick_up(item_component: ItemComponent):
+	if self.held_item_component != null:
+		# Forbid picking up another item while one is held
+		return
+	item_component.prepare_for_pickup()
 	held_item_component = item_component
 	hand_point.add_child(item_component.parent)
 

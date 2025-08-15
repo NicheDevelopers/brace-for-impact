@@ -25,13 +25,11 @@ func _ready() -> void:
 	interacted.connect(_internal_on_interacted)
 
 func _internal_on_interacted(body: Variant) -> void:
-	# Use the interaction signal to pick up the item
+	# Use the interaction signal to attempt pick up the item
 	
-	# TODO: This will be replaced with inventory logic
-	if body.held_item_component != null:
-		# Forbid picking up another item while one is held
-		return
+	SignalBus.attempted_item_pick_up.emit(self)
 	
+func prepare_for_pickup() -> void:
 	parent.freeze = true
 	parent.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	
@@ -43,8 +41,6 @@ func _internal_on_interacted(body: Variant) -> void:
 	parent.collision_mask = Bits.ZERO
 	collision_layer = Bits.ZERO
 	collision_mask = Bits.ZERO
-	
-	SignalBus.item_picked_up.emit(self)
 
 ## Invoked when a player uses the item while holding it
 func use(by_who: Variant):
