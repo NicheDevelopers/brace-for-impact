@@ -32,6 +32,7 @@ class_name Player
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+@onready var inventory: InventoryComponent = $InventoryComponent
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -39,6 +40,7 @@ var current_direction: Vector2 = Vector2.ZERO
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
+
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
@@ -143,16 +145,46 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
 
+# Player tries to pick up item from ground
 func _on_attempted_item_pick_up(item_component: ItemComponent):
-	if self.held_item_component != null:
-		# Forbid picking up another item while one is held
+	# Pick up to hand
+	print("self.held_item_component: ", self.held_item_component)
+	if self.held_item_component == null:
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
 		return
+	
+	# Pick up to inventory
+	if inventory.is_add_item_posibility():
+		inventory.add_item(item_component)
+		# TODO Manage correct drop item
+		item_component.drop(self)
+		return
+	
+	# Switch items in hand 
+	# TODO Manage correct drop item
+	held_item_component.drop(self)
+	held_item_component = null
 	item_component.prepare_for_pickup()
 	held_item_component = item_component
 	hand_point.add_child(item_component.parent)
+	
 
-func _item_drop():
-	pass#hand_point.remo
+# Player puts item from hand to inventory
+func _store_item_from_hand(item_component: ItemComponent):
+	pass
+
+# Player drops item from inventory
+func _drop_item_from_inventory(item_component: ItemComponent):
+	#if(!inventory.is_remove_item_posible(item_component)):
+		#return
+	#inventory.remove_item(item_component)
+	pass
+
+# Player drops item from hand
+func _drop_item_from_hand(item_component: ItemComponent):
+	pass
 
 func _on_killed(_by_who: Variant) -> void:
 	queue_free()

@@ -61,6 +61,20 @@ func use(by_who: Variant):
 func drop(_by_who: Variant):
 	parent.queue_free()
 
+func prepare_for_drop() -> void:
+	parent.freeze = false
+	parent.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	
+	get_tree().root.add_child(parent)
+	parent.transform = Transform3D.IDENTITY
+	
+	# Zero out collision layer and mask to disable collisions and interactions
+	parent.collision_layer = Bits.from([Layer.Interactables])
+	parent.collision_mask = Bits.from([Layer.World])
+	collision_layer = Bits.from([Layer.Interactables])
+	collision_mask = Bits.from([Layer.World])
+	
+
 ## Handles counting down the potential interaction timeout
 func _process(delta: float) -> void:
 	if _use_timeout_left > 0:
