@@ -136,6 +136,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("drop_item"):
 		if held_item_component != null:
 			held_item_component.drop(self)
+			held_item_component = null
 	
 	previous_input = input
 
@@ -149,26 +150,35 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_attempted_item_pick_up(item_component: ItemComponent):
 	# Pick up to hand
 	print("self.held_item_component: ", self.held_item_component)
-	if self.held_item_component == null:
+	if held_item_component == null:
 		item_component.prepare_for_pickup()
 		held_item_component = item_component
 		hand_point.add_child(item_component.parent)
 		return
+	else:
+		held_item_component.drop(self)
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
+		
+		
 	
-	# Pick up to inventory
-	if inventory.is_add_item_posibility():
-		inventory.add_item(item_component)
-		# TODO Manage correct drop item
-		item_component.drop(self)
-		return
-	
-	# Switch items in hand 
-	# TODO Manage correct drop item
-	held_item_component.drop(self)
-	held_item_component = null
-	item_component.prepare_for_pickup()
-	held_item_component = item_component
-	hand_point.add_child(item_component.parent)
+	## Pick up to inventory
+	#if inventory.is_add_item_posibility():
+		#inventory.add_item(item_component)
+		#hand_point.add_child(item_component.parent)
+		#item_component.prepare_for_store()
+		## TODO Manage correct drop item
+		##item_component.drop(self)
+		#return
+	#
+	## Switch items in hand 
+	## TODO Manage correct drop item
+	#held_item_component.drop(self)
+	#held_item_component = null
+	#item_component.prepare_for_pickup()
+	#held_item_component = item_component
+	#hand_point.add_child(item_component.parent)
 	
 
 # Player puts item from hand to inventory

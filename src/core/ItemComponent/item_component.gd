@@ -18,6 +18,8 @@ signal used(body)
 
 var _use_timeout_left: float = 0.0
 
+var _original_tree: Node3D
+
 func _ready() -> void:
 	super()
 	if interaction_type != "Instant":
@@ -33,6 +35,7 @@ func prepare_for_pickup() -> void:
 	parent.freeze = true
 	parent.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	
+	_original_tree = parent.get_parent()
 	parent.get_parent().remove_child(parent)
 	parent.transform = Transform3D.IDENTITY
 	
@@ -59,20 +62,28 @@ func use(by_who: Variant):
 
 ## Invoked when a player drops the item while holding it
 func drop(_by_who: Variant):
-	parent.queue_free()
-
-func prepare_for_drop() -> void:
 	parent.freeze = false
 	parent.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
 	
-	get_tree().root.add_child(parent)
-	parent.transform = Transform3D.IDENTITY
-	
 	# Zero out collision layer and mask to disable collisions and interactions
-	parent.collision_layer = Bits.from([Layer.Interactables])
+	parent.collision_layer = Bits.from([Layer.World])
 	parent.collision_mask = Bits.from([Layer.World])
 	collision_layer = Bits.from([Layer.Interactables])
-	collision_mask = Bits.from([Layer.World])
+	collision_mask = Bits.from([Layer.World, Layer.Interactables])
+	
+	# Save global transform
+	var global_xform = parent.global_transform
+
+	# Reparent
+	parent.get_parent().remove_child(parent)
+	_original_tree.add_child(parent)
+
+	# Restore global transform
+	parent.global_transform = global_xform
+
+func prepare_for_store() -> void:
+	parent.position.x += 10
+	
 	
 
 ## Handles counting down the potential interaction timeout
