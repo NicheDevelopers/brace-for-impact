@@ -32,6 +32,7 @@ class_name Player
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+@onready var inventory: InventoryComponent = $InventoryComponent
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -39,6 +40,7 @@ var current_direction: Vector2 = Vector2.ZERO
 
 # TODO: move this functionality to equipment
 var held_item_component: ItemComponent
+
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
@@ -50,7 +52,7 @@ func _input(event: InputEvent):
 		
 
 func _ready() -> void:
-	SignalBus.item_picked_up.connect(_on_item_picked_up)
+	SignalBus.attempted_item_pick_up.connect(_on_attempted_item_pick_up)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
@@ -131,9 +133,26 @@ func _process(delta: float) -> void:
 		if held_item_component != null:
 			held_item_component.use(self)
 	
-	if Input.is_action_pressed("drop_item"):
+	if Input.is_action_just_pressed("store_item"):
+		if held_item_component != null:
+			if inventory.is_store_possibility():
+				inventory.store(held_item_component)
+				held_item_component = null
+			else:
+				_switch_items()
+			
+	
+	if Input.is_action_just_pressed("drop_item"):
 		if held_item_component != null:
 			held_item_component.drop(self)
+			held_item_component = null
+	
+	if Input.is_action_just_pressed("retrieve_item"):
+		if inventory.is_retrieve_possible():
+			if held_item_component == null:
+				held_item_component = inventory.retrieve()
+			else:
+				_switch_items()
 	
 	previous_input = input
 
@@ -143,12 +162,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
 
-func _on_item_picked_up(item_component: ItemComponent):
-	held_item_component = item_component
-	hand_point.add_child(item_component.parent)
+# Player tries to pick up item from ground
+func _on_attempted_item_pick_up(item_component: ItemComponent):
+	if held_item_component == null:
+		# Pick up item
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
+		return
+	else:
+		# Drop item from hand then pick up item 
+		held_item_component.drop(self)
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
 
-func _item_drop():
-	pass#hand_point.remo
+func _switch_items():
+	var retrieved_item = inventory.retrieve()
+	inventory.store(held_item_component)
+	held_item_component = retrieved_item
 
 func _on_killed(_by_who: Variant) -> void:
 	queue_free()
