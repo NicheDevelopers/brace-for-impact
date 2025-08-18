@@ -133,10 +133,26 @@ func _process(delta: float) -> void:
 		if held_item_component != null:
 			held_item_component.use(self)
 	
-	if Input.is_action_pressed("drop_item"):
+	if Input.is_action_just_pressed("store_item"):
+		if held_item_component != null:
+			if inventory.is_store_posibility():
+				inventory.store(held_item_component)
+				held_item_component = null
+			else:
+				_switch_items()
+			
+	
+	if Input.is_action_just_pressed("drop_item"):
 		if held_item_component != null:
 			held_item_component.drop(self)
 			held_item_component = null
+	
+	if Input.is_action_just_pressed("retrieve_item"):
+		if inventory.is_retrive_posible():
+			if held_item_component == null:
+				held_item_component = inventory.retrieve()
+			else:
+				_switch_items()
 	
 	previous_input = input
 
@@ -148,53 +164,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Player tries to pick up item from ground
 func _on_attempted_item_pick_up(item_component: ItemComponent):
-	# Pick up to hand
-	print("self.held_item_component: ", self.held_item_component)
 	if held_item_component == null:
+		# Pick up item
 		item_component.prepare_for_pickup()
 		held_item_component = item_component
 		hand_point.add_child(item_component.parent)
 		return
 	else:
+		# Drop item from hand then pick up item 
 		held_item_component.drop(self)
 		item_component.prepare_for_pickup()
 		held_item_component = item_component
 		hand_point.add_child(item_component.parent)
-		
-		
-	
-	## Pick up to inventory
-	#if inventory.is_add_item_posibility():
-		#inventory.add_item(item_component)
-		#hand_point.add_child(item_component.parent)
-		#item_component.prepare_for_store()
-		## TODO Manage correct drop item
-		##item_component.drop(self)
-		#return
-	#
-	## Switch items in hand 
-	## TODO Manage correct drop item
-	#held_item_component.drop(self)
-	#held_item_component = null
-	#item_component.prepare_for_pickup()
-	#held_item_component = item_component
-	#hand_point.add_child(item_component.parent)
-	
 
-# Player puts item from hand to inventory
-func _store_item_from_hand(item_component: ItemComponent):
-	pass
-
-# Player drops item from inventory
-func _drop_item_from_inventory(item_component: ItemComponent):
-	#if(!inventory.is_remove_item_posible(item_component)):
-		#return
-	#inventory.remove_item(item_component)
-	pass
-
-# Player drops item from hand
-func _drop_item_from_hand(item_component: ItemComponent):
-	pass
+func _switch_items():
+	var retrived_item = inventory.retrieve()
+	inventory.store(held_item_component)
+	held_item_component = retrived_item
 
 func _on_killed(_by_who: Variant) -> void:
 	queue_free()

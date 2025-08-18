@@ -6,30 +6,23 @@ class_name InventoryComponent
 
 var items: Array[ItemComponent] = []
 
-func is_add_item_posibility() -> bool:
-	if(len(items) >= capacity):
-		return false
-	return true
+func is_store_posibility() -> bool:
+	return len(items) < capacity
 
-func add_item(item: ItemComponent) -> void:
-	if(!is_add_item_posibility()):
+func store(item: ItemComponent) -> void:
+	if !is_store_posibility():
 		push_error("Attempt to add item beyond capacity!")
 		return
+	item.prepare_for_store()
 	items.push_back(item)
-	print("Added item: " + item.parent.name)
 
-func is_remove_item_posible(item: ItemComponent) -> bool:
-	var index = items.find(item)
-	if(index == -1):
-		return false
-	return true
+func is_retrive_posible() -> bool:
+	return len(items) > 0
 
-func remove_item(item: ItemComponent) -> void:
-	if(!is_remove_item_posible(item)):
+func retrieve(index: int = 0) -> Node3D:
+	if !is_retrive_posible():
 		push_error("Attempt to remove not existing item!")
 		return
-	
-	var index = items.find(item)
-	items.remove_at(index)
-	print("Item removed")
-	
+	var poped_item = items.pop_at(index)
+	poped_item.prepare_for_retrieve()
+	return poped_item

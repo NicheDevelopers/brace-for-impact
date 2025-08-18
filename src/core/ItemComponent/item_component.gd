@@ -82,9 +82,10 @@ func drop(_by_who: Variant):
 	parent.global_transform = global_xform
 
 func prepare_for_store() -> void:
-	parent.position.x += 10
-	
-	
+	parent.position.y += 5000
+
+func prepare_for_retrieve() -> void:
+	parent.position.y -= 5000	
 
 ## Handles counting down the potential interaction timeout
 func _process(delta: float) -> void:
