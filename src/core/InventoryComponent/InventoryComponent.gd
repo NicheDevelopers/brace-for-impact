@@ -16,14 +16,10 @@ func store(item: ItemComponent) -> void:
 	item.prepare_for_store()
 	items.push_back(item)
 
-func is_retrive_possible() -> bool:
-	return len(items) > 0
-
-func retrieve(index: int = 0) -> ItemComponent:
 func is_retrieve_possible() -> bool:
 	return len(items) > 0
 
-func retrieve(index: int = 0) -> Node3D:
+func retrieve(index: int = 0) -> ItemComponent:
 	if !is_retrieve_possible():
 		push_error("Attempt to remove not existing item!")
 		return null
