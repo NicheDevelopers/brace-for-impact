@@ -20,7 +20,11 @@ func is_retrive_possible() -> bool:
 	return len(items) > 0
 
 func retrieve(index: int = 0) -> ItemComponent:
-	if !is_retrive_possible():
+func is_retrieve_possible() -> bool:
+	return len(items) > 0
+
+func retrieve(index: int = 0) -> Node3D:
+	if !is_retrieve_possible():
 		push_error("Attempt to remove not existing item!")
 		return
 	var popped_item = items.pop_at(index)
