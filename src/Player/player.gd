@@ -148,7 +148,7 @@ func _process(delta: float) -> void:
 			held_item_component = null
 	
 	if Input.is_action_just_pressed("retrieve_item"):
-		if inventory.is_retrive_possible():
+		if inventory.is_retrieve_possible():
 			if held_item_component == null:
 				held_item_component = inventory.retrieve()
 			else:
