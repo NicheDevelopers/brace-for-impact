@@ -19,7 +19,7 @@ signal used(body)
 var _use_timeout_left: float = 0.0
 
 var _original_tree: Node3D
-
+const POSITION_STORE_OFFSET_Y = 5000
 func _ready() -> void:
 	super()
 	if interaction_type != "Instant":
@@ -82,10 +82,10 @@ func drop(_by_who: Variant):
 	parent.global_transform = global_xform
 
 func prepare_for_store() -> void:
-	parent.position.y += 5000
+	parent.position.y += POSITION_STORE_OFFSET_Y
 
 func prepare_for_retrieve() -> void:
-	parent.position.y -= 5000	
+	parent.position.y -= POSITION_STORE_OFFSET_Y	
 
 ## Handles counting down the potential interaction timeout
 func _process(delta: float) -> void:

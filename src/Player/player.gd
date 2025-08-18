@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("store_item"):
 		if held_item_component != null:
-			if inventory.is_store_posibility():
+			if inventory.is_store_possibility():
 				inventory.store(held_item_component)
 				held_item_component = null
 			else:
@@ -148,7 +148,7 @@ func _process(delta: float) -> void:
 			held_item_component = null
 	
 	if Input.is_action_just_pressed("retrieve_item"):
-		if inventory.is_retrive_posible():
+		if inventory.is_retrive_possible():
 			if held_item_component == null:
 				held_item_component = inventory.retrieve()
 			else:
@@ -178,9 +178,9 @@ func _on_attempted_item_pick_up(item_component: ItemComponent):
 		hand_point.add_child(item_component.parent)
 
 func _switch_items():
-	var retrived_item = inventory.retrieve()
+	var retrieved_item = inventory.retrieve()
 	inventory.store(held_item_component)
-	held_item_component = retrived_item
+	held_item_component = retrieved_item
 
 func _on_killed(_by_who: Variant) -> void:
 	queue_free()
