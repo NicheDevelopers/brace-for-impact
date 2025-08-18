@@ -26,7 +26,7 @@ func is_retrieve_possible() -> bool:
 func retrieve(index: int = 0) -> Node3D:
 	if !is_retrieve_possible():
 		push_error("Attempt to remove not existing item!")
-		return
+		return null
 	var popped_item = items.pop_at(index)
 	popped_item.prepare_for_retrieve()
 	return popped_item
