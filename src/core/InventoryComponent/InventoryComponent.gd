@@ -19,7 +19,7 @@ func store(item: ItemComponent) -> void:
 func is_retrive_possible() -> bool:
 	return len(items) > 0
 
-func retrieve(index: int = 0) -> Node3D:
+func retrieve(index: int = 0) -> ItemComponent:
 	if !is_retrive_possible():
 		push_error("Attempt to remove not existing item!")
 		return
