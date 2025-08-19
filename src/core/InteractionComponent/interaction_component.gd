@@ -77,8 +77,10 @@ func _ready() -> void:
 			hitbox = parent_hitbox.duplicate()
 			add_child(hitbox)
 		elif not Engine.is_editor_hint():
-			push_error("No viable CollisionShape3D for InteractionComponent")
-	
+			push_error(
+				"No viable CollisionShape3D for InteractionComponent: ",
+				get_tree_string_pretty()
+			)
 	if label != null:
 		label_initial_local_transform = label.transform.origin
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make the label always face the Player

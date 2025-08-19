@@ -26,7 +26,7 @@ func _ready() -> void:
 		push_error("Items should always have the 'Instant' interaction type")
 	interacted.connect(_internal_on_interacted)
 
-func _internal_on_interacted(body: Variant) -> void:
+func _internal_on_interacted(_body: Variant) -> void:
 	# Use the interaction signal to attempt pick up the item
 	
 	SignalBus.attempted_item_pick_up.emit(self)
