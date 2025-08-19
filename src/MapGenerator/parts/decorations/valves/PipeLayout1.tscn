@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv4pnlnhnwj0n"]
+
+[ext_resource type="PackedScene" uid="uid://h7821updon4y" path="res://src/MapGenerator/parts/decorations/valves/raw/Pipe/Pipe.tscn" id="1_o14hn"]
+[ext_resource type="PackedScene" uid="uid://chc2rcp6mgk00" path="res://src/MapGenerator/parts/decorations/valves/raw/Valve/Valve.tscn" id="2_ox3ok"]
+[ext_resource type="PackedScene" uid="uid://cjhnsftmqeu3x" path="res://src/MapGenerator/parts/decorations/valves/raw/Tee/Tee.tscn" id="3_h7e8b"]
+[ext_resource type="PackedScene" uid="uid://cj3pfcufte5pl" path="res://src/MapGenerator/parts/decorations/valves/raw/Elbow/Elbow.tscn" id="4_1w15f"]
+
+[node name="PipeLayout1" type="Node3D"]
+
+[node name="Pipe" parent="." instance=ExtResource("1_o14hn")]
+
+[node name="Valve" parent="." instance=ExtResource("2_ox3ok")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Tee" parent="." instance=ExtResource("3_h7e8b")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Pipe2" parent="." instance=ExtResource("1_o14hn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="Tee2" parent="." instance=ExtResource("3_h7e8b")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -0.699887, 0.3, -2.38419e-07)
+
+[node name="Pipe3" parent="." instance=ExtResource("1_o14hn")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.35, 0.3, 0)
+
+[node name="Elbow" parent="." instance=ExtResource("4_1w15f")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.7, 0.09, 0)
+
+[node name="Pipe4" parent="." instance=ExtResource("1_o14hn")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, -0.92, 0.09, 0)
