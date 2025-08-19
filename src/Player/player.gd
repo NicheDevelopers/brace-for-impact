@@ -131,7 +131,10 @@ func _physics_process(delta: float) -> void:
 	if log_velocity: print("before move_toward: ", velocity.y)
 	if log_velocity: print("ARG 1: ", direction * speed * crouch_value * sprint_value)
 	if log_velocity: print("ARG 2: ", acceleration * delta)
+	# mitigate the move_toward's influence on Y speed
+	var previous_y_velocity = velocity.y
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	velocity.y = previous_y_velocity
 	if log_velocity: print("after move_toward: ", velocity.y)
 	current_direction = map_direction(Vector2(velocity.x, velocity.z))
 	
