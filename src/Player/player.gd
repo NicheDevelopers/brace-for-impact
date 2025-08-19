@@ -55,7 +55,6 @@ var returning = 0
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
 var previous_tbob_depth: float = 0
-var current_direction: Vector2 = Vector2.ZERO
 var gravity = 55
 var is_standing: bool = true
 
@@ -100,9 +99,6 @@ var log_velocity := false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var initial_velocity_y = velocity.y
-	if log_velocity: print("Initial Y velocity: ", initial_velocity_y)
-
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
@@ -116,8 +112,6 @@ func _physics_process(delta: float) -> void:
 	var sprint_value := 1.0
 	is_standing = true
 
-	if log_velocity: print("after vars: ", velocity.y)
-
 	direction.y = 0.0
 	direction = direction.normalized()
 	
@@ -128,51 +122,22 @@ func _physics_process(delta: float) -> void:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
 
-	if log_velocity: print("before move_toward: ", velocity.y)
-	if log_velocity: print("ARG 1: ", direction * speed * crouch_value * sprint_value)
-	if log_velocity: print("ARG 2: ", acceleration * delta)
 	# mitigate the move_toward's influence on Y speed
-	var previous_y_velocity = velocity.y
+	var correct_y_velocity = velocity.y
 	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	velocity.y = previous_y_velocity
-	if log_velocity: print("after move_toward: ", velocity.y)
-	current_direction = map_direction(Vector2(velocity.x, velocity.z))
+	velocity.y = correct_y_velocity
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
-	#if velocity.length():
-		#if abs(velocity.x) > speed or abs(velocity.z) > speed:
-			#state_machine.travel("Sprint")
-		#else:
-			#if is_standing:
-				#state_machine.travel("Walk")
-			#else:
-				#state_machine.travel("Crouch_Fwd")
-	#else:
-		#if is_standing:
-			#state_machine.travel("Idle")
-		#else:
-			#state_machine.travel("Crouch_Idle")
 	
 	if no_gravity_mode:
 		velocity.y = Input.get_axis("move_down", "move_up")
 	else:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y += jump_strength
-	
-	var should_slow_down_by = 0
-	var vel_before_slowdown: = velocity.y
-	if log_velocity: print("Before slowdown: ", vel_before_slowdown)
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		should_slow_down_by = gravity * delta
-	var vel_after_slowdown: = velocity.y
-	if log_velocity: print("After slowdown: ", vel_after_slowdown)
-	if log_velocity: print("Slowed down by: ", vel_before_slowdown - vel_after_slowdown)
-	if log_velocity: print("Should be: ", vel_before_slowdown - should_slow_down_by)
-	if log_velocity: print("Is: ", velocity.y)
-	if log_velocity: print("Error: ", (vel_before_slowdown - should_slow_down_by) - vel_after_slowdown)
 	
 	move_and_slide()
 	
@@ -214,10 +179,7 @@ func _physics_process(delta: float) -> void:
 			t_bob = 0
 			returning = 0
 			twist_pivot.transform.origin = Vector3.ZERO
-	
-	var head_bone_index = skeleton.find_bone("DEF-head")
-	var global_head_pos
-	desired_height
+
 	if not is_standing:
 		desired_height = lerp(desired_height, crouching_height, 15 * delta)
 	else:
@@ -237,10 +199,6 @@ func _physics_process(delta: float) -> void:
 			held_item_component.drop(self)
 	
 	previous_input = input
-
-	if log_velocity: print("Final Y velocity: ", velocity)
-	if log_velocity: print("Delta from initial: ", velocity.y - initial_velocity_y)
-	if log_velocity: print("------------------------------------")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
