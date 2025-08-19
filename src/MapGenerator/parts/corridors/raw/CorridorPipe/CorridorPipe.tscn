@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d308n4tea1len"]
 
 [ext_resource type="PackedScene" uid="uid://h3vypx632mi4" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/model/corridor-pipe.glb" id="1_50k8j"]
-[ext_resource type="Material" uid="uid://q11d8yfolnpg" path="res://src/MapGenerator/parts/corridors/corridor_secondary.tres" id="2_lleo1"]
+[ext_resource type="Material" uid="uid://q11d8yfolnpg" path="res://src/MapGenerator/common/materials/corridor_secondary.tres" id="2_lleo1"]
 
 [node name="CorridorPipe" instance=ExtResource("1_50k8j")]
 
