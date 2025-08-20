@@ -89,7 +89,7 @@ func _ready() -> void:
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
-func _headbob(time, is_standing) -> Vector3:
+func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	if is_standing:
 		pos.y = abs(sin(time * standing_bobbing_frequency)) * standing_bobbing_depth * -1
@@ -164,7 +164,7 @@ func _physics_process(delta: float) -> void:
 		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
 	)
 	
-	var current_headbob_depth = _headbob(t_bob, is_standing)
+	var current_headbob_depth = _headbob(t_bob)
 	
 	if velocity.length():
 		t_bob += delta * float(is_on_floor())
@@ -222,8 +222,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			mouse_twist = -event.relative.x * mouse_sensitivity
-			mouse_pitch = -event.relative.y * mouse_sensitivity
+			mouse_twist += -event.relative.x * mouse_sensitivity
+			mouse_pitch += -event.relative.y * mouse_sensitivity
 
 # Player tries to pick up item from ground
 func _on_attempted_item_pick_up(item_component: ItemComponent):
