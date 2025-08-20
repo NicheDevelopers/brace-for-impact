@@ -21,4 +21,6 @@ static func index(array: Array) -> int:
 ## Returns a random element from the provided array
 static func element_from(array: Array) -> Variant:
 	var ix = Random.index(array)
+	if ix == -1:
+		return null
 	return array[ix]
