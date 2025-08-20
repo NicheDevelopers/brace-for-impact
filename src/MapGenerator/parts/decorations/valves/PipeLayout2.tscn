@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://6dppty4kiokf"]
+
+[ext_resource type="PackedScene" uid="uid://h7821updon4y" path="res://src/MapGenerator/parts/decorations/valves/raw/Pipe/Pipe.tscn" id="1_t6ebc"]
+[ext_resource type="PackedScene" uid="uid://chc2rcp6mgk00" path="res://src/MapGenerator/parts/decorations/valves/raw/Valve/Valve.tscn" id="2_gsp3t"]
+[ext_resource type="PackedScene" uid="uid://cjhnsftmqeu3x" path="res://src/MapGenerator/parts/decorations/valves/raw/Tee/Tee.tscn" id="3_88yxp"]
+[ext_resource type="PackedScene" uid="uid://cj3pfcufte5pl" path="res://src/MapGenerator/parts/decorations/valves/raw/Elbow/Elbow.tscn" id="4_maqre"]
+
+[node name="PipeLayout2" type="Node3D"]
+
+[node name="Pipe" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117185, 0)
+
+[node name="Valve" parent="." instance=ExtResource("2_gsp3t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.117185, 0)
+
+[node name="Tee" parent="." instance=ExtResource("3_88yxp")]
+transform = Transform3D(1, -0.000139713, -8.74228e-08, 0.000139713, 1, -6.10324e-12, 8.74228e-08, -6.11088e-12, 1, 0.208335, 0.243, 3.57628e-07)
+
+[node name="Pipe2" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="Tee2" parent="." instance=ExtResource("3_88yxp")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -0.7, -0.117185, 0)
+
+[node name="Pipe3" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.35, -0.117185, 0)
+
+[node name="Elbow" parent="." instance=ExtResource("4_maqre")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.7, -0.327185, 0)
+
+[node name="Pipe4" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, -0.92, -0.327339, 0)
+
+[node name="Elbow2" parent="." instance=ExtResource("4_maqre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243462, 0)
+
+[node name="Pipe5" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(-4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, 0, 1, 0.403998, 0.243456, 4.76837e-07)
+
+[node name="Pipe6" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.700486, 0.225127, 1.19209e-07)
+
+[node name="Pipe7" parent="." instance=ExtResource("1_t6ebc")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.207937, 0.410153, 4.76837e-07)

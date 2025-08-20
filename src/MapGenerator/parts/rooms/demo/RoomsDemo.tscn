@@ -1,5 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://b4f5poboh0bn6"]
 
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_xt1ef"]
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_xt1ef"]
 [ext_resource type="PackedScene" uid="uid://bey8m1bscc25w" path="res://src/MapGenerator/parts/rooms/raw/common/RoomEntrance/RoomEntrance.tscn" id="2_ryupw"]
 [ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/Corridor.tscn" id="3_nxbr4"]
@@ -48,25 +49,25 @@ data = PackedVector3Array(20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0,
 
 [node name="RoomsDemo" type="Node3D"]
 
-[node name="ExampleDemo" type="Node3D" parent="."]
+[node name="DemoBasis" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="ExampleDemo"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DemoBasis"]
 environment = SubResource("Environment_ryhks")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ExampleDemo"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DemoBasis"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="ExampleDemo" instance=ExtResource("1_xt1ef")]
+[node name="Player" parent="DemoBasis" instance=ExtResource("1_xt1ef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.2, 0.00217)
 
-[node name="Floor" type="MeshInstance3D" parent="ExampleDemo"]
+[node name="Floor" type="MeshInstance3D" parent="DemoBasis"]
 mesh = SubResource("PlaneMesh_hbmfo")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ExampleDemo/Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DemoBasis/Floor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExampleDemo/Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemoBasis/Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_npyrh")
 
 [node name="Room1" type="Node3D" parent="."]
