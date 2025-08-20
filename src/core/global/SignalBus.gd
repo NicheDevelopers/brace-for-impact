@@ -1,4 +1,4 @@
 extends Node
 
 @warning_ignore("unused_signal")
-signal item_picked_up(item: ItemComponent)
+signal attempted_item_pick_up(item: ItemComponent)

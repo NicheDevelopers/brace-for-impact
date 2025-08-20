@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjhnsftmqeu3x"]
+
+[ext_resource type="PackedScene" uid="uid://dmjpt38btbh42" path="res://src/MapGenerator/parts/decorations/valves/raw/Tee/model/tee.glb" id="1_au1m0"]
+[ext_resource type="Material" uid="uid://chrmpqxgfi0j2" path="res://src/MapGenerator/parts/decorations/valves/pipe_color.tres" id="2_3osh7"]
+
+[node name="Tee" instance=ExtResource("1_au1m0")]
+
+[node name="Tee" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_3osh7")

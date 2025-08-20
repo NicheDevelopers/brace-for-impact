@@ -2,5 +2,5 @@
 
 [resource]
 _limits = [0.0, 100.0, 0.0, 100.0]
-_data = [Vector2(21.7143, 97.0754), 0.0, 0.0, 0, 0, Vector2(64.5714, 27.6153), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0]
+point_count = 1

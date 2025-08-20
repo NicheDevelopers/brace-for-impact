@@ -47,10 +47,12 @@ var returning = 0
 @export var standing_bobbing_depth = 0.15
 @export var standing_bobbing_frequency = 5
 @export var crouching_bobbing_depth = standing_bobbing_depth / 2
+@warning_ignore("integer_division")
 @export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
 @onready var crouching_height = standing_height - 0.85
 @onready var desired_height = standing_height
 @onready var jump_strength = 20.0
+@onready var inventory: InventoryComponent = $InventoryComponent
 
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
@@ -79,7 +81,7 @@ func _input(event: InputEvent):
 		
 
 func _ready() -> void:
-	SignalBus.item_picked_up.connect(_on_item_picked_up)
+	SignalBus.attempted_item_pick_up.connect(_on_attempted_item_pick_up)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
@@ -88,12 +90,12 @@ func _ready() -> void:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
 func _headbob(time, is_standing) -> Vector3:
-	var position = Vector3.ZERO
+	var pos = Vector3.ZERO
 	if is_standing:
-		position.y = abs(sin(time * standing_bobbing_frequency)) * standing_bobbing_depth * -1
+		pos.y = abs(sin(time * standing_bobbing_frequency)) * standing_bobbing_depth * -1
 	else:
-		position.y = abs(sin(time * crouching_bobbing_frequency)) * crouching_bobbing_depth * -1
-	return position
+		pos.y = abs(sin(time * crouching_bobbing_frequency)) * crouching_bobbing_depth * -1
+	return pos
 
 var log_velocity := false
 
@@ -194,9 +196,26 @@ func _physics_process(delta: float) -> void:
 		if held_item_component != null:
 			held_item_component.use(self)
 	
-	if Input.is_action_pressed("drop_item"):
+	if Input.is_action_just_pressed("store_item"):
+		if held_item_component != null:
+			if inventory.is_store_possibility():
+				inventory.store(held_item_component)
+				held_item_component = null
+			else:
+				_switch_items()
+			
+	
+	if Input.is_action_just_pressed("drop_item"):
 		if held_item_component != null:
 			held_item_component.drop(self)
+			held_item_component = null
+	
+	if Input.is_action_just_pressed("retrieve_item"):
+		if inventory.is_retrieve_possible():
+			if held_item_component == null:
+				held_item_component = inventory.retrieve()
+			else:
+				_switch_items()
 	
 	previous_input = input
 
@@ -206,12 +225,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_twist = -event.relative.x * mouse_sensitivity
 			mouse_pitch = -event.relative.y * mouse_sensitivity
 
-func _on_item_picked_up(item_component: ItemComponent):
-	held_item_component = item_component
-	hand_point.add_child(item_component.parent)
+# Player tries to pick up item from ground
+func _on_attempted_item_pick_up(item_component: ItemComponent):
+	if held_item_component == null:
+		# Pick up item
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
+		return
+	else:
+		# Drop item from hand then pick up item 
+		held_item_component.drop(self)
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
 
 func _item_drop():
 	pass
+func _switch_items():
+	var retrieved_item = inventory.retrieve()
+	inventory.store(held_item_component)
+	held_item_component = retrieved_item
 
 func _on_killed(_by_who: Variant) -> void:
 	hitbox.disabled = true
