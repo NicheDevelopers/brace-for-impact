@@ -53,7 +53,7 @@ func play(from_position: float = 0.0):
 		return
 	
 	var new_stream_ix = Random.index(streams)
-	if not allow_stream_repeat:
+	if not allow_stream_repeat and streams.size() > 1:
 		if streams[new_stream_ix] == last_stream:
 			new_stream_ix = (new_stream_ix + 1) % streams.size()
 	
