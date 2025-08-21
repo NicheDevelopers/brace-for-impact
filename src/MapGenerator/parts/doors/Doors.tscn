@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmlei331kx2fn"]
+[gd_scene load_steps=10 format=3 uid="uid://bmlei331kx2fn"]
 
 [ext_resource type="PackedScene" uid="uid://cxhjsevs56uf" path="res://src/MapGenerator/parts/doors/raw/DoorSingle/DoorSingle.tscn" id="1_3co4a"]
 [ext_resource type="Script" uid="uid://dlyw1vjva6sba" path="res://src/MapGenerator/parts/doors/doors.gd" id="1_m6cxk"]
 [ext_resource type="PackedScene" uid="uid://cn5orh7t06661" path="res://src/MapGenerator/parts/doors/raw/DoorIndicator/DoorIndicator.tscn" id="2_2qfrq"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="2_6odqp"]
 
 [sub_resource type="Animation" id="Animation_m2m2s"]
 length = 0.001
@@ -49,6 +50,8 @@ size = Vector3(4, 2.5, 2)
 
 [node name="Doors" type="Node3D"]
 script = ExtResource("1_m6cxk")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_6odqp")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DoorSingle")

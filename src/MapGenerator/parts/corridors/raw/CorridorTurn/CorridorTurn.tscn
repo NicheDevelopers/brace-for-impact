@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1n4yph8on5lw"]
+[gd_scene load_steps=5 format=3 uid="uid://b1n4yph8on5lw"]
 
 [ext_resource type="PackedScene" uid="uid://b721ykqymjjbe" path="res://src/MapGenerator/parts/corridors/raw/CorridorTurn/model/corridor-turn.glb" id="1_e33gd"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="2_6o5vr"]
 [ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/common/materials/corridor_wall_material.tres" id="2_qfvqb"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e33gd"]
@@ -8,7 +9,9 @@ data = PackedVector3Array(0.7184, -1.8261, 0.5638, 0.5702, -1.8261, 0.8687, 0.84
 
 [node name="corridor-turn" instance=ExtResource("1_e33gd")]
 
-[node name="Cylinder_001" parent="." index="0"]
+[node name="HealthComponent" parent="." index="0" instance=ExtResource("2_6o5vr")]
+
+[node name="Cylinder_001" parent="." index="1"]
 surface_material_override/0 = ExtResource("2_qfvqb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder_001" index="0"]

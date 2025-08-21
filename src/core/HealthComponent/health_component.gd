@@ -2,6 +2,11 @@ extends Node
 
 class_name HealthComponent
 
+enum HealthComponentType {
+	PLAYER,
+	STRUCTURE
+}
+
 signal health_changed(new_value: float, by_who: Variant)
 signal healed(value: float, by_who: Variant)
 signal damaged(value: float, by_who: Variant)
@@ -12,6 +17,7 @@ signal killed(by_who: Variant)
 @export var max_health: float = 100.0
 @export var can_be_healed: bool = true
 @export var can_be_damaged: bool = true
+@export var type: HealthComponentType = HealthComponentType.STRUCTURE
 
 var hp: float
 

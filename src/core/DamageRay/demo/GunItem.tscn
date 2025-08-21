@@ -60,6 +60,12 @@ script = ExtResource("1_rrkpc")
 
 [node name="Label3D" type="Label3D" parent="ItemComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "
+[key]"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ItemComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00318909, 0.120056, -0.124359)
