@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bru1ast2xoxwg"]
+
+[ext_resource type="Script" uid="uid://ywau65mm3714" path="res://src/core/DamageArea/damage_area.gd" id="1_kvt73"]
+[ext_resource type="Curve" uid="uid://iwbee8mv1x4h" path="res://src/core/DamageArea/default_damage_curve.tres" id="2_ywqmt"]
+
+[node name="DamageArea" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_kvt73")
+damage_curve = ExtResource("2_ywqmt")

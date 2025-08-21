@@ -1,0 +1,189 @@
+[gd_scene load_steps=13 format=3 uid="uid://btpuyx6de84m0"]
+
+[ext_resource type="PackedScene" uid="uid://d1k5l587hgsug" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/wall-box.glb" id="1_6rpuc"]
+[ext_resource type="Script" uid="uid://dg6c2iral3730" path="res://src/MapGenerator/parts/decorations/panels/WallBox/wall_box.gd" id="1_svtra"]
+[ext_resource type="PackedScene" uid="uid://bbee6wbmb1cts" path="res://src/core/InteractionComponent/InteractionComponent.tscn" id="2_trukd"]
+[ext_resource type="Material" uid="uid://2uo4bajv3kiq" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/box_material.tres" id="3_trukd"]
+[ext_resource type="AudioStream" uid="uid://bx322qq0j2ek8" path="res://src/MapGenerator/parts/decorations/panels/WallBox/sounds/wall_box_lock.wav" id="4_r4c2l"]
+[ext_resource type="Material" uid="uid://bab71bh7mv2at" path="res://src/MapGenerator/parts/decorations/panels/WallBox/model/metal_material.tres" id="5_8pn2e"]
+[ext_resource type="AudioStream" uid="uid://crjy6y4faj0tb" path="res://src/MapGenerator/parts/decorations/panels/WallBox/sounds/wall_box_close_1.wav" id="6_a8ea8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trukd"]
+points = PackedVector3Array(-0.085, -0.195918, -0.147732, 0.085, 0.192653, 0.143696, 0.085, 0.192653, -0.145283, -0.085, 0.195918, -0.147732, -0.085, -0.195918, 0.146145, 0.085, -0.192653, -0.145283, -0.085, 0.195918, 0.146145, 0.085, -0.192653, 0.143696)
+
+[sub_resource type="Animation" id="Animation_r4c2l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall-box/door/handle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wall-box/door:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5cpnw"]
+resource_name = "close"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall-box/door/handle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.833333, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wall-box/door:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wall-box/door/handle/LockSoundPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_a8ea8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_r4c2l")
+}],
+"times": PackedFloat32Array(0.7, 0.9)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_svtra"]
+resource_name = "open"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall-box/door/handle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wall-box/door:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wall-box/door/handle/LockSoundPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_r4c2l")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cpnw"]
+_data = {
+&"RESET": SubResource("Animation_r4c2l"),
+&"close": SubResource("Animation_5cpnw"),
+&"open": SubResource("Animation_svtra")
+}
+
+[node name="WallBox" type="StaticBody3D"]
+script = ExtResource("1_svtra")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_trukd")
+
+[node name="InteractionComponent" parent="." instance=ExtResource("2_trukd")]
+interaction_type = "Lasting"
+instant_interaction_mode = "Once"
+instant_interaction_timeout = 0.0
+
+[node name="Label3D" type="Label3D" parent="InteractionComponent"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.217651, 0.147747, 0.00729045)
+billboard = 1
+text = "
+[key]"
+
+[node name="wall-box" parent="." instance=ExtResource("1_6rpuc")]
+
+[node name="wall_box" parent="wall-box" index="0"]
+surface_material_override/0 = ExtResource("3_trukd")
+
+[node name="door" parent="wall-box" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0951707, -3.6329e-05, -0.139235)
+surface_material_override/0 = ExtResource("3_trukd")
+
+[node name="handle" parent="wall-box/door" index="0"]
+surface_material_override/0 = ExtResource("5_8pn2e")
+
+[node name="LockSoundPlayer" type="AudioStreamPlayer3D" parent="wall-box/door/handle" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00916366, 2.91038e-10, 0.00340065)
+
+[node name="lock" parent="wall-box/door/handle" index="1"]
+surface_material_override/0 = ExtResource("5_8pn2e")
+
+[node name="hinge" parent="wall-box/door" index="1"]
+surface_material_override/0 = ExtResource("3_trukd")
+
+[node name="hinge_attachment_top" parent="wall-box" index="2"]
+surface_material_override/0 = ExtResource("3_trukd")
+
+[node name="hinge_attachment_bottom" parent="wall-box" index="3"]
+surface_material_override/0 = ExtResource("3_trukd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5cpnw")
+}
+
+[connection signal="interacted" from="InteractionComponent" to="." method="_on_interacted"]
+
+[editable path="wall-box"]

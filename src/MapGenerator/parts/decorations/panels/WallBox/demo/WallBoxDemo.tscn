@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3mytoagst265"]
+
+[ext_resource type="PackedScene" uid="uid://bifspdjim33iv" path="res://src/MapGenerator/parts/corridors/demo/CorridorsDemo.tscn" id="1_sqiv8"]
+[ext_resource type="PackedScene" uid="uid://btpuyx6de84m0" path="res://src/MapGenerator/parts/decorations/panels/WallBox/WallBox.tscn" id="2_e1ps2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e1ps2"]
+radius = 2.0
+
+[node name="WallBoxDemo" type="Node3D"]
+
+[node name="CorridorsDemo" parent="." instance=ExtResource("1_sqiv8")]
+
+[node name="WallBox" parent="." instance=ExtResource("2_e1ps2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.4, -2.514)
+
+[node name="InteractionArea" type="Area3D" parent="WallBox"]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBox/InteractionArea"]
+shape = SubResource("SphereShape3D_e1ps2")
+
+[node name="WallBox2" parent="." instance=ExtResource("2_e1ps2")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.15859, 1.34966, -5.26424)
+
+[node name="InteractionArea" type="Area3D" parent="WallBox2"]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallBox2/InteractionArea"]
+transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0, 0)
+shape = SubResource("SphereShape3D_e1ps2")

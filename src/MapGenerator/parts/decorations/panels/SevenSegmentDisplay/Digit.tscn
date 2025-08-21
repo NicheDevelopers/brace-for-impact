@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1wasr6q67iha"]
+
+[ext_resource type="Script" uid="uid://dryqqr5shh62y" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/digit.gd" id="1_ic48u"]
+[ext_resource type="PackedScene" uid="uid://cn01hq3gqcpu1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/raw/seven-segment-digit.glb" id="2_ij6yh"]
+[ext_resource type="Material" uid="uid://cc0fujxnoacyt" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/segment_on_material.tres" id="3_ij6yh"]
+
+[node name="Digit" type="Node3D"]
+script = ExtResource("1_ic48u")
+
+[node name="seven-segment-digit" parent="." instance=ExtResource("2_ij6yh")]
+
+[node name="a" parent="seven-segment-digit" index="0"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="b" parent="seven-segment-digit" index="1"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="c" parent="seven-segment-digit" index="2"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="d" parent="seven-segment-digit" index="3"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="e" parent="seven-segment-digit" index="4"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="f" parent="seven-segment-digit" index="5"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[node name="g" parent="seven-segment-digit" index="6"]
+surface_material_override/0 = ExtResource("3_ij6yh")
+
+[editable path="seven-segment-digit"]

@@ -1,0 +1,163 @@
+[gd_scene load_steps=33 format=3 uid="uid://dp2c7p7lmqrrq"]
+
+[ext_resource type="Script" uid="uid://c2nvwhd5ybfwq" path="res://src/Player/HumanoidAnimationTree/humanoid_animation_tree.gd" id="1_axmgk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4rl4y"]
+animation = &"Crouch_Fwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ub20b"]
+animation = &"Crouch_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dd31a"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fnhyv"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrcd8"]
+animation = &"Jump_Land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_477y8"]
+animation = &"Jump_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31ddy"]
+animation = &"Sprint"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gilji"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gilji"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31ddy"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4rl4y"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ub20b"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.SPRINTING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnhyv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nrcd8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_crouched"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_477y8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not is_crouched"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vy57f"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_crouched"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r54fd"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not is_crouched"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dlqko"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vi1r3"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cdx0i"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "not is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rxnr"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22iev"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m5txt"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hovyp"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxp3e"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.SPRINTING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5eax5"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "movement == Movement.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rsn00"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "movement == Movement.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_axmgk"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor and movement == Movement.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cuku"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "is_on_floor and movement == Movement.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ubof5"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "is_on_floor and movement == Movement.SPRINTING"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dd31a"]
+states/Crouch_Fwd/node = SubResource("AnimationNodeAnimation_4rl4y")
+states/Crouch_Fwd/position = Vector2(668, 188)
+states/Crouch_Idle/node = SubResource("AnimationNodeAnimation_ub20b")
+states/Crouch_Idle/position = Vector2(419, 188)
+states/End/position = Vector2(1305, 88)
+states/Idle/node = SubResource("AnimationNodeAnimation_dd31a")
+states/Idle/position = Vector2(419, 88)
+states/Jump/node = SubResource("AnimationNodeAnimation_fnhyv")
+states/Jump/position = Vector2(917, -48)
+states/Jump_Land/node = SubResource("AnimationNodeAnimation_nrcd8")
+states/Jump_Land/position = Vector2(1143, -48)
+states/Jump_Start/node = SubResource("AnimationNodeAnimation_477y8")
+states/Jump_Start/position = Vector2(668, -48)
+states/Sprint/node = SubResource("AnimationNodeAnimation_31ddy")
+states/Sprint/position = Vector2(894, 88)
+states/Start/position = Vector2(258, 88)
+states/Walk/node = SubResource("AnimationNodeAnimation_gilji")
+states/Walk/position = Vector2(668, 88)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gilji"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_31ddy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_4rl4y"), "Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_ub20b"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_fnhyv"), "Walk", "Crouch_Fwd", SubResource("AnimationNodeStateMachineTransition_nrcd8"), "Crouch_Fwd", "Walk", SubResource("AnimationNodeStateMachineTransition_477y8"), "Idle", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_vy57f"), "Crouch_Idle", "Idle", SubResource("AnimationNodeStateMachineTransition_r54fd"), "Crouch_Idle", "Crouch_Fwd", SubResource("AnimationNodeStateMachineTransition_dlqko"), "Crouch_Fwd", "Crouch_Idle", SubResource("AnimationNodeStateMachineTransition_vi1r3"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_cdx0i"), "Walk", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_6rxnr"), "Sprint", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_22iev"), "Jump_Start", "Jump", SubResource("AnimationNodeStateMachineTransition_m5txt"), "Jump", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_hovyp"), "Jump_Land", "Sprint", SubResource("AnimationNodeStateMachineTransition_lxp3e"), "Jump_Land", "Walk", SubResource("AnimationNodeStateMachineTransition_5eax5"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_rsn00"), "Jump_Start", "Idle", SubResource("AnimationNodeStateMachineTransition_axmgk"), "Jump_Start", "Walk", SubResource("AnimationNodeStateMachineTransition_0cuku"), "Jump_Start", "Sprint", SubResource("AnimationNodeStateMachineTransition_ubof5")]
+graph_offset = Vector2(115.661, -149.826)
+
+[node name="HumanoidAnimationTree" type="AnimationTree"]
+tree_root = SubResource("AnimationNodeStateMachine_dd31a")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("1_axmgk")

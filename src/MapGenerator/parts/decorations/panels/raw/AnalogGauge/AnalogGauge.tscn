@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://br0somk6t4mfq"]
+
+[ext_resource type="PackedScene" uid="uid://pfgeam8v5cfm" path="res://src/MapGenerator/parts/decorations/panels/raw/AnalogGauge/model/analog-gauge.glb" id="1_5ftkk"]
+[ext_resource type="Material" uid="uid://536pvefuej46" path="res://src/MapGenerator/parts/decorations/panels/raw/base.tres" id="2_bnje5"]
+[ext_resource type="Script" uid="uid://27q53jwa1l00" path="res://src/MapGenerator/parts/decorations/panels/raw/AnalogGauge/analog_gauge.gd" id="2_wj7sh"]
+[ext_resource type="Material" uid="uid://biexx7cwdml1l" path="res://src/MapGenerator/parts/decorations/panels/raw/instrument_backlight_green.tres" id="3_5ftkk"]
+[ext_resource type="Material" uid="uid://bool447068ba" path="res://src/MapGenerator/parts/decorations/panels/raw/glass.tres" id="3_bnje5"]
+[ext_resource type="Material" uid="uid://88fmp4rxjdj4" path="res://src/MapGenerator/parts/decorations/panels/raw/instrument_backlight_white.tres" id="4_bnje5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wj7sh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="AnalogGauge" instance=ExtResource("1_5ftkk")]
+script = ExtResource("2_wj7sh")
+
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bnje5")
+
+[node name="Glass" parent="Base" index="0"]
+surface_material_override/0 = ExtResource("3_bnje5")
+
+[node name="Plate" parent="Base" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wj7sh")
+
+[node name="Dial" parent="Base/Plate" index="0"]
+material_override = ExtResource("3_5ftkk")
+
+[node name="MarkerBottomLeft" parent="Base/Plate" index="1"]
+material_override = ExtResource("4_bnje5")
+
+[node name="MarkerBottomRight" parent="Base/Plate" index="2"]
+material_override = ExtResource("4_bnje5")
+
+[node name="MarkerTop" parent="Base/Plate" index="3"]
+material_override = ExtResource("4_bnje5")
+
+[node name="MarkerTopLeft" parent="Base/Plate" index="4"]
+material_override = ExtResource("4_bnje5")
+
+[node name="MarkerTopRight" parent="Base/Plate" index="5"]
+material_override = ExtResource("4_bnje5")

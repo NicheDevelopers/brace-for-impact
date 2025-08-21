@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://1wxxqvhf4i77"]
+
+[ext_resource type="Script" uid="uid://b8nkisfkqasls" path="res://src/ui/Button/button.gd" id="1_8jb4b"]
+[ext_resource type="Theme" uid="uid://d16jk27slxm2x" path="res://src/ui/theme.tres" id="1_lven6"]
+[ext_resource type="AudioStream" uid="uid://dc7akncnn2nuk" path="res://src/ui/Button/button-click.mp3" id="2_xuir8"]
+
+[node name="Button" type="Button"]
+offset_right = 422.0
+offset_bottom = 91.0
+scale = Vector2(0.495378, 0.492262)
+size_flags_horizontal = 0
+theme = ExtResource("1_lven6")
+clip_text = true
+expand_icon = true
+script = ExtResource("1_8jb4b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xuir8")
+pitch_scale = 0.68
+
+[connection signal="button_down" from="." to="." method="_on_button_down_play_audio"]

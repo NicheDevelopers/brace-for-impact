@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bicrjrj60r1vg"]
+
+[ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="1_qhii2"]
+
+[node name="CorridorPipeLarge" instance=ExtResource("1_qhii2")]
+
+[node name="Pipe" parent="." index="0"]
+transform = Transform3D(1.5, 0, 0, 0, -4.37114e-08, -1.5, 0, 1, -6.55671e-08, 0, 0, 0)

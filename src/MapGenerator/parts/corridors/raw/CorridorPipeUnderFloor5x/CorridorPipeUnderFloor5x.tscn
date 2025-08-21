@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cghyroha1i3t0"]
+
+[ext_resource type="PackedScene" uid="uid://bh4mvruiqdck2" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor/CorridorPipeUnderFloor.tscn" id="1_qsf08"]
+
+[node name="CorridorPipeUnderFloor5x" type="Node3D"]
+
+[node name="CorridorPipeUnderFloor" parent="." instance=ExtResource("1_qsf08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor2" parent="." instance=ExtResource("1_qsf08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
+
+[node name="CorridorPipeUnderFloor3" parent="." instance=ExtResource("1_qsf08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="CorridorPipeUnderFloor4" parent="." instance=ExtResource("1_qsf08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.06, 0)
+
+[node name="CorridorPipeUnderFloor5" parent="." instance=ExtResource("1_qsf08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.06, 0)
