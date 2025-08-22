@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfqjpsv1ymgq7"]
+[gd_scene load_steps=5 format=3 uid="uid://dfqjpsv1ymgq7"]
 
 [ext_resource type="PackedScene" uid="uid://u5ggmyoq8alr" path="res://src/MapGenerator/parts/corridors/raw/CorridorJunctionX/model/corridor-junction-x.glb" id="1_jedkp"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="2_mojhd"]
 [ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/common/materials/corridor_wall_material.tres" id="2_xxnas"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jedkp"]
@@ -8,7 +9,9 @@ data = PackedVector3Array(0.7184, -2.1261, 0.5638, 0.5702, -2.1261, 0.8687, 0.84
 
 [node name="CorridorJunctionX" instance=ExtResource("1_jedkp")]
 
-[node name="Cylinder_001" parent="." index="0"]
+[node name="HealthComponent" parent="." index="0" instance=ExtResource("2_mojhd")]
+
+[node name="Cylinder_001" parent="." index="1"]
 surface_material_override/0 = ExtResource("2_xxnas")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder_001" index="0"]

@@ -18,7 +18,7 @@ signal used(body)
 
 var _use_timeout_left: float = 0.0
 
-var _original_tree: Node3D
+var _original_tree: Node
 const POSITION_STORE_OFFSET_Y = 5000
 func _ready() -> void:
 	super()
@@ -28,13 +28,12 @@ func _ready() -> void:
 
 func _internal_on_interacted(_body: Variant) -> void:
 	# Use the interaction signal to attempt pick up the item
-	
 	SignalBus.attempted_item_pick_up.emit(self)
 	
 func prepare_for_pickup() -> void:
 	parent.freeze = true
 	parent.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
-	
+
 	_original_tree = parent.get_parent()
 	parent.get_parent().remove_child(parent)
 	parent.transform = Transform3D.IDENTITY

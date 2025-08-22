@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhlrs6gn2k4l5"]
+[gd_scene load_steps=3 format=3 uid="uid://dhlrs6gn2k4l5"]
 
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="1_2d0ct"]
 [ext_resource type="PackedScene" uid="uid://d308n4tea1len" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe/CorridorPipe.tscn" id="1_ef7lk"]
 
 [node name="CorridorPipe3x" type="Node3D"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_2d0ct")]
 
 [node name="CorridorPipe" parent="." instance=ExtResource("1_ef7lk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)

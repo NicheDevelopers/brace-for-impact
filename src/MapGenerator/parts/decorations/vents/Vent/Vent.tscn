@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy3wwg36656db"]
+[gd_scene load_steps=5 format=3 uid="uid://dy3wwg36656db"]
 
 [ext_resource type="PackedScene" uid="uid://dwy5aom04qwg0" path="res://src/MapGenerator/parts/decorations/vents/Vent/model/vent.glb" id="1_3feyp"]
+[ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="2_oaowo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oaowo"]
 albedo_color = Color(0.226707, 0.226707, 0.226707, 1)
@@ -12,8 +13,10 @@ disable_receive_shadows = true
 
 [node name="Vent" instance=ExtResource("1_3feyp")]
 
-[node name="Vent" parent="." index="0"]
+[node name="HealthComponent" parent="." index="0" instance=ExtResource("2_oaowo")]
+
+[node name="Vent" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_oaowo")
 
-[node name="Void" parent="." index="1"]
+[node name="Void" parent="." index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_a67y3")

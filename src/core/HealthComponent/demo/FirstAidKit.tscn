@@ -55,12 +55,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0850348, 0.0555496)
 text = "Heal"
 
 [node name="InteractionComponent" parent="." instance=ExtResource("2_2r2yi")]
-instant_interaction_mode = null
-instant_interaction_timeout = null
 
 [node name="Label3D" type="Label3D" parent="InteractionComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.450347, 0.350056)
+pixel_size = 0.002
 billboard = 1
+no_depth_test = true
+fixed_size = true
 text = "
 [key]"
 
