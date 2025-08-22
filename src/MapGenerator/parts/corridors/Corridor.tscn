@@ -1,85 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb8tg12r4rl3x"]
+[gd_scene load_steps=2 format=3 uid="uid://di2kp1chu4gmo"]
 
-[ext_resource type="PackedScene" uid="uid://dy3wwg36656db" path="res://src/MapGenerator/parts/decorations/vents/Vent/Vent.tscn" id="1_3vh87"]
-[ext_resource type="PackedScene" uid="uid://tvj55kk7x1qr" path="res://src/MapGenerator/parts/corridors/raw/CorridorStraight/CorridorStraight.tscn" id="1_fgx8y"]
-[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="5_8c08p"]
-[ext_resource type="PackedScene" uid="uid://dhlrs6gn2k4l5" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipe3x/CorridorPipe3x.tscn" id="5_ymrpd"]
-[ext_resource type="PackedScene" uid="uid://bmlei331kx2fn" path="res://src/MapGenerator/parts/doors/Doors.tscn" id="6_lbf74"]
-[ext_resource type="PackedScene" uid="uid://cthkk6emxx8s8" path="res://src/MapGenerator/parts/corridors/raw/CorridorCables/GroupedCorridorCables.tscn" id="7_3vh87"]
-[ext_resource type="PackedScene" uid="uid://cghyroha1i3t0" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor5x/CorridorPipeUnderFloor5x.tscn" id="7_jswsi"]
-[ext_resource type="PackedScene" uid="uid://bmt61higtx053" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorSmall/CorridorFloorSmall.tscn" id="7_lbf74"]
+[ext_resource type="Script" uid="uid://cogq1yd5s2xa8" path="res://src/MapGenerator/parts/corridors/corridor.gd" id="1_8jxpm"]
 
 [node name="Corridor" type="Node3D"]
+script = ExtResource("1_8jxpm")
+_corridor_type = 2
+_west_doors = true
+_east_doors = true
 
-[node name="Vent" parent="." instance=ExtResource("1_3vh87")]
-transform = Transform3D(-1.26132, 1.55211, 0, -1.55211, -1.26132, 0, 0, 0, 2, -1.163, 2.178, 1.046)
-
-[node name="Vent2" parent="." instance=ExtResource("1_3vh87")]
-transform = Transform3D(1.26132, -1.55211, 1.74846e-07, -1.55211, -1.26132, 0, 1.10269e-07, -1.3569e-07, -2, 1.16304, 2.1781, 1.04629)
-
-[node name="Doors" parent="." instance=ExtResource("6_lbf74")]
+[node name="NorthDoorPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.9)
 
-[node name="CorridorFloorSmall" parent="." instance=ExtResource("7_lbf74")]
+[node name="SouthDoorPoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.2, 1.9)
 
-[node name="Section1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+[node name="WestDoorPoint" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.9, 0.2, 8.30516e-08)
 
-[node name="Walls" parent="Section1" instance=ExtResource("1_fgx8y")]
-
-[node name="CorridorLamp" parent="Section1" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
-
-[node name="WallPipes" type="Node3D" parent="Section1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="CorridorPipe3x5" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, 1)
-
-[node name="CorridorPipe3x6" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, 1)
-
-[node name="CorridorPipe3x" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, 1)
-
-[node name="CorridorPipe3x4" parent="Section1/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, 1)
-
-[node name="GroupedCorridorCables" parent="Section1" instance=ExtResource("7_3vh87")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04, 0.319, 0)
-
-[node name="CorridorPipeUnderFloor5x" parent="Section1" instance=ExtResource("7_jswsi")]
-
-[node name="GroupedCorridorCables2" parent="Section1" instance=ExtResource("7_3vh87")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.04218, 0.319, -0.00022912)
-
-[node name="Section2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="Walls" parent="Section2" instance=ExtResource("1_fgx8y")]
-
-[node name="CorridorLamp" parent="Section2" instance=ExtResource("5_8c08p")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.425, 0)
-
-[node name="WallPipes" type="Node3D" parent="Section2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="CorridorPipe3x2" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(-0.642788, 0.766044, 0, -0.766044, -0.642788, 0, 0, 0, 1, -1.1, 2.2, -1)
-
-[node name="CorridorPipe3x3" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(0.642788, -0.766044, 8.74228e-08, -0.766044, -0.642788, 0, 5.61943e-08, -6.69697e-08, -1, 1.1, 2.2, -1)
-
-[node name="CorridorPipe3x4" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 1.1, 0.4, -1)
-
-[node name="CorridorPipe3x5" parent="Section2/WallPipes" instance=ExtResource("5_ymrpd")]
-transform = Transform3D(-0.642788, 0.766044, -8.74228e-08, 0.766044, 0.642788, -7.64274e-15, 5.61943e-08, -6.69697e-08, -1, -1.1, 0.4, -1)
-
-[node name="GroupedCorridorCables" parent="Section2" instance=ExtResource("7_3vh87")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04, 0.319, 0)
-
-[node name="GroupedCorridorCables2" parent="Section2" instance=ExtResource("7_3vh87")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.04218, 0.319, -0.00022912)
-
-[node name="CorridorPipeUnderFloor5x" parent="Section2" instance=ExtResource("7_jswsi")]
+[node name="EastDoorPoint" type="Node3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1.9, 0.2, -8.30516e-08)

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_xt1ef"]
 [ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_xt1ef"]
 [ext_resource type="PackedScene" uid="uid://bey8m1bscc25w" path="res://src/MapGenerator/parts/rooms/raw/common/RoomEntrance/RoomEntrance.tscn" id="2_ryupw"]
-[ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/Corridor.tscn" id="3_nxbr4"]
+[ext_resource type="PackedScene" uid="uid://cb8tg12r4rl3x" path="res://src/MapGenerator/parts/corridors/CorridorStraight.tscn" id="3_nxbr4"]
 [ext_resource type="PackedScene" uid="uid://c5w5mcgic88vn" path="res://src/MapGenerator/parts/rooms/raw/common/RoomCeiling/RoomCeiling.tscn" id="4_yk20q"]
 [ext_resource type="PackedScene" uid="uid://goqutdkpplvd" path="res://src/MapGenerator/parts/rooms/raw/common/RoomFloor/RoomFloor.tscn" id="5_2eibf"]
 [ext_resource type="PackedScene" uid="uid://rxxhny6v5ey6" path="res://src/MapGenerator/parts/rooms/parts/standard/Wall.tscn" id="5_npyrh"]
