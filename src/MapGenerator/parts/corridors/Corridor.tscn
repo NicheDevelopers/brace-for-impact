@@ -4,7 +4,8 @@
 
 [node name="Corridor" type="Node3D"]
 script = ExtResource("1_8jxpm")
-_corridor_type = 2
+_north_doors = true
+_south_doors = true
 _west_doors = true
 _east_doors = true
 

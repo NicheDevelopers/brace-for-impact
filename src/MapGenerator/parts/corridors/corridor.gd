@@ -145,6 +145,7 @@ func _doors_available(door_location: DoorLocation) -> bool:
 	return true
 
 func _ready() -> void:
-	if _corridor_type == null:
-		_corridor_type = CorridorType.STRAIGHT
+	# Trigger corridor type setter to ensure it's presence
+	# after scene reload
+	_corridor_type = _corridor_type
 	_refresh_doors()
