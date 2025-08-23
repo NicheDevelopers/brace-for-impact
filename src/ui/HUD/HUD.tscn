@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://duqdt1nl4il4q"]
+[gd_scene load_steps=8 format=3 uid="uid://duqdt1nl4il4q"]
 
 [ext_resource type="Script" uid="uid://b8ra668ihye81" path="res://src/ui/HUD/hud.gd" id="1_2vejy"]
 [ext_resource type="Script" uid="uid://dvfvto711c2nv" path="res://src/ui/HUD/fps_label.gd" id="1_5j8ly"]
 [ext_resource type="Texture2D" uid="uid://c8bvcne1nujgu" path="res://src/ui/HUD/crosshair.png" id="1_41kbx"]
+[ext_resource type="PackedScene" uid="uid://b2kqxv8yh1cj4" path="res://src/ui/HUD/DeveloperCheatsheet.tscn" id="4_6hj8k"]
 
 [sub_resource type="Gradient" id="Gradient_41kbx"]
 offsets = PackedFloat32Array(0, 0.946524, 1)
@@ -76,3 +77,6 @@ offset_bottom = 41.0
 scale = Vector2(0.5, 0.5)
 text = "100"
 label_settings = SubResource("LabelSettings_2vejy")
+
+[node name="DeveloperCheatsheet" parent="." instance=ExtResource("4_6hj8k")]
+layout_mode = 1

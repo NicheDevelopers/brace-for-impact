@@ -28,9 +28,9 @@ func _process(delta: float) -> void:
 	for body in to_remove:
 		inside.erase(body)
 	
-	apply_damage(delta)
+	apply_damage()
 
-func apply_damage(delta: float) -> void:
+func apply_damage() -> void:
 	for body in inside.keys():
 		var health = body.get_node("HealthComponent")
 		if dirac_impulse:

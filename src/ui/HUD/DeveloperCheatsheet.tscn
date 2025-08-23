@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2kqxv8yh1cj4"]
+
+[ext_resource type="Script" uid="uid://b3oygjdt1yrx0" path="res://src/ui/HUD/developer_cheatsheet.gd" id="1_5vp4s"]
+
+[node name="DeveloperCheatsheet" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5vp4s")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = -632.0
+offset_right = 1135.0
+offset_bottom = -232.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.8)
+
+[node name="TitleLabel" type="Label" parent="Background"]
+offset_left = 181.0
+offset_top = 7.0
+offset_right = 332.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Developer Keys"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 30.0
+offset_right = 490.0
+offset_bottom = 388.0
+
+[node name="ContentContainer" type="VBoxContainer" parent="Background/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 6
