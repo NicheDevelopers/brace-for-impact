@@ -3,15 +3,8 @@ extends Control
 class_name DeveloperCheatsheet
 
 @onready var background: ColorRect = $Background
-@onready var title_label: Label = $Background/VBoxContainer/MarginContainer/VBoxContainer2/TitleLabel
-@onready var content_container: VBoxContainer = $Background/VBoxContainer/MarginContainer/VBoxContainer2/ContentContainer
-
-var developer_actions: Array[String] = [
-	"dev_free_cursor",
-	"dev_third_person_camera", 
-	"dev_kill",
-	"dev_respawn"
-]
+@onready var title_label: Label = $Background/TitleLabel
+@onready var content_container: VBoxContainer = $Background/ScrollContainer/ContentContainer
 
 var action_descriptions: Dictionary = {
 	"dev_free_cursor": "Free Cursor",
@@ -25,23 +18,23 @@ func _ready() -> void:
 	_setup_cheatsheet()
 
 func _setup_cheatsheet() -> void:
-	# Clear existing content
 	for child in content_container.get_children():
 		child.queue_free()
 	
-	# Add each developer action with its keybind
-	for action_name in developer_actions:
-		if InputMap.has_action(action_name):
-			var keybind_text = _get_action_keybind(action_name)
-			var description = action_descriptions.get(action_name, action_name)
-			
-			if keybind_text != "":
-				_add_keybind_entry(keybind_text, description)
+	var actions = InputMap.get_actions()
+	
+	for action in actions:
+		if not action.begins_with("dev"): continue
+		
+		var keybind_text = _get_action_keybind(action)
+		var description = action_descriptions.get(action, action)
+		
+		if keybind_text != "":
+			_add_keybind_entry(keybind_text, description)
 
 func _add_keybind_entry(keybind: String, description: String) -> void:
 	var entry_container = HBoxContainer.new()
 	
-	# Key label (styled as a key/button)
 	var key_label = Label.new()
 	key_label.text = keybind
 	key_label.add_theme_font_size_override("font_size", 12)
@@ -80,7 +73,6 @@ func _get_action_keybind(action_name: String) -> String:
 	return key_text
 
 func show_cheatsheet() -> void:
-	# Refresh keybinds in case they changed
 	_setup_cheatsheet()
 	show()
 

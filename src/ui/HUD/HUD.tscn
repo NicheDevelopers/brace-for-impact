@@ -79,3 +79,4 @@ text = "100"
 label_settings = SubResource("LabelSettings_2vejy")
 
 [node name="DeveloperCheatsheet" parent="." instance=ExtResource("4_6hj8k")]
+layout_mode = 1
