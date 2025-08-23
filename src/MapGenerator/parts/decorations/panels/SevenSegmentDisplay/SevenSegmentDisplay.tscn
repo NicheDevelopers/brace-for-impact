@@ -1,0 +1,183 @@
+[gd_scene load_steps=10 format=3 uid="uid://nnpop8tdwuok"]
+
+[ext_resource type="Script" uid="uid://gguw7s270bsq" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/seven_segment_display.gd" id="1_6jauc"]
+[ext_resource type="PackedScene" uid="uid://3535octgm5t8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-body.glb" id="2_tswnh"]
+[ext_resource type="PackedScene" uid="uid://bj8cghux6rc3p" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-dot.glb" id="3_a6no7"]
+[ext_resource type="Material" uid="uid://cc0fujxnoacyt" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/segment_on_material.tres" id="4_vfvb3"]
+[ext_resource type="Material" uid="uid://qm83n2xcnqg1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/segment_off_material.tres" id="5_yv4xj"]
+[ext_resource type="PackedScene" uid="uid://cwygkkaidrmj8" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-plus.glb" id="6_3phho"]
+[ext_resource type="PackedScene" uid="uid://b1wasr6q67iha" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/Digit.tscn" id="7_xy6dr"]
+[ext_resource type="PackedScene" uid="uid://cn01hq3gqcpu1" path="res://src/MapGenerator/parts/decorations/panels/SevenSegmentDisplay/model/seven-segment-digit.glb" id="8_38m3g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dk57q"]
+albedo_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+
+[node name="SevenSegmentDisplay" type="Node3D"]
+script = ExtResource("1_6jauc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="seven-segment-body" parent="." instance=ExtResource("2_tswnh")]
+
+[node name="body" parent="seven-segment-body" index="0"]
+material_override = SubResource("StandardMaterial3D_dk57q")
+
+[node name="dot" parent="." instance=ExtResource("3_a6no7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0289818, -0.00890315, 0.0162077)
+
+[node name="Dot" parent="dot" index="0"]
+surface_material_override/0 = ExtResource("4_vfvb3")
+
+[node name="dot-bg" parent="." instance=ExtResource("3_a6no7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029, -0.009, 0.016)
+
+[node name="Dot" parent="dot-bg" index="0"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="plus" parent="." instance=ExtResource("6_3phho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0613579, -0.000338372, -0.00828418)
+
+[node name="plus-horizontal" parent="plus" index="0"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.0100443, -0.00862581, 0.00909134)
+surface_material_override/0 = ExtResource("4_vfvb3")
+
+[node name="plus-vertical" parent="plus" index="1"]
+transform = Transform3D(-1.19209e-07, 1.62921e-07, -1, -1.62921e-07, -1, -1.62921e-07, -1, 1.62921e-07, 1.78814e-07, 0.00354427, -0.00862581, 0.015797)
+surface_material_override/0 = ExtResource("4_vfvb3")
+
+[node name="plus-bg" parent="." instance=ExtResource("6_3phho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0613579, -0.000665361, -0.00828418)
+
+[node name="plus-horizontal" parent="plus-bg" index="0"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.0100443, -0.00862581, 0.00909134)
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="plus-vertical" parent="plus-bg" index="1"]
+transform = Transform3D(-1.19209e-07, 1.62921e-07, -1, -1.62921e-07, -1, -1.62921e-07, -1, 1.62921e-07, 1.78814e-07, 0.00354427, -0.00862581, 0.015797)
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="digit-1" parent="." instance=ExtResource("7_xy6dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0437688, -0.00871986, 0.016)
+
+[node name="digit-2" parent="." instance=ExtResource("7_xy6dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183033, -0.00871986, 0.0159909)
+
+[node name="digit-3" parent="." instance=ExtResource("7_xy6dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00827474, -0.00871986, 0.0159877)
+
+[node name="digit-4" parent="." instance=ExtResource("7_xy6dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0365358, -0.00871986, 0.0159877)
+
+[node name="digit-1-bg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0437688, -0.009, 0.016)
+
+[node name="seven-segment-digit" parent="digit-1-bg" instance=ExtResource("8_38m3g")]
+
+[node name="a" parent="digit-1-bg/seven-segment-digit" index="0"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="b" parent="digit-1-bg/seven-segment-digit" index="1"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="c" parent="digit-1-bg/seven-segment-digit" index="2"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="d" parent="digit-1-bg/seven-segment-digit" index="3"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="e" parent="digit-1-bg/seven-segment-digit" index="4"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="f" parent="digit-1-bg/seven-segment-digit" index="5"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="g" parent="digit-1-bg/seven-segment-digit" index="6"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="digit-2-bg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183033, -0.009, 0.0159909)
+
+[node name="seven-segment-digit" parent="digit-2-bg" instance=ExtResource("8_38m3g")]
+
+[node name="a" parent="digit-2-bg/seven-segment-digit" index="0"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="b" parent="digit-2-bg/seven-segment-digit" index="1"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="c" parent="digit-2-bg/seven-segment-digit" index="2"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="d" parent="digit-2-bg/seven-segment-digit" index="3"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="e" parent="digit-2-bg/seven-segment-digit" index="4"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="f" parent="digit-2-bg/seven-segment-digit" index="5"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="g" parent="digit-2-bg/seven-segment-digit" index="6"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="digit-3-bg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00827474, -0.009, 0.0159877)
+
+[node name="seven-segment-digit" parent="digit-3-bg" instance=ExtResource("8_38m3g")]
+
+[node name="a" parent="digit-3-bg/seven-segment-digit" index="0"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="b" parent="digit-3-bg/seven-segment-digit" index="1"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="c" parent="digit-3-bg/seven-segment-digit" index="2"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="d" parent="digit-3-bg/seven-segment-digit" index="3"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="e" parent="digit-3-bg/seven-segment-digit" index="4"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="f" parent="digit-3-bg/seven-segment-digit" index="5"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="g" parent="digit-3-bg/seven-segment-digit" index="6"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="digit-4-bg" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0365358, -0.009, 0.0159877)
+
+[node name="seven-segment-digit" parent="digit-4-bg" instance=ExtResource("8_38m3g")]
+
+[node name="a" parent="digit-4-bg/seven-segment-digit" index="0"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="b" parent="digit-4-bg/seven-segment-digit" index="1"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="c" parent="digit-4-bg/seven-segment-digit" index="2"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="d" parent="digit-4-bg/seven-segment-digit" index="3"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="e" parent="digit-4-bg/seven-segment-digit" index="4"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="f" parent="digit-4-bg/seven-segment-digit" index="5"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[node name="g" parent="digit-4-bg/seven-segment-digit" index="6"]
+surface_material_override/0 = ExtResource("5_yv4xj")
+
+[editable path="seven-segment-body"]
+[editable path="dot"]
+[editable path="dot-bg"]
+[editable path="plus"]
+[editable path="plus-bg"]
+[editable path="digit-1-bg/seven-segment-digit"]
+[editable path="digit-2-bg/seven-segment-digit"]
+[editable path="digit-3-bg/seven-segment-digit"]
+[editable path="digit-4-bg/seven-segment-digit"]

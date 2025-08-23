@@ -1,110 +1,286 @@
 extends CharacterBody3D
 
+class_name Player
+
 # TODO: replace this with a config value that's taken from the game settings
-@export_group("mouse")
+@export_group("Mouse")
 @export var mouse_sensitivity := 0.001
 @export var mouse_twist := 0.0
 @export var mouse_pitch := 0.0
 
-@export_group("player_properties")
+@export_group("Movement")
 @export var speed = 4.0
-@export var acceleration = 8.0
+@export var acceleration = 80.0
 @export var sprint_speed_multiplier = 2.0
 @export var crouch_speed_multiplier = 0.5
-@export var acceleration_loss = 4.0
-# placeholder values correct for the default pill-shaped model
-# TODO: change these values to be correct for the target player model
-@export var standing_height = 0.7
-@export var bobbing_depth = 0.1
-@export var crouching_height = standing_height - 0.7
+@export var acceleration_loss = 50.0
+
 # placeholder variable which determines whether the player should obey the laws of gravity or not.
 # if there is no gravity, the player can jump, but not move up/down freely.
 # the reverse happens if there is no gravity.
 @export var no_gravity_mode := 0
 
+@export_group("Debug")
+@export var third_person_camera := false
+@export var third_person_camera_distance := 3.0
+
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var hand_point: Node3D = $TwistPivot/PitchPivot/Arm/HandPoint
+@onready var animation_tree = $AnimationTree
+@onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+@onready var rig: Node3D = $Rig
+@onready var skeleton: Skeleton3D = $Rig/Skeleton3D
+@onready var hitbox: CollisionShape3D = $Hitbox
+@onready var after_death_hitbox: CollisionShape3D = $AfterDeathHitbox
+@onready var bone_simulator: PhysicalBoneSimulator3D = $Rig/Skeleton3D/PhysicalBoneSimulator3D
+@onready var health: HealthComponent = $HealthComponent
+@onready var hud: Control = $UI/HUD
+
+# placeholder values correct for the default pill-shaped model
+# TODO: change these values to be correct for the target player model
+@onready var standing_height = twist_pivot.position.y
+@onready var current_camera_height = twist_pivot.position.y
+var t_bob = 0
+var returning = 0
+@export var standing_bobbing_depth = 0.15
+@export var standing_bobbing_frequency = 5
+@export var crouching_bobbing_depth = standing_bobbing_depth / 2
+@warning_ignore("integer_division")
+@export var crouching_bobbing_frequency = standing_bobbing_frequency / 2
+@onready var crouching_height = standing_height - 0.85
+@onready var desired_height = standing_height
+@onready var jump_strength = 20.0
+@onready var inventory: InventoryComponent = $InventoryComponent
+
 # Called when the node enters the scene tree for the first time.
 var previous_input: Vector2 = Vector2.ZERO
-var current_direction: Vector2 = Vector2.ZERO
+var previous_tbob_depth: float = 0
+var gravity = 55
+var is_standing: bool = true
+
+@onready var respawn_transform: Transform3D = transform
+@onready var respawn_twist_transform: Transform3D = twist_pivot.transform
+@onready var respawn_pitch_transform: Transform3D = pitch_pivot.transform
+@onready var respawn_rig_transform: Transform3D = rig.transform
+
+# TODO: move this functionality to equipment
+var held_item_component: ItemComponent
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
 
+func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		
+
 func _ready() -> void:
+	SignalBus.attempted_item_pick_up.connect(_on_attempted_item_pick_up)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	if is_standing:
+		pos.y = abs(sin(time * standing_bobbing_frequency)) * standing_bobbing_depth * -1
+	else:
+		pos.y = abs(sin(time * crouching_bobbing_frequency)) * crouching_bobbing_depth * -1
+	return pos
+
+var log_velocity := false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if no_gravity_mode:
 		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	else:
 		motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 	
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var forward := camera.global_basis.z
-	var right := camera.global_basis.x
+	var forward := twist_pivot.global_basis.z
+	var right := twist_pivot.global_basis.x
 	var direction := forward * input.y + right * input.x
 	var crouch_value := 1.0
 	var sprint_value := 1.0
+	is_standing = true
+
 	direction.y = 0.0
 	direction = direction.normalized()
+	
 	if Input.get_action_strength("crouch"):
 		crouch_value = crouch_speed_multiplier
-		camera.position.y = crouching_height
+		is_standing = false
 	elif Input.get_action_strength("sprint") and input[1] < 0.0:
 		# if the player is moving forward and trying to sprint
 		sprint_value = sprint_speed_multiplier
-		camera.position.y = standing_height
-	else:
-		camera.position.y = standing_height
-	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
-	var mapped_input = map_direction(input)
-	var velocity_2d = Vector2.ZERO
-	velocity_2d.x = velocity.x
-	velocity_2d.y = velocity.z
-	print("Velocity 2D:", velocity_2d)
-	print("Mapped input:", mapped_input)
-	print("Direction:", direction.x, " ", direction.z)
-	current_direction = map_direction(velocity_2d)
-	# works only for no tilt	
-	#if current_direction[0] != mapped_input[0]:
-		#velocity.x /= acceleration_loss
-	#if current_direction[1] != mapped_input[1]:
-		#velocity.z /= acceleration_loss
-	#if current_direction[0] != mapped_input[0] or current_direction[1] != mapped_input[1]:
-		#velocity.x -= direction.x * acceleration_loss
-		#velocity.z -= direction.z * acceleration_loss
 
-	#if no_gravity_mode:
-		#input.y = Input.get_axis("move_down", "move_up")
-	#else:
-		## TODO: implement actual gravity-obedient jumping
-		#input.y = Input.get_action_strength("jump") * 3
+	# mitigate the move_toward's influence on Y speed
+	var correct_y_velocity = velocity.y
+	velocity = velocity.move_toward(direction * speed * crouch_value * sprint_value, acceleration * delta)
+	velocity.y = correct_y_velocity
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	if no_gravity_mode:
+		velocity.y = Input.get_axis("move_down", "move_up")
+	else:
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y += jump_strength
+
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
 	move_and_slide()
 	
+	animation_tree.update_animation(self)
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("dev_free_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+	
+	if Input.is_action_just_pressed("dev_third_person_camera"):
+		toggle_third_person_camera()
+	
+	if Input.is_action_just_pressed("dev_kill"):
+		health.kill(self)
+	
+	if Input.is_action_just_pressed("dev_respawn"):
+		respawn()
+	
 	twist_pivot.rotate_y(mouse_twist)
 	pitch_pivot.rotate_x(mouse_pitch)
-	
+	rig.rotate_y(mouse_twist)
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
 	)
+	
+	var current_headbob_depth = _headbob(t_bob)
+	
+	if velocity.length():
+		t_bob += delta * float(is_on_floor())
+	else:
+		if round_to_dec(current_headbob_depth.y, 2) != 0:
+			if returning:
+				t_bob += delta * float(is_on_floor()) * returning
+			else:
+				if previous_tbob_depth < current_headbob_depth.y:
+					returning = 1
+				else:
+					returning = -1
+		else:
+			t_bob = 0
+			returning = 0
+			twist_pivot.transform.origin = Vector3.ZERO
+
+	if not is_standing:
+		desired_height = lerp(desired_height, crouching_height, 15 * delta)
+	else:
+		desired_height = lerp(desired_height, standing_height, 15 * delta)
+		
+	twist_pivot.transform.origin = Vector3(0, desired_height, 0) + current_headbob_depth
+	previous_tbob_depth = current_headbob_depth.y
 	mouse_twist = 0.0
 	mouse_pitch = 0.0
+	
+	if Input.is_action_pressed("use_item"):
+		if held_item_component != null:
+			held_item_component.use(self)
+	
+	if Input.is_action_just_pressed("store_item"):
+		if held_item_component != null:
+			if inventory.is_store_possibility():
+				inventory.store(held_item_component)
+				held_item_component = null
+			else:
+				_switch_items()
+			
+	
+	if Input.is_action_just_pressed("drop_item"):
+		if held_item_component != null:
+			held_item_component.drop(self)
+			held_item_component = null
+	
+	if Input.is_action_just_pressed("retrieve_item"):
+		if inventory.is_retrieve_possible():
+			if held_item_component == null:
+				held_item_component = inventory.retrieve()
+			else:
+				_switch_items()
 	
 	previous_input = input
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			mouse_twist = -event.relative.x * mouse_sensitivity
-			mouse_pitch = -event.relative.y * mouse_sensitivity
+			mouse_twist += -event.relative.x * mouse_sensitivity
+			mouse_pitch += -event.relative.y * mouse_sensitivity
+
+# Player tries to pick up item from ground
+func _on_attempted_item_pick_up(item_component: ItemComponent):
+	if held_item_component == null:
+		# Pick up item
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
+		return
+	else:
+		# Drop item from hand then pick up item 
+		held_item_component.drop(self)
+		item_component.prepare_for_pickup()
+		held_item_component = item_component
+		hand_point.add_child(item_component.parent)
+
+func _item_drop():
+	pass
+func _switch_items():
+	var retrieved_item = inventory.retrieve()
+	inventory.store(held_item_component)
+	held_item_component = retrieved_item
+
+func _on_killed(_by_who: Variant) -> void:
+	hitbox.disabled = true
+	after_death_hitbox.disabled = false
+	
+	bone_simulator.physical_bones_start_simulation()
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	respawn()
+
+# Respawn the player, making them invincible for 0.5s to ensure
+# physics adjusts to the reset transforms before it can be damaged again
+func respawn():
+	health.can_be_damaged = false
+	health.restore(self)
+	
+	transform = respawn_transform
+	twist_pivot.transform = respawn_twist_transform
+	pitch_pivot.transform = respawn_pitch_transform
+	rig.transform = respawn_rig_transform
+	
+	hitbox.disabled = false
+	after_death_hitbox.disabled = true
+	bone_simulator.physical_bones_stop_simulation()
+	
+	await get_tree().create_timer(0.5).timeout
+	health.can_be_damaged = true
+
+func toggle_third_person_camera():
+	if third_person_camera:
+		camera.position.z -= third_person_camera_distance
+		third_person_camera = false
+		hud.show_crosshair()
+	else:
+		camera.position.z += third_person_camera_distance
+		third_person_camera = true
+		hud.hide_crosshair()

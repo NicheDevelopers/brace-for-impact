@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://e815hkgppp33"]
+
+[ext_resource type="Script" uid="uid://du4uc3u4flg8u" path="res://src/ui/Notification/notification.gd" id="1_6mv2r"]
+
+[node name="Notification" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6mv2r")
+
+[node name="BackgroundTint" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.396078)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 267.0
+offset_right = 795.0
+offset_bottom = 373.0
+color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -30.5
+offset_right = 81.5
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Notification text"
+
+[node name="exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.5
+offset_top = -306.0
+offset_right = 13.5
+offset_bottom = -283.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "OK"
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dykcrbb7u3khj"]
+
+[ext_resource type="Script" uid="uid://b615vg785jykv" path="res://src/core/ItemComponent/item_component.gd" id="1_ip4if"]
+
+[node name="ItemComponent" type="Area3D"]
+script = ExtResource("1_ip4if")

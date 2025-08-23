@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh4mvruiqdck2"]
+
+[ext_resource type="PackedScene" uid="uid://bicrjrj60r1vg" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeLarge/CorridorPipeLarge.tscn" id="1_d6k6w"]
+[ext_resource type="Material" uid="uid://dltd71rfi5fps" path="res://src/MapGenerator/common/materials/corridor_pipe_under_floor.tres" id="2_dbout"]
+
+[node name="CorridorPipeUnderFloor" instance=ExtResource("1_d6k6w")]
+
+[node name="Pipe" parent="." index="0"]
+material_override = ExtResource("2_dbout")
