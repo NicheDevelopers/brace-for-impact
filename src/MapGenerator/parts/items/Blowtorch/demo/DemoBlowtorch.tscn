@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4k00agm1x1t"]
+
+[ext_resource type="PackedScene" uid="uid://nlfkxcsxtbw6" path="res://src/MapGenerator/parts/items/Blowtorch/Blowtorch.tscn" id="2_dl72g"]
+[ext_resource type="PackedScene" uid="uid://bmvg2shn15oom" path="res://src/core/EffectRay/demo/DamageRayDemo.tscn" id="2_yfthh"]
+
+[node name="DemoBlowtorch" type="Node3D"]
+
+[node name="Blowtorch" parent="." instance=ExtResource("2_dl72g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2)
+
+[node name="DamageRayDemo" parent="." instance=ExtResource("2_yfthh")]

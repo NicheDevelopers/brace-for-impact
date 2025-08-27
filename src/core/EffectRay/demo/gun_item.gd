@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@onready var ray = $Node3D/DamageRay
+@onready var ray = $Node3D/EffectRay
 @onready var laser = $Node3D/LaserMesh
 
 var laser_timer: Timer

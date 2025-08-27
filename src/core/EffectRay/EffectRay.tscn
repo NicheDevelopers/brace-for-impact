@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://2qfch3g7yybm"]
+
+[ext_resource type="Script" uid="uid://c8tk5q6wfeic1" path="res://src/core/EffectRay/effect_ray.gd" id="1_eiqs1"]
+
+[node name="EffectRay" type="RayCast3D"]
+target_position = Vector3(0, -3, 0)
+collision_mask = 7
+script = ExtResource("1_eiqs1")

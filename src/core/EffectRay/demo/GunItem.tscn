@@ -1,20 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmvg2shn15oom"]
+[gd_scene load_steps=17 format=3 uid="uid://blxoss2f6pgqo"]
 
-[ext_resource type="PackedScene" uid="uid://cdc3ubfifx2di" path="res://src/core/DamageRay/demo/ItemToDestroy.tscn" id="2_kaiyn"]
-[ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/core/DamageRay/demo/GunItem.tscn" id="3_k2c8t"]
-[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/core/DamageRay/demo/gun_item.gd" id="4_dpbh2"]
-[ext_resource type="PackedScene" uid="uid://dykcrbb7u3khj" path="res://src/core/ItemComponent/ItemComponent.tscn" id="5_ttslm"]
-[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/core/DamageRay/DamageRay.tscn" id="5_w52n2"]
-[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="6_3j6ab"]
+[ext_resource type="Script" uid="uid://cnm1cu0ohx7uv" path="res://src/core/EffectRay/demo/gun_item.gd" id="1_rrkpc"]
+[ext_resource type="PackedScene" uid="uid://dykcrbb7u3khj" path="res://src/core/ItemComponent/ItemComponent.tscn" id="2_61cic"]
+[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/core/EffectRay/EffectRay.tscn" id="2_xxioe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_61cic"]
 size = Vector3(0.1716, 0.36853, 0.514099)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dy31d"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_61cic"]
-material = SubResource("StandardMaterial3D_xxioe")
+material = SubResource("StandardMaterial3D_dy31d")
 radius = 0.01
 height = 3.0
 
@@ -56,28 +53,12 @@ material = SubResource("StandardMaterial3D_6e4tu")
 radius = 0.005
 height = 0.01
 
-[node name="DamageRayDemo" type="Node3D"]
+[node name="GunItem" type="RigidBody3D"]
+script = ExtResource("1_rrkpc")
 
-[node name="ItemToDestroy" parent="." instance=ExtResource("2_kaiyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840347, 0)
+[node name="ItemComponent" parent="." instance=ExtResource("2_61cic")]
 
-[node name="ItemToDestroy2" parent="." instance=ExtResource("2_kaiyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24779, 0.903774, 0)
-
-[node name="HealthComponent" parent="ItemToDestroy2" index="0"]
-default_health = 500.0
-max_health = 500.0
-
-[node name="GunItem" parent="." instance=ExtResource("3_k2c8t")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.201926, 0.793103, 2.3992)
-
-[node name="GunItem2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14854, 14.7672, 0.918509)
-script = ExtResource("4_dpbh2")
-
-[node name="ItemComponent" parent="GunItem2" instance=ExtResource("5_ttslm")]
-
-[node name="Label3D" type="Label3D" parent="GunItem2/ItemComponent"]
+[node name="Label3D" type="Label3D" parent="ItemComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
 pixel_size = 0.002
 billboard = 1
@@ -86,72 +67,67 @@ fixed_size = true
 text = "
 [key]"
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="GunItem2/ItemComponent"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ItemComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00318909, 0.120056, -0.124359)
 visible = false
 shape = SubResource("BoxShape3D_61cic")
 
-[node name="Node3D" type="Node3D" parent="GunItem2"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -3.59989e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
 
-[node name="DamageRay" parent="GunItem2/Node3D" instance=ExtResource("5_w52n2")]
-damage_dealt = 25.0
+[node name="EffectRay" parent="Node3D" instance=ExtResource("2_xxioe")]
 
-[node name="LaserMesh" type="MeshInstance3D" parent="GunItem2/Node3D"]
+[node name="LaserMesh" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 mesh = SubResource("CapsuleMesh_61cic")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GunItem2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
 mesh = SubResource("CapsuleMesh_rrkpc")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="GunItem2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.186181, -0.127503)
 shape = SubResource("ConvexPolygonShape3D_xxioe")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="GunItem2"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.89276e-08, 5.46392e-08, 1, 0.5, -0.866026, 3.78552e-08, 0.866026, 0.5, -4.37114e-08, 0, 0.0783424, -0.042913)
 mesh = SubResource("CapsuleMesh_6e4tu")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GunItem2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.89276e-08, 5.46392e-08, 1, 0.5, -0.866026, 3.78552e-08, 0.866026, 0.5, -4.37114e-08, 0, 0.0783424, -0.042913)
 shape = SubResource("ConvexPolygonShape3D_alidf")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="GunItem2"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, 0, 0.23801, -0.227811)
 mesh = SubResource("CapsuleMesh_0mx47")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GunItem2/MeshInstance3D2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
 mesh = SubResource("CapsuleMesh_alidf")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GunItem2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.0221966, 0.245378, -0.022)
 mesh = SubResource("CapsuleMesh_0mx47")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GunItem2/MeshInstance3D3"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D3"]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
 mesh = SubResource("CapsuleMesh_alidf")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="GunItem2"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, 0.0225669, 0.245378, -0.022)
 mesh = SubResource("CapsuleMesh_0mx47")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GunItem2/MeshInstance3D4"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D4"]
 transform = Transform3D(4.37114e-08, -8.74228e-08, -1, 8.74228e-08, 1, -8.74228e-08, 1, -8.74228e-08, 4.37114e-08, -0.00134358, 0.0501262, -0.00114533)
 mesh = SubResource("CapsuleMesh_alidf")
 skeleton = NodePath("")
 
-[node name="ExampleDemo" parent="." instance=ExtResource("6_3j6ab")]
-
-[connection signal="used" from="GunItem2/ItemComponent" to="GunItem2" method="_on_used"]
-
-[editable path="ItemToDestroy2"]
+[connection signal="used" from="ItemComponent" to="." method="_on_used"]
