@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://nlfkxcsxtbw6"]
+
+[ext_resource type="Script" uid="uid://bqbkc6ejmiqa1" path="res://src/MapGenerator/parts/items/Blowtorch/blowtorch.gd" id="1_1d5as"]
+[ext_resource type="PackedScene" uid="uid://0fip8cue2nwn" path="res://src/MapGenerator/parts/items/Blowtorch/raw/BlowtorchModel.tscn" id="1_uifvv"]
+[ext_resource type="PackedScene" uid="uid://2qfch3g7yybm" path="res://src/core/EffectRay/EffectRay.tscn" id="1_ynf46"]
+[ext_resource type="PackedScene" uid="uid://dykcrbb7u3khj" path="res://src/core/ItemComponent/ItemComponent.tscn" id="5_q37yl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2443"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxioe"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1d5as"]
+material = SubResource("StandardMaterial3D_xxioe")
+radius = 0.01
+height = 0.5
+
+[node name="Blowtorch" type="RigidBody3D"]
+script = ExtResource("1_1d5as")
+
+[node name="EffectRay" parent="." instance=ExtResource("1_ynf46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325904, -0.0450009)
+target_position = Vector3(0, 0, -0.5)
+effect_type = 1
+damage_strength = 0.5
+heal_strength = 1.0
+
+[node name="BlowtorchModel" parent="." instance=ExtResource("1_uifvv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="ItemComponent" parent="." instance=ExtResource("5_q37yl")]
+use_timeout = 0.1
+usage_mode = "Continuous"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_r2443")
+
+[node name="Label3D" type="Label3D" parent="ItemComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282847, 0.186181, -0.127503)
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "
+[key]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_r2443")
+
+[node name="LaserMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00150094, -0.999999, 0, 0.999999, 0.00150094, 0, 0.323, -0.295259)
+mesh = SubResource("CapsuleMesh_1d5as")
+skeleton = NodePath("../..")
+
+[connection signal="used" from="ItemComponent" to="." method="_on_used"]

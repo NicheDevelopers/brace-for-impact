@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://0fip8cue2nwn"]
+
+[ext_resource type="PackedScene" uid="uid://c05ytmvt6yiqb" path="res://src/MapGenerator/parts/items/Blowtorch/raw/model/blowtorch.glb" id="1_uifvv"]
+[ext_resource type="Material" uid="uid://dnv1v6v3uvayb" path="res://src/MapGenerator/parts/items/Blowtorch/raw/gold_metalic_color.tres" id="2_1d5as"]
+[ext_resource type="Material" uid="uid://l5hd0vc3f5ei" path="res://src/MapGenerator/parts/items/Blowtorch/raw/black_color.tres" id="2_ynf46"]
+[ext_resource type="Material" uid="uid://ch3hj8ghvwrc" path="res://src/MapGenerator/parts/items/Blowtorch/raw/blue_metalic_color.tres" id="4_1d5as"]
+
+[node name="Blowtorch" instance=ExtResource("1_uifvv")]
+
+[node name="Tube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_1d5as")
+
+[node name="Knob" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_ynf46")
+
+[node name="Can" parent="." index="2"]
+surface_material_override/0 = ExtResource("4_1d5as")

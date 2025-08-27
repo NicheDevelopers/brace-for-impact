@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c3ohrns2tmp1x" path="res://src/core/SpawnerComponent/demo/spawner_component_demo.gd" id="1_a6777"]
 [ext_resource type="PackedScene" uid="uid://c1gn731e6gehk" path="res://src/core/SpawnerComponent/demo/Ball.tscn" id="2_reudt"]
 [ext_resource type="PackedScene" uid="uid://b0jicufn100mx" path="res://src/core/SpawnerComponent/SpawnerComponent.tscn" id="2_ssups"]
-[ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/core/DamageRay/demo/GunItem.tscn" id="5_2u1ik"]
+[ext_resource type="PackedScene" uid="uid://blxoss2f6pgqo" path="res://src/core/EffectRay/demo/GunItem.tscn" id="5_2u1ik"]
 [ext_resource type="Script" uid="uid://c04ogoivd342b" path="res://src/core/SpawnerComponent/demo/csg_torus_3d_4.gd" id="5_71j4v"]
 [ext_resource type="PackedScene" uid="uid://2bvqp5i8uw1v" path="res://src/core/HealthComponent/HealthComponent.tscn" id="7_877o6"]
 
