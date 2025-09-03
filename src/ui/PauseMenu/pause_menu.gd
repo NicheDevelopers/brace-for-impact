@@ -2,8 +2,12 @@ extends Control
 
 @onready var pause_menu_container = $ColorRect
 @onready var resume_button = $ColorRect/HBoxContainer/MarginContainer/VBoxContainer/ResumeButton
+@onready var host_button = $ColorRect/HBoxContainer/MarginContainer/VBoxContainer/HostButton
+@onready var join_button = $ColorRect/HBoxContainer/MarginContainer/VBoxContainer/JoinButton
+@onready var start_button = $ColorRect/HBoxContainer/MarginContainer/VBoxContainer/StartButton
 
 func _ready() -> void:
+	start_button.hide()
 	_hide()
 
 func _process(_delta: float) -> void:
@@ -33,3 +37,17 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _on_resume_button_button_down() -> void:
 	_hide()
+
+func _on_host_button_down() -> void:
+	Multiplayer.create_enet_host()
+	host_button.hide()
+	join_button.hide()
+	start_button.show()
+
+func _on_join_button_down() -> void:
+	Multiplayer.create_enet_client()
+	host_button.hide()
+	join_button.hide()
+
+func _on_start_button_down() -> void:
+	Multiplayer.start_game()

@@ -64,4 +64,24 @@ layout_mode = 2
 size_flags_horizontal = 1
 text = "Resume"
 
+[node name="HostButton" parent="ColorRect/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_my5q4")]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "HOST ON LAN
+(ENet)"
+
+[node name="JoinButton" parent="ColorRect/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_my5q4")]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "JOIN LAN SERVER
+(ENet)"
+
+[node name="StartButton" parent="ColorRect/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_my5q4")]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "START GAME"
+
 [connection signal="button_down" from="ColorRect/HBoxContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_button_down"]
+[connection signal="button_down" from="ColorRect/HBoxContainer/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_down"]
+[connection signal="button_down" from="ColorRect/HBoxContainer/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_down"]
+[connection signal="button_down" from="ColorRect/HBoxContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_down"]

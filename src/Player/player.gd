@@ -74,6 +74,15 @@ func round_to_dec(num, digit):
 func map_direction(input):
 	return Vector2(sign(input.x), sign(input.y))
 
+@rpc("any_peer", "call_local")
+func set_authority(id: int):
+	set_multiplayer_authority(id)
+
+@rpc("any_peer", "call_local")
+func teleport(new_position: Vector3):
+	self.position = new_position
+
+
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:

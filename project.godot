@@ -21,6 +21,7 @@ SignalBus="*res://src/core/global/SignalBus.gd"
 Bits="*res://src/core/utils/Bits.gd"
 Layer="*res://src/core/global/Layer.gd"
 Group="*res://src/core/global/Group.gd"
+Multiplayer="*res://src/core/Multiplayer/Multiplayer.gd"
 
 [display]
 
