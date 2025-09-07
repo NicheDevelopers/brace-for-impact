@@ -12,6 +12,32 @@ const JOINING_PLAYER_NAME = "leszmak"
 
 var players: Dictionary
 
+func _print(a1, a2="", a3="") -> void:
+	print("[" + peer_name + "]: ", a1, a2, a3)
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(
+		func(id : int):
+			_print("peer_connected, id: " + str(id))
+	)
+	multiplayer.peer_disconnected.connect(
+		func(id : int):
+			_print("peer_disconnected, id: ", id)
+	)
+	multiplayer.connected_to_server.connect(
+		func():
+			_print("connected_to_server")
+	)
+	multiplayer.connection_failed.connect(
+		func():
+			multiplayer.multiplayer_peer = null
+			_print("connection_failed")
+	)
+	multiplayer.server_disconnected.connect(
+		func():
+			_print("server_disconnected")
+	)
+
 @rpc("call_local", "any_peer")
 func player_joined(player_name: String):
 	var id = multiplayer.get_remote_sender_id()
@@ -39,7 +65,7 @@ func create_enet_client():
 
 @rpc("call_local")
 func load_world():
-	print("Loading world. My name: " + Multiplayer.peer_name)
+	_print("Loading world")
 	
 	# TODO: fix this dirty hack
 	var root = get_tree().root

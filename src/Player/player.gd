@@ -77,6 +77,8 @@ func map_direction(input):
 @rpc("any_peer", "call_local")
 func set_authority(id: int):
 	set_multiplayer_authority(id)
+	if is_multiplayer_authority():
+		camera.make_current()
 
 @rpc("any_peer", "call_local")
 func teleport(new_position: Vector3):
@@ -119,6 +121,9 @@ func _physics_process(delta: float) -> void:
 	var forward := twist_pivot.global_basis.z
 	var right := twist_pivot.global_basis.x
 	var direction := forward * input.y + right * input.x
+	if not is_multiplayer_authority():
+		direction = Vector3.ZERO
+	
 	var crouch_value := 1.0
 	var sprint_value := 1.0
 	is_standing = true
@@ -126,12 +131,13 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 	
-	if Input.get_action_strength("crouch"):
-		crouch_value = crouch_speed_multiplier
-		is_standing = false
-	elif Input.get_action_strength("sprint") and input[1] < 0.0:
-		# if the player is moving forward and trying to sprint
-		sprint_value = sprint_speed_multiplier
+	if is_multiplayer_authority():
+		if Input.get_action_strength("crouch"):
+			crouch_value = crouch_speed_multiplier
+			is_standing = false
+		elif Input.get_action_strength("sprint") and input[1] < 0.0:
+			# if the player is moving forward and trying to sprint
+			sprint_value = sprint_speed_multiplier
 
 	# mitigate the move_toward's influence on Y speed
 	var correct_y_velocity = velocity.y
@@ -141,11 +147,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	if no_gravity_mode:
-		velocity.y = Input.get_axis("move_down", "move_up")
-	else:
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y += jump_strength
+	if is_multiplayer_authority():
+		if no_gravity_mode:
+			velocity.y = Input.get_axis("move_down", "move_up")
+		else:
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				velocity.y += jump_strength
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -154,24 +161,25 @@ func _physics_process(delta: float) -> void:
 	
 	animation_tree.update_animation(self)
 	
-	if Input.is_action_just_pressed("dev_free_cursor"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if is_multiplayer_authority():
+		if Input.is_action_just_pressed("dev_free_cursor"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+		if Input.is_action_just_pressed("dev_third_person_camera"):
+			toggle_third_person_camera()
+		
+		if Input.is_action_just_pressed("dev_kill"):
+			health.kill(self)
+		
+		if Input.is_action_just_pressed("dev_respawn"):
+			respawn()
 	
-	if Input.is_action_just_pressed("dev_third_person_camera"):
-		toggle_third_person_camera()
-	
-	if Input.is_action_just_pressed("dev_kill"):
-		health.kill(self)
-	
-	if Input.is_action_just_pressed("dev_respawn"):
-		respawn()
-	
-	twist_pivot.rotate_y(mouse_twist)
-	pitch_pivot.rotate_x(mouse_pitch)
-	rig.rotate_y(mouse_twist)
-	pitch_pivot.rotation.x = clamp(
-		pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
-	)
+		twist_pivot.rotate_y(mouse_twist)
+		pitch_pivot.rotate_x(mouse_pitch)
+		rig.rotate_y(mouse_twist)
+		pitch_pivot.rotation.x = clamp(
+			pitch_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89)
+		)
 	
 	var current_headbob_depth = _headbob(t_bob)
 	
