@@ -12,7 +12,7 @@ default_value_enabled = true
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_c2bfw"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_vay7f"]
-parameter_name = "DessolveSpeed"
+parameter_name = "DissolveSpeed"
 default_value_enabled = true
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_o3yan"]
@@ -24,7 +24,7 @@ op_type = 0
 operator = 2
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_ftlsh"]
-parameter_name = "DessolveTiling"
+parameter_name = "DissolveTiling"
 default_value_enabled = true
 default_value = Vector2(1, 1)
 
@@ -56,7 +56,7 @@ op_type = 2
 operator = 2
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ws08l"]
-parameter_name = "DessolveTexture"
+parameter_name = "DissolveTexture"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_c2bfw"]
 expanded_output_ports = [0]
@@ -76,9 +76,9 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D MainTex;
-uniform vec2 DessolveTiling = vec2(1.000000, 1.000000);
-uniform vec2 DessolveSpeed = vec2(0.000000, 0.000000);
-uniform sampler2D DessolveTexture;
+uniform vec2 DissolveTiling = vec2(1.000000, 1.000000);
+uniform vec2 DissolveSpeed = vec2(0.000000, 0.000000);
+uniform sampler2D DissolveTexture;
 uniform float DissolveAmount : hint_range(0.0, 1.0) = 0.0;
 
 
@@ -115,7 +115,7 @@ void fragment() {
 
 
 // Vector2Parameter:16
-	vec2 n_out16p0 = DessolveTiling;
+	vec2 n_out16p0 = DissolveTiling;
 
 
 // VectorOp:18
@@ -127,7 +127,7 @@ void fragment() {
 
 
 // Vector2Parameter:13
-	vec2 n_out13p0 = DessolveSpeed;
+	vec2 n_out13p0 = DissolveSpeed;
 
 
 // VectorOp:15
@@ -141,7 +141,7 @@ void fragment() {
 
 	vec4 n_out8p0;
 // Texture2D:8
-	n_out8p0 = texture(DessolveTexture, n_out12p0);
+	n_out8p0 = texture(DissolveTexture, n_out12p0);
 
 
 // VectorOp:9
@@ -174,6 +174,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-1143.7, 218.687)
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_ftlsh")
 nodes/vertex/2/position = Vector2(-40, 420)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)

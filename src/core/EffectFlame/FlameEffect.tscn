@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cs0yjrn0puceh"]
+[gd_scene load_steps=20 format=3 uid="uid://cs0yjrn0puceh"]
 
 [ext_resource type="Shader" uid="uid://dke2fiwdxwt4g" path="res://src/core/EffectFlame/FlameEffectShader.tres" id="1_oe4fn"]
 [ext_resource type="Texture2D" uid="uid://cg3yx57a71xt6" path="res://src/core/EffectFlame/FireTextures/Flame01.png" id="2_t2lbi"]
-[ext_resource type="Texture2D" uid="uid://wjkco6186xoj" path="res://src/core/EffectFlame/FireTextures/Voronoi01.png" id="2_wos4v"]
 [ext_resource type="Texture2D" uid="uid://2w0c7ylpj3xa" path="res://src/core/EffectFlame/FireTextures/Flame02.png" id="4_r4j2f"]
 [ext_resource type="Shader" uid="uid://dfq7soj7mjxwq" path="res://src/core/EffectFlame/FlameEffectShaderSimple.tres" id="5_kh1ww"]
 [ext_resource type="Texture2D" uid="uid://duhn8y4tl3gs1" path="res://src/core/EffectFlame/FireTextures/Flare00.PNG" id="6_ywlcv"]
@@ -11,9 +10,8 @@
 render_priority = 0
 shader = ExtResource("1_oe4fn")
 shader_parameter/MainTex = ExtResource("2_t2lbi")
-shader_parameter/DessolveTiling = Vector2(0.25, 0.25)
-shader_parameter/DessolveSpeed = Vector2(0, 1)
-shader_parameter/DessolveTexture = ExtResource("2_wos4v")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(0, 0)
 shader_parameter/DissolveAmount = 0.3
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wos4v"]
@@ -26,9 +24,8 @@ color = Color(4, 1.25, 0.6, 0.8)
 render_priority = 0
 shader = ExtResource("1_oe4fn")
 shader_parameter/MainTex = ExtResource("4_r4j2f")
-shader_parameter/DessolveTiling = Vector2(1, 1)
-shader_parameter/DessolveSpeed = Vector2(0, 0)
-shader_parameter/DessolveTexture = ExtResource("2_wos4v")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(0, 0)
 shader_parameter/DissolveAmount = 0.0
 
 [sub_resource type="Curve" id="Curve_kh1ww"]
