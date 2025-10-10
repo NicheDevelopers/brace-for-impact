@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd04p8r07h3ur"]
+
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_mgx55"]
+[ext_resource type="PackedScene" uid="uid://cs0yjrn0puceh" path="res://src/core/EffectFlame/FlameEffect.tscn" id="2_rssrc"]
+
+[node name="DemoEffectFlame" type="Node3D"]
+
+[node name="DemoBasis" parent="." instance=ExtResource("1_mgx55")]
+
+[node name="FlameEffect" parent="." instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="FlameEffect2" parent="." instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="FlameEffect3" parent="." instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 10)
+
+[node name="FlameEffect" parent="Node3D" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="FlameEffect2" parent="Node3D" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029254, 0.333981, -0.351444)
+
+[node name="FlameEffect3" parent="Node3D" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.380179, -1, 9.12002)
+
+[node name="FlameEffect" parent="Node3D2" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.404033, 1, -0.556172)
+
+[node name="FlameEffect2" parent="Node3D2" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596458, 1, -0.967937)
+
+[node name="FlameEffect3" parent="Node3D2" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69135, 1, -0.440722)
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 7.35609)
+
+[node name="FlameEffect" parent="Node3D3" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="FlameEffect2" parent="Node3D3" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.456065)
+
+[node name="FlameEffect3" parent="Node3D3" instance=ExtResource("2_rssrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
