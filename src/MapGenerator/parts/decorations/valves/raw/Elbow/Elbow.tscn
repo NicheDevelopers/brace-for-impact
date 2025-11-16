@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj3pfcufte5pl"]
+
+[ext_resource type="PackedScene" uid="uid://ewjxqw572b1k" path="res://src/MapGenerator/parts/decorations/valves/raw/Elbow/model/elbow.glb" id="1_jx4g8"]
+[ext_resource type="Material" uid="uid://chrmpqxgfi0j2" path="res://src/MapGenerator/parts/decorations/valves/pipe_color.tres" id="2_uw6si"]
+
+[node name="Elbow" instance=ExtResource("1_jx4g8")]
+
+[node name="Elbow" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_uw6si")

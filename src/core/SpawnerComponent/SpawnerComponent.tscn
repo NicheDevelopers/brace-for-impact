@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0jicufn100mx"]
+
+[ext_resource type="Script" uid="uid://cphkldj2qnph" path="res://src/core/SpawnerComponent/spawner_component.gd" id="1_62ws2"]
+
+[node name="SpawnerComponent" type="Node3D"]
+script = ExtResource("1_62ws2")
+
+[node name="TargetRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 1)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk2qhe1x86ycp"]
+
+[ext_resource type="PackedScene" uid="uid://b1n4yph8on5lw" path="res://src/MapGenerator/parts/corridors/raw/CorridorTurn/CorridorTurn.tscn" id="1_dy8ux"]
+[ext_resource type="PackedScene" uid="uid://rbvof2rvowdb" path="res://src/MapGenerator/parts/corridors/raw/CorridorFloorLarge/CorridorFloorLarge.tscn" id="2_befva"]
+[ext_resource type="PackedScene" uid="uid://cgvvemx4qwiy6" path="res://src/MapGenerator/parts/corridors/raw/CorridorLamp/CorridorLamp.tscn" id="3_befva"]
+[ext_resource type="PackedScene" uid="uid://cghyroha1i3t0" path="res://src/MapGenerator/parts/corridors/raw/CorridorPipeUnderFloor5x/CorridorPipeUnderFloor5x.tscn" id="4_6u1io"]
+
+[node name="CorridorTurn" type="Node3D"]
+
+[node name="corridor-turn" parent="." instance=ExtResource("1_dy8ux")]
+
+[node name="corridor-floor-large" parent="." instance=ExtResource("2_befva")]
+
+[node name="CorridorLamp" parent="." instance=ExtResource("3_befva")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.4, 0)
+
+[node name="Pipes" type="Node3D" parent="."]
+
+[node name="CorridorPipeUnderFloor5x" parent="Pipes" instance=ExtResource("4_6u1io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CorridorPipeUnderFloor5x2" parent="Pipes" instance=ExtResource("4_6u1io")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0)
+
+[node name="CorridorPipeUnderFloor5x3" parent="Pipes" instance=ExtResource("4_6u1io")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.5)
+
+[node name="CorridorPipeUnderFloor5x4" parent="Pipes" instance=ExtResource("4_6u1io")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.5, 0, 0)

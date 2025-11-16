@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2wqxfwdm7a"]
+
+[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_04png"]
+[ext_resource type="Script" uid="uid://d0btr2kbiua5x" path="res://src/core/demo/demo_basis.gd" id="1_7iajn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hbmfo"]
+sky_material = SubResource("ProceduralSkyMaterial_7ljiq")
+
+[sub_resource type="Environment" id="Environment_ryhks"]
+background_mode = 2
+sky = SubResource("Sky_hbmfo")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l0icc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_roelj"]
+width = 2
+height = 2
+seamless = true
+noise = SubResource("FastNoiseLite_l0icc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ljiq"]
+albedo_color = Color(0.106593, 0.162472, 0.173119, 1)
+albedo_texture = SubResource("NoiseTexture2D_roelj")
+metallic = 0.6
+metallic_specular = 0.4
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hbmfo"]
+material = SubResource("StandardMaterial3D_7ljiq")
+size = Vector2(40, 40)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_287cu"]
+points = PackedVector3Array(-20, 0, -20, -20, 0, 20, 20, 0, -20, 20, 0, 20)
+
+[node name="DemoBasis" type="Node3D"]
+script = ExtResource("1_7iajn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ryhks")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_04png")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.60217)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_hbmfo")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_287cu")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://h7821updon4y"]
+
+[ext_resource type="PackedScene" uid="uid://n40h38oowyor" path="res://src/MapGenerator/parts/decorations/valves/raw/Pipe/model/pipe.glb" id="1_ma4nn"]
+[ext_resource type="Material" uid="uid://chrmpqxgfi0j2" path="res://src/MapGenerator/parts/decorations/valves/pipe_color.tres" id="2_o615b"]
+
+[node name="Pipe" instance=ExtResource("1_ma4nn")]
+
+[node name="Pipe" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_o615b")

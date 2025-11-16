@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc0hsgd5bxiys"]
+
+[ext_resource type="PackedScene" uid="uid://hyrdyrkg5p10" path="res://src/MapGenerator/parts/decorations/panels/raw/Dial/model/dial.glb" id="1_ajt1j"]
+[ext_resource type="Script" uid="uid://dlbs74jr4cj6i" path="res://src/MapGenerator/parts/decorations/panels/raw/Dial/dial.gd" id="2_rk4no"]
+[ext_resource type="Material" uid="uid://536pvefuej46" path="res://src/MapGenerator/parts/decorations/panels/raw/base.tres" id="2_trke0"]
+[ext_resource type="Material" uid="uid://blq3cqvnylfp7" path="res://src/MapGenerator/parts/decorations/panels/raw/dark_controls.tres" id="3_rk4no"]
+
+[node name="Dial" instance=ExtResource("1_ajt1j")]
+script = ExtResource("2_rk4no")
+
+[node name="Base" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_trke0")
+
+[node name="Dial" parent="Base" index="0"]
+material_override = ExtResource("2_trke0")
+
+[node name="TopBase" parent="Base" index="1"]
+material_override = ExtResource("3_rk4no")

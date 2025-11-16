@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgv01dtpnf1lu"]
+
+[ext_resource type="PackedScene" uid="uid://v1af140jq2of" path="res://src/Player/Player.tscn" id="1_j6ajt"]
+[ext_resource type="PackedScene" uid="uid://b3yyljh7ekn40" path="res://src/MapGenerator/parts/decorations/panels/demo/DemoPanel.tscn" id="4_smnso"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ljiq"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hbmfo"]
+sky_material = SubResource("ProceduralSkyMaterial_7ljiq")
+
+[sub_resource type="Environment" id="Environment_ryhks"]
+background_mode = 2
+sky = SubResource("Sky_hbmfo")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ljiq"]
+albedo_color = Color(0, 0.186951, 0.300152, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hbmfo"]
+material = SubResource("StandardMaterial3D_7ljiq")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ryhks"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="InteractDemo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ryhks")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_j6ajt")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_hbmfo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ryhks")
+
+[node name="Panels" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DecorationPanel1" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -4)
+
+[node name="DecorationPanel2" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.6, -4)
+
+[node name="DecorationPanel3" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -4)
+
+[node name="DecorationPanel4" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -4)
+
+[node name="DecorationPanel5" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -4)
+
+[node name="DecorationPanel6" parent="Panels" instance=ExtResource("4_smnso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.1, -4)

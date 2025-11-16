@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3yyljh7ekn40"]
+
+[ext_resource type="Material" uid="uid://dsgrukinv518b" path="res://src/MapGenerator/parts/decorations/panels/raw/metalic_background.tres" id="1_63cge"]
+[ext_resource type="PackedScene" uid="uid://dd7m2c16uqyaa" path="res://src/MapGenerator/parts/decorations/panels/raw/Switch/Switch.tscn" id="2_wv8fc"]
+[ext_resource type="PackedScene" uid="uid://cc0hsgd5bxiys" path="res://src/MapGenerator/parts/decorations/panels/raw/Dial/Dial.tscn" id="3_7m1cq"]
+[ext_resource type="PackedScene" uid="uid://ce7mrfsu58nri" path="res://src/MapGenerator/parts/decorations/panels/raw/RoundKnob/RoundKnob.tscn" id="3_evjb5"]
+[ext_resource type="PackedScene" uid="uid://br0somk6t4mfq" path="res://src/MapGenerator/parts/decorations/panels/raw/AnalogGauge/AnalogGauge.tscn" id="5_lu43y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fc4f3"]
+
+[node name="DecorationPanel1" type="Node3D"]
+
+[node name="MetalicSheet" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.02, 0, 0, -0.0139897)
+mesh = SubResource("BoxMesh_fc4f3")
+surface_material_override/0 = ExtResource("1_63cge")
+
+[node name="Switches" type="Node3D" parent="."]
+
+[node name="Switch" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0.1, 0)
+
+[node name="Switch2" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, 0.1, 0)
+
+[node name="Switch3" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.1, 0.1, 0)
+
+[node name="Switch4" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0)
+
+[node name="Switch5" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.1, 0.1, 0)
+
+[node name="Switch6" parent="Switches" instance=ExtResource("2_wv8fc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, 0.1, 0)
+
+[node name="Dials" type="Node3D" parent="."]
+
+[node name="Dial" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0, 0)
+
+[node name="Dial2" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, 0, 0)
+
+[node name="Dial3" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.1, 0, 0)
+
+[node name="Dial4" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Dial5" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.1, 0, 0)
+
+[node name="Dial6" parent="Dials" instance=ExtResource("3_7m1cq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, 0, 0)
+
+[node name="RoundKnobs" type="Node3D" parent="."]
+
+[node name="RoundKnob" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, -0.1, 0)
+
+[node name="RoundKnob2" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, -0.1, 0)
+
+[node name="RoundKnob3" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.1, -0.1, 0)
+
+[node name="RoundKnob4" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.1, 0)
+
+[node name="RoundKnob5" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.1, -0.1, 0)
+
+[node name="RoundKnob6" parent="RoundKnobs" instance=ExtResource("3_evjb5")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, -0.1, 0)
+
+[node name="AnalogGauges" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 0, 0)
+
+[node name="AnalogGauge" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+
+[node name="AnalogGauge2" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.737e-09, -0.10837)
+
+[node name="AnalogGauge3" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.03917e-09, 0.115283)
+
+[node name="AnalogGauge4" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102522, 0, 0)
+
+[node name="AnalogGauge5" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102522, -4.737e-09, -0.10837)
+
+[node name="AnalogGauge6" parent="AnalogGauges" instance=ExtResource("5_lu43y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102522, 5.03917e-09, 0.115283)

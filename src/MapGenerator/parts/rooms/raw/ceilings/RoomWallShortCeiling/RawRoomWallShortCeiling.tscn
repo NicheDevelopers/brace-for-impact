@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl1g1782uxxvo"]
+
+[ext_resource type="PackedScene" uid="uid://d2e5fqws14old" path="res://src/MapGenerator/parts/rooms/raw/ceilings/RoomWallShortCeiling/model/room-wall-short-ceiling.glb" id="1_bu8l1"]
+[ext_resource type="Material" uid="uid://rynx62he1bnt" path="res://src/MapGenerator/common/materials/corridor_wall_material.tres" id="2_t2evn"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y2msc"]
+points = PackedVector3Array(0.999804, 0.802511, 0.201025, 0.999804, 0.73511, 0.389352, 0.999804, 0.219085, -0.277759, 0.949882, 0.257735, -0.246088, -0.950079, 0.257735, -0.246088, -0.950079, 0.76379, 0.169289, -1, 0.802439, 0.201025, -1, 0.73511, 0.389287, 0.999804, 0.0644874, -0.150945, -1, 0.0644874, -0.150945, -1, 0.219085, -0.277759)
+
+[node name="RawRoomWallShortCeiling" instance=ExtResource("1_bu8l1")]
+
+[node name="Ceiling" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_t2evn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ceiling" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_y2msc")

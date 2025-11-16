@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://p1x2ufx1myb"]
+
+[ext_resource type="PackedScene" uid="uid://vgamw1ehrelw" path="res://src/MapGenerator/parts/rooms/raw/turns/RoomWallTurn/RawRoomWallTurn.tscn" id="1_im1yw"]
+[ext_resource type="PackedScene" uid="uid://c08nl0cnkh4im" path="res://src/MapGenerator/parts/rooms/raw/ceilings/RoomWallTurnCeiling/RawRoomWallTurnCeiling.tscn" id="2_b5r58"]
+
+[node name="WallTurn" type="Node3D"]
+
+[node name="RawRoomWallTurn" parent="." instance=ExtResource("1_im1yw")]
+
+[node name="RawRoomWallTurnCeiling" parent="." instance=ExtResource("2_b5r58")]

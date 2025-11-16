@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgykt56kdnbpo"]
+
+[ext_resource type="Texture2D" uid="uid://40cp3nomdvb2" path="res://src/Player/Flashlight/flashlight_pattern.png" id="1_k6alg"]
+[ext_resource type="Script" uid="uid://bkntlg0byfgf1" path="res://src/Player/Flashlight/flashlight.gd" id="1_ygl31"]
+
+[node name="Flashlight" type="Node3D"]
+script = ExtResource("1_ygl31")
+
+[node name="SpotLight" type="SpotLight3D" parent="."]
+light_color = Color(1, 1, 0.862745, 1)
+light_energy = 16.0
+light_indirect_energy = 4.61
+light_volumetric_fog_energy = 1.933
+light_projector = ExtResource("1_k6alg")
+light_specular = 3.126
+shadow_enabled = true
+spot_range = 15.0
+spot_attenuation = 1.9
+spot_angle = 34.27

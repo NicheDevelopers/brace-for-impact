@@ -1,0 +1,169 @@
+[gd_scene load_steps=21 format=3 uid="uid://bqwh7akecoeoe"]
+
+[ext_resource type="PackedScene" uid="uid://bru1ast2xoxwg" path="res://src/core/DamageArea/DamageArea.tscn" id="1_817so"]
+[ext_resource type="PackedScene" uid="uid://b2wqxfwdm7a" path="res://src/core/demo/DemoBasis.tscn" id="1_pycp1"]
+
+[sub_resource type="Curve" id="Curve_817so"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10, 0.25), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brn4y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_817so"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brn4y"]
+transparency = 1
+albedo_color = Color(0.980392, 1, 0.0117647, 0.466667)
+
+[sub_resource type="Curve" id="Curve_brn4y"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_817so"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.262745)
+
+[sub_resource type="Curve" id="Curve_6meqw"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6meqw"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.247059)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i1rb"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.262745)
+
+[sub_resource type="Curve" id="Curve_klo6j"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0, Vector2(2, 0.25), 0.0, 0.0, 0, 0, Vector2(3, 0), 0.0, 0.0, 0, 0, Vector2(4, 0.25), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_brn4y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klo6j"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.262745)
+
+[sub_resource type="Curve" id="Curve_byxbd"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0, Vector2(2, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3fw3"]
+transparency = 1
+albedo_color = Color(1, 0, 1, 0.262745)
+
+[sub_resource type="Curve" id="Curve_b3fw3"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0, Vector2(2, 0.1), 0.0, 0.0, 0, 0, Vector2(3, 0), 0.0, 0.0, 0, 0, Vector2(4, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ac1xp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.262745)
+
+[sub_resource type="Curve" id="Curve_ac1xp"]
+_limits = [0.0, 10.0, 0.0, 10.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0, Vector2(2, 0.01), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byxbd"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.262745)
+
+[node name="DamageAreaDemo" type="Node3D"]
+
+[node name="ExampleDemo" parent="." instance=ExtResource("1_pycp1")]
+
+[node name="DamageArea" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -7.36209)
+damage_curve = SubResource("Curve_817so")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea"]
+mesh = SubResource("BoxMesh_817so")
+surface_material_override/0 = SubResource("StandardMaterial3D_brn4y")
+
+[node name="DamageArea2" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 6.79636, 0, -7.41186)
+damage_curve = SubResource("Curve_brn4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea2"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea2"]
+mesh = SubResource("BoxMesh_817so")
+surface_material_override/0 = SubResource("StandardMaterial3D_817so")
+
+[node name="DamageArea3" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.3656, 0, -7.36209)
+damage_curve = SubResource("Curve_6meqw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea3"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea3"]
+mesh = SubResource("BoxMesh_817so")
+surface_material_override/0 = SubResource("StandardMaterial3D_6meqw")
+
+[node name="DamageArea4" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 6.79636, 0, -0.883727)
+dirac_impulse = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea4"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea4"]
+mesh = SubResource("BoxMesh_817so")
+surface_material_override/0 = SubResource("StandardMaterial3D_1i1rb")
+
+[node name="DamageArea5" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 6.79636, 0, 7.78669)
+damage_curve = SubResource("Curve_klo6j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea5"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea5"]
+mesh = SubResource("BoxMesh_brn4y")
+surface_material_override/0 = SubResource("StandardMaterial3D_klo6j")
+
+[node name="DamageArea6" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.0594263, 0, 7.78669)
+damage_curve = SubResource("Curve_byxbd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea6"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea6"]
+mesh = SubResource("BoxMesh_brn4y")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3fw3")
+
+[node name="DamageArea7" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.20116, 0, 7.78669)
+damage_curve = SubResource("Curve_b3fw3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea7"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea7"]
+mesh = SubResource("BoxMesh_brn4y")
+surface_material_override/0 = SubResource("StandardMaterial3D_ac1xp")
+
+[node name="DamageArea8" parent="." instance=ExtResource("1_817so")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.28572, 0, 0.29127)
+damage_curve = SubResource("Curve_ac1xp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea8"]
+shape = SubResource("BoxShape3D_brn4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea8"]
+mesh = SubResource("BoxMesh_brn4y")
+surface_material_override/0 = SubResource("StandardMaterial3D_byxbd")

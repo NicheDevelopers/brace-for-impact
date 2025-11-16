@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hygj6a45j73"]
+
+[ext_resource type="PackedScene" uid="uid://iooe4l78dmt0" path="res://src/MapGenerator/parts/rooms/raw/ceilings/RoomWallTurnShortCeiling/RawRoomWallTurnShortCeiling.tscn" id="1_n3b5k"]
+[ext_resource type="PackedScene" uid="uid://c720titxggcyg" path="res://src/MapGenerator/parts/rooms/raw/turns/RoomWallTurnShort/RawRoomWallTurnShort.tscn" id="2_g4ffn"]
+
+[node name="WallShortTurn" type="Node3D"]
+
+[node name="RawRoomWallTurnShortCeiling" parent="." instance=ExtResource("1_n3b5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="RawRoomWallTurnShort" parent="." instance=ExtResource("2_g4ffn")]
